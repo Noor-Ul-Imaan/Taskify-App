@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    font-family: Montserrat;
+
+}
+
+.navbar {
+    padding: 25px
+}
+
+.navbar-links img {
+    width: 40px;
+   
+}
+
+
+
+.navbar p {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.navbar-logo h1 {
+    color: #264351;
+}
+
+.navbar, .navbar-links, .navbar-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.main-section {
+    margin-top: 90px;
+    margin-left: 25px;
+    margin-bottom: 200px;
+    display: grid;
+    grid-template-columns: 7fr 6fr; 
+    gap: 100px
+}
+
+.main-section .main-left p:first-child {
+    font-weight: 800;
+    font-size: 65px;
+
+}
+.main-section .main-left p {
+    font-size: 18px;
+
+    margin-bottom: 50px;
+
+}
+
+
+.figures {
+    display: flex;
+    flex-direction: row;
+    gap: 130px;
+    margin-top: 50px;
+    justify-content:left;
+}
+
+.figure-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.figure {
+    font-size: 35px;
+    font-weight: bold;
+    color: #20918F ; /* Example color */
+}
+
+.description {
+    font-size: 18px;
+
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product-features-section  {
+    margin: auto;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.feature  {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    padding: 50px;
+    flex-direction: column;
+    align-items: center;
+    font-size: 28px;
+    border: 1px solid grey;
+
+}
+
+.feature-details {
+    display: flex;
+    gap: 200px
+}
+
+.feature img {
+    width: 190px;
+}
+
+.feature h1 {
+    margin-bottom: 40px;
+}
+
+
+
+.footer-section {
+    margin-top: 100px;
+    height: 60vh;
+    background-color: #20918F;
+}
