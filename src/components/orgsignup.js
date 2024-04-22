@@ -1,6 +1,6 @@
 // OrganizationSignup.js
 import React from 'react';
-import './orgsignup.css'; // Import CSS styles
+import './OrgSignUp.css'; // Import CSS styles
 import logo from './logo.png'; // Import logo image (adjust the path as needed)
 
 const OrganizationSignup = () => {

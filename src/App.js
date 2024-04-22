@@ -3,9 +3,9 @@ import './App.css';
 import HomePage from './components/HomePage'
 import mainPageAfterSignUp from './components/mainPageAfterSignUp';
 import IndivRegis from './components/IndivRegis';
-import orgsignup from './components/orgsignup';
+import OrgSignUp from './components/OrgSignUp';
 import SignIn from './components/SignIn';
-import whoareyou from './components/whoareyou';
+import WhoAreYou from './components/WhoAreYou';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -16,9 +16,9 @@ function App() {
             <Route path='/' element={<HomePage />} />
             <Route path='/mainPageAfterSignUp' element={<mainPageAfterSignUp />} />
             <Route path='/IndivRegis' element={<IndivRegis />} />
-            <Route path='/orgsignup' element={<orgsignup />} />
+            <Route path='/OrgSignUp' element={<OrgSignUp />} />
             <Route path='/SignIn' element={<SignIn />} />
-            <Route path='/whoareyou' element={<whoareyou />} />
+            <Route path='/WhoAreYou' element={<WhoAreYou />} />
           </Routes>
         </Router>
      

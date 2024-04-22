@@ -1,14 +1,9 @@
 import React from 'react';
-import './whoareyou.css'; // Make sure the path to the CSS file is correct
-import logo from './logo.png'; // Adjust the path as necessary
+import { Link } from 'react-router-dom'; // Import Link from React Router
+import './WhoAreYou.css'; 
+import logo from './logo.png'; 
 
-const TaskifySignup = () => {
-  // Function to handle user choice
-  const handleUserChoice = (choice) => {
-    // This can be replaced by routing logic or other state handling
-    console.log(`User chose: ${choice}`);
-  };
-
+const WhoAreYou = () => {
   return (
     <div className="gradient-background">
       <div className="container">
@@ -18,12 +13,16 @@ const TaskifySignup = () => {
         <div className="content">
           <h1>Who are you?</h1>
           <div className="options">
-            <button id="individual" onClick={() => handleUserChoice('individual')}>
-              I am an Individual
-            </button>
-            <button id="organization" onClick={() => handleUserChoice('organization')}>
-              I am an Organization
-            </button>
+            <Link to="/indivregis">
+              <button id="individual">
+                I am an Individual
+              </button>
+            </Link>
+            <Link to="/orgsignup">
+              <button id="organization">
+                I am an Organization
+              </button>
+            </Link>
           </div>
         </div>
         <div className="footer">
@@ -34,4 +33,4 @@ const TaskifySignup = () => {
   );
 };
 
-export default TaskifySignup;
+export default WhoAreYou;
