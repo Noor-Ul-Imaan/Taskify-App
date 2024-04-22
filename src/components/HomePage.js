@@ -16,7 +16,7 @@ const HomePage = () => {
             </div>
 
             <div className="navbar-links">
-                <Link to='mainPageAfterSignUp'>
+                <Link to='SignIn'>
                     <p>sign in</p>    
                 </Link>
                 

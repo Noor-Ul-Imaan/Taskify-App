@@ -1,6 +1,6 @@
 // TaskifyLogin.js
 import React from 'react';
-import './signin.css'; // Make sure the path to the CSS file is correct
+import './SignIn.css'; // Make sure the path to the CSS file is correct
 import logo from './logo.png'; // Adjust the path as necessary
 
 const TaskifyLogin = () => {

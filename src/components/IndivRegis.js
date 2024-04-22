@@ -1,5 +1,5 @@
 import React from 'react';
-import './indiv-regis.css'; // Import CSS styles
+import './IndivRegis.css'; // Import CSS styles
 
 const IndividualSignup = () => {
   const togglePasswordVisibility = (fieldId) => {
