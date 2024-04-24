@@ -1,0 +1,90 @@
+body{
+    margin:0;
+    padding: 0;
+}
+
+header {
+    color:white;
+    background-color:  #264653;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .logo img {
+    width: 100px;
+    height: auto;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile span {
+    color:white;
+    margin-right: 10px;
+  }
+  
+  .notification-icon {
+    color:white;
+  }
+  
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-top: 120px;
+    font-size: 24px;
+    color: #264653;
+  }
+  
+  .input-container {
+    margin-top: 20px;
+  }
+  
+  .email-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .send-invitation {
+    padding: 10px 51px;
+    border: none;
+    border-radius: 5px;
+    background-color: #264653;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-invitation:hover {
+    background-color: #2A9D8F;
+  }
+  
+  .share-linkCode {
+    margin-top: 5px;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #264653;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .share-linkCode:hover {
+    background-color: #2A9D8F;
+  }
