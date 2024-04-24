@@ -1,6 +1,6 @@
 import React from 'react'
 import './HomePage.css'
-import logo from '../images/sample logo.png'
+import logo from '../images/logo.png'
 import person from '../images/person.svg'
 
 import { Link } from 'react-router-dom';
