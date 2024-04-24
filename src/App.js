@@ -8,6 +8,8 @@ import SignIn from './components/SignIn';
 import WhoAreYou from './components/WhoAreYou';
 import UserManagement from './components/UserManagement'; 
 import Settings from './components/Settings';
+import OrgSettings from './components/OrgSettings';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
             <Route path='/WhoAreYou' element={<WhoAreYou />} />
             <Route path='/UserManagement' element={<UserManagement />} />
             <Route path='/Settings' element={<Settings />} />
+            <Route path='/OrgSettings' element={<OrgSettings />} />
           </Routes>
         </Router>
      
