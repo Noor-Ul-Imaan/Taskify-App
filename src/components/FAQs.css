@@ -1,0 +1,33 @@
+.faq-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.faq-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 40px;
+}
+
+.faq-question {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.faq-question p {
+  color: #666;
+}
+
+@media screen and (max-width: 768px) {
+  .faq-section {
+    grid-template-columns: 1fr;
+  }
+}

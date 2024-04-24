@@ -3,6 +3,7 @@ import './HomePage.css';
 import logo from '../images/logo.png';
 import person from '../images/person.svg';
 import Settings from './Settings';
+import FAQs from './FAQs';
 
 import { Link } from 'react-router-dom';
 
@@ -30,6 +31,8 @@ const HomePage = () => {
             {isDropdownOpen && (
               <div className="dropdown-content">
                 <Link to='/settings'>Settings</Link>
+                <Link to ='/'>Sign Out</Link>
+                <Link to ='/faqs'>FAQs</Link>
               </div>
             )}
           </div>
