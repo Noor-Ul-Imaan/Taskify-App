@@ -1,0 +1,59 @@
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.settings-box {
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    /* Adjust margin between boxes */
+}
+
+.settings-box h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    /* Adjust font size */
+}
+
+.setting-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.setting-option label {
+    width: 150px;
+    margin-right: 10px;
+    font-size: 16px;
+    /* Adjust font size */
+}
+
+.setting-option input[type="email"],
+.setting-option input[type="password"],
+.setting-option input[type="text"],
+.setting-option input[type="file"],
+.setting-option select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    /* Adjust font size */
+}
+
+.setting-option button {
+    padding: 8px 16px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    /* Adjust font size */
+}

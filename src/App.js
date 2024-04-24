@@ -7,6 +7,7 @@ import OrgSignUp from './components/OrgSignUp';
 import SignIn from './components/SignIn';
 import WhoAreYou from './components/WhoAreYou';
 import UserManagement from './components/UserManagement'; 
+import Settings from './components/Settings';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path='/SignIn' element={<SignIn />} />
             <Route path='/WhoAreYou' element={<WhoAreYou />} />
             <Route path='/UserManagement' element={<UserManagement />} />
+            <Route path='/Settings' element={<Settings />} />
           </Routes>
         </Router>
      
