@@ -3,7 +3,7 @@ import './App.css';
 import HomePage from './components/HomePage'
 import mainPageAfterSignUp from './components/mainPageAfterSignUp';
 import IndivRegis from './components/IndivRegis';
-import OrgSignUp from './components/OrgSignUp';
+// import OrgSignUp from './components/OrgSignUp';
 import SignIn from './components/SignIn';
 import WhoAreYou from './components/WhoAreYou';
 import UserManagement from './components/UserManagement'; 
@@ -17,14 +17,15 @@ function App() {
             <Route path='/' element={<HomePage />} />
             <Route path='/mainPageAfterSignUp' element={<mainPageAfterSignUp />} />
             <Route path='/IndivRegis' element={<IndivRegis />} />
-            <Route path='/OrgSignUp' element={<OrgSignUp />} />
+            {/* <Route path='/OrgSignUp' element={<OrgSignUp />} /> */}
             <Route path='/SignIn' element={<SignIn />} />
             <Route path='/WhoAreYou' element={<WhoAreYou />} />
             <Route path='/UserManagement' element={<UserManagement />} />
           </Routes>
-        </Router>
+         </Router>
      
     </div>
+
   );
 }
 
