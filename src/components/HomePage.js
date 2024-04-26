@@ -51,7 +51,7 @@ const HomePage = () => {
               <div className="description">Users</div>
             </div>
             <div className="figure-description">
-              <div className="figure">Over 1M</div>
+              <div className="figure">Over 2M</div>
               <div className="description">Tasks</div>
             </div>
             <div className="figure-description">
