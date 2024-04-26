@@ -7,6 +7,10 @@ import IndivRegis from './components/IndivRegis';
 import SignIn from './components/SignIn';
 import WhoAreYou from './components/WhoAreYou';
 import UserManagement from './components/UserManagement'; 
+import Settings from './components/Settings';
+import OrgSettings from './components/OrgSettings';
+import FAQs from './components/FAQs';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -21,6 +25,9 @@ function App() {
             <Route path='/SignIn' element={<SignIn />} />
             <Route path='/WhoAreYou' element={<WhoAreYou />} />
             <Route path='/UserManagement' element={<UserManagement />} />
+            <Route path='/Settings' element={<Settings />} />
+            <Route path='/OrgSettings' element={<OrgSettings />} />
+            <Route path='/FAQs' element={<FAQs />} />
           </Routes>
          </Router>
      

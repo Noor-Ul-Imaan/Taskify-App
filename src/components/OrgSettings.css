@@ -1,0 +1,61 @@
+.settings-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 75%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.settings-box {
+    width: calc(50% - 20px);
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+.settings-box h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.setting-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.setting-option label {
+    width: 150px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.setting-option input[type="text"],
+.setting-option input[type="file"],
+.setting-option input[type="tel"],
+.setting-option input[type="email"],
+.setting-option textarea,
+.setting-option select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.setting-option button {
+    padding: 8px 16px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.setting-option p {
+    font-size: 14px;
+    color: #e74c3c;
+    margin-bottom: 10px;
+}

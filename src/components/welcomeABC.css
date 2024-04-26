@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: white;
+  }
+header {
+    background-color: #264653;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #2ABDBD;
+  }
+  
+  .logo img {
+    width: 100px;
+    height: auto;
+  }
+  
+  .profile {
+    display: flex;
+    
+  }
+  
+  .profile span {
+    margin-right: 10px;
+  }
+  
+  .notification-icon {
+  color:white;  
+  }
+  
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #2ABDBD;
+  }
+  
+  h1 {
+    margin-top:200px;
+    font-size: 36px;
+    color: #264653;
+  }
+  
