@@ -1,0 +1,108 @@
+.notification {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 9px;
+    margin: 15px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification.pending {
+    border-color: #f0ad4e;
+    background-color: #fcf8e3;
+}
+
+.notification.accepted {
+    border-color: #5cb85c;
+    background-color: #e6f0e2;
+}
+
+.notification.rejected {
+    border-color: #d9534f;
+    background-color: #f9ebeb;
+}
+
+.accepted, .rejected {
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 5px 20px;
+}
+
+.accepted {
+    background-color: #5cb85c;
+}
+
+.rejected {
+    background-color: #d9534f;
+}
+
+.notification-message {
+    color: black; /* Set the color for notification message */
+    margin: 10px;
+}
+
+.action-buttons {
+    display: flex;
+}
+
+.accept-button, .reject-button {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 5px 10px;
+}
+
+.accept-button {
+    background-color: #5cb85c;
+}
+
+.reject-button {
+    background-color: #d9534f;
+}
+
+.accept-button:hover {
+    background-color: #468c46;
+}
+
+.reject-button:hover {
+    background-color: #ad3733;
+}
+
+.notifications {
+    text-align: center;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    padding: 15px
+}
+
+.navbar-links img {
+    width: 40px;
+   
+}
+
+.navbar p {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.navbar-logo h1 {
+    color: #264351;
+}
+
+.navbar, .navbar-links, .navbar-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
