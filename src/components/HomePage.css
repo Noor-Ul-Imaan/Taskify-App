@@ -9,11 +9,18 @@
 }
 
 .navbar-links img {
-    width: 40px;
+    width: 33px;
    
 }
 
-
+.navbar-links ul li {
+    list-style: none;
+    display: inline;
+    color: #E76F51;
+    /* Dark Blue */
+    font-size: 14px;
+    margin-right: 35px;
+}
 
 .navbar p {
     display: inline-block;
@@ -36,8 +43,8 @@
     margin-left: 25px;
     margin-bottom: 200px;
     display: grid;
-    grid-template-columns: 7fr 6fr; 
-    gap: 100px
+    grid-template-columns: 5fr 4fr; 
+    gap: 5vw
 }
 
 .main-section .main-left p:first-child {
@@ -151,8 +158,8 @@
     /* Add cursor pointer */
 }
 
-.footer-section {
+/* .footer-section {
     margin-top: 100px;
     height: 60vh;
     background-color: #20918F;
-}
+} */

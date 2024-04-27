@@ -4,6 +4,7 @@ import logo from '../images/logo.png';
 import person from '../images/person.svg';
 import Settings from './Settings';
 import FAQs from './FAQs';
+import Footer from './sections/Footer'
 
 import { Link } from 'react-router-dom';
 
@@ -22,9 +23,21 @@ const HomePage = () => {
         </div>
 
         <div className="navbar-links">
-          <Link to='SignIn'>
-            <p>sign in</p>
-          </Link>
+          
+            <ul>
+              <Link to='AboutUs'>
+                <li>About Us</li>
+              </Link>
+              <li>Features</li>
+              <li>Contact</li>  
+              <Link to='SignIn'>
+              <li>Sign In</li>
+                </Link>            
+              
+
+            </ul>
+            
+          
 
           <div className="dropdown">
             <img src={person} alt="" className="dropbtn" onClick={toggleDropdown} />
@@ -108,8 +121,8 @@ const HomePage = () => {
         </div>        
       </article>
 
-      <footer className="footer-section">
-        FOOTER SECTION to be added
+      <footer>
+        <Footer/>
       </footer>
     </div>
   );

@@ -1,0 +1,34 @@
+.footer-section {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 80px; 
+    margin-top: 100px;
+    height: 50vh;
+    background-color: #20918F;
+}
+
+.footer-links {
+    flex: 1; /* Take up equal space */
+    text-align: left;
+}
+
+.footer-mission {
+    flex: 1; /* Take up equal space */
+ 
+}
+
+.footer-links ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px; /* Add margin between list items */
+}
+
+.footer-mission, .footer-links {
+    font-size: 14px; 
+    line-height: 1.5; 
+    color: #c9c9c9; 
+}
