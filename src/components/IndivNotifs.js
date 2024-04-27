@@ -35,7 +35,7 @@ function IndivNotifs() {
           <img src="./person.svg" alt="" />
         </div>
       </nav>
-      <div className="notification-container" id="notificationContainer">
+      <div className="notificationContainer" id="notificationContainer">
         <div className="notifications">
           <h1>Notifications</h1>
         </div>
