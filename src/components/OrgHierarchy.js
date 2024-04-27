@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './OrgHierarchy.css';
 
-function OrganizationHierarchy() {
+function OrgHierarchy() {
   const [roles, setRoles] = useState([{ roleName: '', description: '', create: false, assign: false, delete: false, viewPerformance: false }]);
 
   const handleAddRole = () => {
@@ -104,4 +105,4 @@ function OrganizationHierarchy() {
   );
 }
 
-export default OrganizationHierarchy;
+export default OrgHierarchy;

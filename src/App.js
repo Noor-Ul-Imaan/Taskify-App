@@ -3,12 +3,13 @@ import './App.css';
 import HomePage from './components/HomePage'
 import mainPageAfterSignUp from './components/mainPageAfterSignUp';
 import IndivRegis from './components/IndivRegis';
-// import OrgSignUp from './components/OrgSignUp';
+import OrgSignUp from './components/OrgSignUp';
 import SignIn from './components/SignIn';
 import WhoAreYou from './components/WhoAreYou';
 import UserManagement from './components/UserManagement'; 
 import Settings from './components/Settings';
 import OrgSettings from './components/OrgSettings';
+import OrgHierarchy from './components/OrgHierarchy';
 import FAQs from './components/FAQs';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -21,12 +22,13 @@ function App() {
             <Route path='/' element={<HomePage />} />
             <Route path='/mainPageAfterSignUp' element={<mainPageAfterSignUp />} />
             <Route path='/IndivRegis' element={<IndivRegis />} />
-            {/* <Route path='/OrgSignUp' element={<OrgSignUp />} /> */}
+            <Route path='/OrgSignUp' element={<OrgSignUp />} />
             <Route path='/SignIn' element={<SignIn />} />
             <Route path='/WhoAreYou' element={<WhoAreYou />} />
             <Route path='/UserManagement' element={<UserManagement />} />
             <Route path='/Settings' element={<Settings />} />
             <Route path='/OrgSettings' element={<OrgSettings />} />
+            <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
             <Route path='/FAQs' element={<FAQs />} />
           </Routes>
          </Router>

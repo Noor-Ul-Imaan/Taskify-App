@@ -1,6 +1,6 @@
 import React from 'react'
-import './welcomeABC.css'
-function welcomeABC() {
+import './WelcomeABC.css'
+function WelcomeABC() {
   return (
     <div>
         <header>
@@ -20,4 +20,4 @@ function welcomeABC() {
   )
 }
 
-export default welcomeABC
+export default WelcomeABC
