@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import HomePage from './components/HomePage'
 import mainPageAfterSignUp from './components/mainPageAfterSignUp';
@@ -7,15 +7,8 @@ import OrgSignUp from './components/OrgSignUp';
 import SignIn from './components/SignIn';
 import WhoAreYou from './components/WhoAreYou';
 import UserManagement from './components/UserManagement'; 
-import Settings from './components/Settings';
-import OrgSettings from './components/OrgSettings';
-//import IndivNotifs from './components/IndivNotifs';
-import AdminNotifs from './components/AdminNotifs';
-import OrgHierarchy from './components/OrgHierarchy';
-import Reorder from './components/Reorder';
-import CreateTasks from './components/CreateTasks';
-import FAQs from './components/FAQs';
-
+import AboutUs from './components/AboutUs';
+import ContactForm from './components/ContactForm';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -30,14 +23,8 @@ function App() {
             <Route path='/SignIn' element={<SignIn />} />
             <Route path='/WhoAreYou' element={<WhoAreYou />} />
             <Route path='/UserManagement' element={<UserManagement />} />
-            <Route path='/Settings' element={<Settings />} />
-            <Route path='/OrgSettings' element={<OrgSettings />} />
-            {/* <Route path='/IndivNotifs' element={<IndivNotifs />} /> */}
-            <Route path='/AdminNotifs' element={<AdminNotifs />} />
-            <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
-            <Route path='/Reorder' element={<Reorder />} />
-            <Route path='/CreateTasks' element={<CreateTasks />} />
-            <Route path='/FAQs' element={<FAQs />} />
+            <Route path='/AboutUs' element={<AboutUs />} />
+            <Route path='/ContactForm' element={<ContactForm />} />
           </Routes>
          </Router>
      

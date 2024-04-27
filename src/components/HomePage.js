@@ -29,16 +29,13 @@ const HomePage = () => {
                 <li>About Us</li>
               </Link>
               <li>Features</li>
-              <li>Contact</li>  
+              <Link to='ContactForm'>
+                <li>Contact</li>                 
+              </Link>
               <Link to='SignIn'>
-              <li>Sign In</li>
-                </Link>            
-              
-
+                <li>Sign In</li>
+              </Link>            
             </ul>
-            
-          
-
           <div className="dropdown">
             <img src={person} alt="" className="dropbtn" onClick={toggleDropdown} />
             {isDropdownOpen && (
