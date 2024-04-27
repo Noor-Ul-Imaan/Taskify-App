@@ -13,6 +13,7 @@ import IndivNotifs from './components/IndivNotifs';
 import AdminNotifs from './components/AdminNotifs';
 import OrgHierarchy from './components/OrgHierarchy';
 import Reorder from './components/Reorder';
+import CreateTasks from './components/CreateTasks';
 import FAQs from './components/FAQs';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -35,6 +36,7 @@ function App() {
             <Route path='/AdminNotifs' element={<AdminNotifs />} />
             <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
             <Route path='/Reorder' element={<Reorder />} />
+            <Route path='/CreateTasks' element={<CreateTasks />} />
             <Route path='/FAQs' element={<FAQs />} />
           </Routes>
          </Router>
