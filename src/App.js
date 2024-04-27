@@ -9,7 +9,10 @@ import WhoAreYou from './components/WhoAreYou';
 import UserManagement from './components/UserManagement'; 
 import Settings from './components/Settings';
 import OrgSettings from './components/OrgSettings';
+import IndivNotifs from './components/IndivNotifs';
+import AdminNotifs from './components/AdminNotifs';
 import OrgHierarchy from './components/OrgHierarchy';
+import Reorder from './components/Reorder';
 import FAQs from './components/FAQs';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -28,7 +31,10 @@ function App() {
             <Route path='/UserManagement' element={<UserManagement />} />
             <Route path='/Settings' element={<Settings />} />
             <Route path='/OrgSettings' element={<OrgSettings />} />
+            <Route path='/IndivNotifs' element={<IndivNotifs />} />
+            <Route path='/AdminNotifs' element={<AdminNotifs />} />
             <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
+            <Route path='/Reorder' element={<Reorder />} />
             <Route path='/FAQs' element={<FAQs />} />
           </Routes>
          </Router>
