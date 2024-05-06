@@ -1,6 +1,6 @@
 import React from 'react'
 import './inviteMembers.css'
-function inviteMembers() {
+function InviteMembers() {
   return (
     <div>
         <header>
@@ -28,4 +28,4 @@ function inviteMembers() {
   )
 }
 
-export default inviteMembers
+export default InviteMembers

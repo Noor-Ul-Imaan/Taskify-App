@@ -2,6 +2,7 @@
 import React from 'react';
 import './OrgSignUp.css'; // Import CSS styles
 import logo from './logo.png'; // Import logo image (adjust the path as needed)
+import { Link } from 'react-router-dom';
 
 const OrganizationSignup = () => {
 return (
@@ -44,7 +45,10 @@ return (
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input type="password" id="confirmPassword" placeholder="Confirm password" />
                 </div>
-                <button type="submit">Sign Up</button>
+                <Link to='/adminHomepage'>
+                 <button type="submit">Sign Up</button>               
+                </Link>
+
             </form>
         </div>
         <div className="footer">

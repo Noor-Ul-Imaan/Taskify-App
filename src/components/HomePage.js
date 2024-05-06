@@ -25,6 +25,9 @@ const HomePage = () => {
         <div className="navbar-links">
           
             <ul>
+              <Link to='dump'>
+              Dump
+              </Link>
               <Link to='AboutUs'>
                 <li>About Us</li>
               </Link>
