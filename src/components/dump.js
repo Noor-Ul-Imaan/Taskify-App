@@ -20,13 +20,21 @@ const Dump = () => {
         </Link>
 
         <br></br>
-        {/* <Link to='/IndivNotifs'>
+        <Link to='/IndivNotifs'>
         IndivNotifs
-        </Link> */}
+        </Link>
 
+        <br></br>
         <Link to='/AdminHomepage'>
         AdminHomepage</Link>
+        
+        <br></br>
+        <Link to='/OrgHierarchy'>
+        OrgHierarchy</Link>
 
+        <br></br>
+        <Link to='/Reorder'>
+        Reorder</Link>
     </div>
   )
 }

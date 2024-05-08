@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './OrgHierarchy.css';
+import logo from './logo.png';
 
 function OrgHierarchy() {
   const [roles, setRoles] = useState([{ roleName: '', description: '', create: false, assign: false, delete: false, viewPerformance: false }]);
@@ -22,7 +23,7 @@ function OrgHierarchy() {
     }));
 
     localStorage.setItem('roles', JSON.stringify(rolesData));
-    window.location.href = 'reorder.html';
+    window.location.href = 'Reorder.html';
   };
 
   return (
