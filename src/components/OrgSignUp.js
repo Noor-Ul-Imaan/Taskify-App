@@ -26,7 +26,7 @@ const OrganizationSignup = () => {
                             <label htmlFor="confirmPassword">Confirm Password</label>
                             <input type="password" id="confirmPassword" placeholder="Confirm password" />
                         </div>
-                        <Link to='/adminHomepage'>
+                        <Link to='/OrganizationDetails'>
                             <button type="submit">Sign Up</button>               
                         </Link>
                     </form>
