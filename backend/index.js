@@ -77,7 +77,7 @@ const newOrganization = new Organization({
     name: 'Primark',
     type: 'Service Industry',
     numberOfLevels: 2,
-    roles: generateRoles(numberOfLevels) // Generate roles based on the number of levels
+    roles: generateRoles(2) // Generate roles based on the number of levels
 });
 
 // Save the organization to the database
