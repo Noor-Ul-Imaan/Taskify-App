@@ -13,8 +13,12 @@ import AdminHomepage from './components/AdminHomepage';
 import CreateTasks from './components/CreateTasks';
 import Dump from './components/dump';
 import AdminNotifs from './components/AdminNotifs';
-// import IndivNotifs from './components/IndivNotifs';
-import InviteMembers from './components/inviteMembers';
+import Settings from './components/Settings';
+import IndivNotifs from './components/IndivNotifs';
+import InviteMembers from './components/InviteMembers';
+import FAQs from './components/FAQs';
+import OrgHierarchy from './components/OrgHierarchy';
+import Reorder from './components/Reorder';
 
 function App() {
   return (
@@ -35,10 +39,13 @@ function App() {
             <Route path='/createTasks' element={<CreateTasks />} />
             <Route path='/dump' element={<Dump />} />
             <Route path='/AdminNotifs' element={<AdminNotifs />} />
-            {/* <Route path='/IndivNotifs' element={<IndivNotifs />} /> */}
-            <Route path='/InviteMembers' element={<inviteMembers />} />
+            <Route path='/IndivNotifs' element={<IndivNotifs />} />
+            <Route path='/InviteMembers' element={<InviteMembers />} />
             <Route path='/AdminHomepage' element={<AdminHomepage />} />
-            
+            <Route path='/Settings' element={<Settings />} />
+            <Route path='/FAQs' element={<FAQs />} />
+            <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
+            <Route path='/Reorder' element={<Reorder />} />
 
 
           </Routes>

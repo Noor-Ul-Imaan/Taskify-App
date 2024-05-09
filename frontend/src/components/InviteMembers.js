@@ -1,11 +1,14 @@
 import React from 'react'
-import './inviteMembers.css'
+import './InviteMembers.css'
+import logo from './logo.png'; 
+import { Link } from 'react-router-dom'; // Import Link from React Router
+
 function InviteMembers() {
   return (
     <div>
         <header>
   <div className="logo">
-    <img src="path_to_your_logo_image" alt="Logo"/>
+    <img src={logo} alt="Logo"/>
   </div>
   <div className="profile">
     <span>Welcome Admin!</span>
