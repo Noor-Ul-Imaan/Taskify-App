@@ -46,6 +46,57 @@ app.post('/tasks', async (request, response)=>{
     }
 });
 
+//Route for getting one task
+app.get('/tasks', async (request, response) => {
+    try {
+        const tasks = await Task.find({});
+
+        return response.status(200).json({
+            count: tasks.length,
+            data: tasks
+        });
+
+    }
+    catch (error){ 
+        console.log(error.message);
+        response.status(500).send({message: error.message})
+    }
+});
+
+//Route for getting a task by id
+app.get('/tasks/:id', async (request, response) => {
+    try {
+        const {id} = request.params;
+        const task = await Task.findById(id);
+
+        return response.status(200).json(task);
+
+    }
+    catch (error){ 
+        console.log(error.message);
+        response.status(500).send({message: error.message})
+    }
+});
+
+
+
+app.get('/organizations', async (request, response) => {
+    try {
+        const organization = await Organization.find({});
+
+        return response.status(200).json({
+            count: organization.length,
+            data: organization
+        });
+
+    }
+    catch (error){ 
+        console.log(error.message);
+        response.status(500).send({message: error.message})
+    }
+});
+
+
 app.post('/organizations', async (request, response) => {
     try {
         // Extract organization data from request body
