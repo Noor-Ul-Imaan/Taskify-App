@@ -51,6 +51,38 @@ app.post('/tasks', async (request, response) => {
     }
 });
 
+app.post('/organizations', async (request, response) => {
+    try {
+        // Extract organization data from request body
+        const { name, type, numberOfLevels, roles } = request.body;
+
+        // Validate required fields
+        if (!request.body.name || !request.body.type || !request.body.numberOfLevels || !request.body.roles) {
+            return response.status(400).send({
+                message: 'Send all required fields: name, type, numberOfLevels, and roles'
+            });
+        }
+
+        // Create new organization object
+        const newOrganization = new Organization({
+            name: request.body.name,
+            type: request.body.type,
+            numberOfLevels: request.body.numberOfLevels,
+            roles: request.body.roles
+        });
+
+        // Save organization to the database
+        //await newOrganization.save();
+        const organization = await Organization.create(newOrganization);
+
+        return response.status(201).send(newOrganization);
+    } catch (error) {
+        console.error('Error saving organization:', error);
+        return response.status(500).send({ message: 'Internal server error' });
+    }
+});
+
+
 mongoose
     .connect(mongoDBURL)
     .then(() => {
@@ -60,49 +92,38 @@ mongoose
         });
     })
     .catch((error) => {
-        console.log(error)
+        console.error('MongoDB connection error:', error);
     });
 
-// Function to generate roles for an organization
-function generateRoles(numberOfLevels) {
-    const roles = [];
-    for (let i = 1; i <= numberOfLevels; i++) {
-        roles.push({ name: `Role ${i}`, description: `Description for Role ${i}` });
-    }
-    return roles;
-}
-
-// Create a new organization
-const newOrganization = new Organization({
-    name: 'Primark',
-    type: 'Service Industry',
-    numberOfLevels: 2,
-    roles: generateRoles(2) // Generate roles based on the number of levels
-});
-
-// Save the organization to the database
-newOrganization.save().then(() => {
-    console.log('Organization saved successfully');
-}).catch(err => {
-    console.error('Error saving organization:', err);
-});
-
-// Query organizations from the database
-Organization.find().then(organizations => {
-    console.log('Organizations:', organizations);
-}).catch(err => {
-    console.error('Error querying organizations:', err);
-});
-
-// "test": "echo \"Error: no test specified\" && exit 1",
-// package.json
-// // Route for retrieving all tasks
-// app.get('/tasks', async (request, response) => {
-//     try {
-//       const tasks = await Task.find({}); // Find all tasks
-//       return response.status(200).send(tasks);
-//     } catch (error) {
-//       console.log(error.message);
-//       response.status(500).send({ message: 'Error fetching tasks' });
+// // Function to generate roles for an organization
+// function generateRoles(numberOfLevels) {
+//     const roles = [];
+//     for (let i = 1; i <= numberOfLevels; i++) {
+//         roles.push({ name: `Role ${i}`, description: `Description for Role ${i}` });
 //     }
-//   });
+//     return roles;
+// }
+
+// // Create a new organization
+// const newOrganization = new Organization({
+//     name: 'Primark',
+//     type: 'Service Industry',
+//     numberOfLevels: 2,
+//     roles: generateRoles(2) // Generate roles based on the number of levels
+// });
+
+// // Save the organization to the database
+// newOrganization.save().then(() => {
+//     console.log('Organization saved successfully');
+// }).catch(err => {
+//     console.error('Error saving organization:', err);
+// });
+
+// // Query organizations from the database
+// Organization.find().then(organizations => {
+//     console.log('Organizations:', organizations);
+// }).catch(err => {
+//     console.error('Error querying organizations:', err);
+// });
+
+

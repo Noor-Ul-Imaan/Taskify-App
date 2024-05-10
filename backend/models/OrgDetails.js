@@ -26,6 +26,10 @@ const organizationSchema = new mongoose.Schema({
         required: true
     },
     roles: [roleSchema] // Embed role schema as subdocuments
-});
+},
+{
+    timestamps: true,
+}
+);
 
 export const Organization = mongoose.model('Organization', organizationSchema);
