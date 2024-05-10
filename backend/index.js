@@ -1,7 +1,8 @@
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js"
 import mongoose from 'mongoose';
-import {Task} from './models/taskModel.js'
+import { Task } from './models/taskModel.js'
+import { Organization } from './models/OrgDetails.js'
 
 const app = express();
 
@@ -9,18 +10,19 @@ const app = express();
 app.use(express.json());
 
 //for http requests
-app.get('/', (request, response)=> {
+app.get('/', (request, response) => {
     console.log(request);
     return response.status(234).send('Welcome to TASKIFY');
 })
 
 //Route for Save a new task
+
 app.post('/tasks', async (request, response)=>{
     try {
-        if(
+        if (
             !request.body.title ||
             !request.body.assignedTo ||
-            !request.body.assignedBy 
+            !request.body.assignedBy
 
         ) {
             return response.status(400).send({
@@ -40,31 +42,42 @@ app.post('/tasks', async (request, response)=>{
     }
     catch (error) {
         console.log(error.message);
-        response.status(500).send({message: error.message});
+        response.status(500).send({ message: error.message });
     }
 });
 
-
-//Route for get all tasks from databse
-z
-
-//Route for get all tasks from databse
-app.get('/tasks', async (request, response) => {
+app.post('/organizations', async (request, response) => {
     try {
-        const tasks = await Task.find({});
-        return response.status(200).json({
-            count: tasks.length,
-            data: tasks
+        // Extract organization data from request body
+        const { name, type, numberOfLevels, roles } = request.body;
+
+        // Validate required fields
+        if (!request.body.name || !request.body.type || !request.body.numberOfLevels || !request.body.roles) {
+            return response.status(400).send({
+                message: 'Send all required fields: name, type, numberOfLevels, and roles'
+            });
+        }
+
+        // Create new organization object
+        const newOrganization = new Organization({
+            name: request.body.name,
+            type: request.body.type,
+            numberOfLevels: request.body.numberOfLevels,
+            roles: request.body.roles
         });
-    }
-    catch (error) {
-        console.log(error.message);
-        response.status(500).send({message: error.message});
+
+        // Save organization to the database
+        //await newOrganization.save();
+        const organization = await Organization.create(newOrganization);
+
+        return response.status(201).send(newOrganization);
+    } catch (error) {
+        console.error('Error saving organization:', error);
+        return response.status(500).send({ message: 'Internal server error' });
     }
 });
 
 
-//mongoose connection
 mongoose 
 .connect(mongoDBURL)
 .then(() => {

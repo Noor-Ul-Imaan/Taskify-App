@@ -19,6 +19,8 @@ import InviteMembers from './components/InviteMembers';
 import FAQs from './components/FAQs';
 import OrgHierarchy from './components/OrgHierarchy';
 import Reorder from './components/Reorder';
+import OrganizationDetails from './components/OrganizationDetails';
+
 
 function App() {
   return (
@@ -46,7 +48,7 @@ function App() {
             <Route path='/FAQs' element={<FAQs />} />
             <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
             <Route path='/Reorder' element={<Reorder />} />
-
+            <Route path='/OrganizationDetails' element={<OrganizationDetails />} />
 
           </Routes>
         </Router>
