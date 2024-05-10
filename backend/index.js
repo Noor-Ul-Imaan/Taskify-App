@@ -1,4 +1,3 @@
-
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js"
 import mongoose from 'mongoose';
@@ -15,16 +14,11 @@ app.get('/', (request, response)=> {
     return response.status(234).send('Welcome to TASKIFY');
 })
 
-
-
 //Route for Save a new task
-
 app.post('/tasks', async (request, response)=>{
     try {
         if(
             !request.body.title ||
-            // !request.body.description ||
-            // !request.body.deadline ||
             !request.body.assignedTo ||
             !request.body.assignedBy 
 
@@ -50,6 +44,27 @@ app.post('/tasks', async (request, response)=>{
     }
 });
 
+
+//Route for get all tasks from databse
+z
+
+//Route for get all tasks from databse
+app.get('/tasks', async (request, response) => {
+    try {
+        const tasks = await Task.find({});
+        return response.status(200).json({
+            count: tasks.length,
+            data: tasks
+        });
+    }
+    catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
+
+//mongoose connection
 mongoose 
 .connect(mongoDBURL)
 .then(() => {
