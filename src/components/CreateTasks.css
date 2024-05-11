@@ -12,7 +12,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.container h1 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -37,7 +37,7 @@ select {
     font-size: 16px;
 }
 
-button {
+.container button {
     padding: 10px 20px;
     border: none;
     border-radius: 3px;

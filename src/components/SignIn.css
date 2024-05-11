@@ -51,7 +51,7 @@ body {
     text-align: center;
 }
 
-h1 {
+.gradient-background h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #E76F51;
@@ -97,7 +97,7 @@ h1 {
     background-color: #e6e6e6;
 }
 
-a {
+.gradient-background a {
     text-decoration: none;
     color: #E76F51;
     /* Dark Blue */

@@ -20,15 +20,37 @@ import FAQs from './components/FAQs';
 import OrgHierarchy from './components/OrgHierarchy';
 import Reorder from './components/Reorder';
 import OrganizationDetails from './components/OrganizationDetails';
+import IndivHomepage from './components/tasks/IndivHomepage';
+
+
+import CreateTask from './components/tasks/CreateTask';
+import DeleteTask from './components/tasks/DeleteTask';
+import EditTask from './components/tasks/EditTask';
+import ShowTask from './components/tasks/ShowTask';
+
+import { useEffect } from 'react';
+import axios from 'axios';
 
 
 function App() {
+  // useEffect(()=> {
+  //   axios.get('http://localhost:5000/tasks').then (
+  //     response=> console.log(response)
+  //   )
+  // }, [])
   return (
 
     <div className="App">
         <Router>
           <Routes>
             <Route path='/' element={<HomePage />} />
+
+            {/* for tasks */}
+            <Route path='/tasks/create' element={<CreateTask/>}/>
+            <Route path='/tasks/details/:id' element={<ShowTask/>}/>
+            <Route path='/tasks/edit/:id' element={<EditTask/>}/>
+            <Route path='/tasks/delete/:id' element={<DeleteTask/>}/>
+
             <Route path='/mainPageAfterSignUp' element={<mainPageAfterSignUp />} />
             <Route path='/IndivRegis' element={<IndivRegis />} />
             <Route path='/OrgSignUp' element={<OrgSignUp />} />
@@ -49,6 +71,9 @@ function App() {
             <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
             <Route path='/Reorder' element={<Reorder />} />
             <Route path='/OrganizationDetails' element={<OrganizationDetails />} />
+            <Route path='/IndivHomepage' element={<IndivHomepage />} />
+
+
 
           </Routes>
         </Router>

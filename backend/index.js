@@ -3,11 +3,25 @@ import { PORT, mongoDBURL } from "./config.js"
 import mongoose from 'mongoose';
 import { Task } from './models/taskModel.js'
 import { Organization } from './models/OrgDetails.js'
-
+import tasksRoute from './routes/tasksRoute.js'
+import cors from 'cors';
 const app = express();
 
 //Middleware for parsing request body
 app.use(express.json());
+
+//Middleware for handling CORS POLICY
+//Allow all origins
+// app.use(cors());
+//Allow custon origins
+// app.use(
+//     cors({
+//         origin: 'http://localhost:3000',
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//         allowedHeaders: ['Content-Type'],
+//     })
+// );
+
 
 //for http requests
 app.get('/', (request, response) => {
@@ -15,80 +29,18 @@ app.get('/', (request, response) => {
     return response.status(234).send('Welcome to TASKIFY');
 })
 
-//Route for Save a new task
-
-app.post('/tasks', async (request, response)=>{
-    try {
-        if (
-            !request.body.title ||
-            !request.body.assignedTo ||
-            !request.body.assignedBy
-
-        ) {
-            return response.status(400).send({
-                message: 'Send all required fields: title, assignedTo and assignedBy'
-            });
-        }
-        const newTask = {
-            title: request.body.title,
-            description: request.body.description,
-            deadline: request.body.deadline,
-            assignedTo: request.body.assignedTo,
-            assignedBy: request.body.assignedBy,
-        };
-
-        const task = await Task.create(newTask);
-        return response.status(201).send(task);
-    }
-    catch (error) {
-        console.log(error.message);
-        response.status(500).send({ message: error.message });
-    }
-});
-
-//Route for getting one task
-app.get('/tasks', async (request, response) => {
-    try {
-        const tasks = await Task.find({});
-
-        return response.status(200).json({
-            count: tasks.length,
-            data: tasks
-        });
-
-    }
-    catch (error){ 
-        console.log(error.message);
-        response.status(500).send({message: error.message})
-    }
-});
-
-//Route for getting a task by id
-app.get('/tasks/:id', async (request, response) => {
-    try {
-        const {id} = request.params;
-        const task = await Task.findById(id);
-
-        return response.status(200).json(task);
-
-    }
-    catch (error){ 
-        console.log(error.message);
-        response.status(500).send({message: error.message})
-    }
-});
+app.use('/tasks', tasksRoute);
 
 
 
+//Route for updating a task
 app.get('/organizations', async (request, response) => {
     try {
         const organization = await Organization.find({});
-
         return response.status(200).json({
             count: organization.length,
             data: organization
         });
-
     }
     catch (error){ 
         console.log(error.message);
@@ -97,6 +49,8 @@ app.get('/organizations', async (request, response) => {
 });
 
 
+
+//Route for saving a new organization
 app.post('/organizations', async (request, response) => {
     try {
         // Extract organization data from request body
@@ -142,15 +96,3 @@ mongoose
 });
 
 
-// "test": "echo \"Error: no test specified\" && exit 1",
-// package.json
-// // Route for retrieving all tasks
-// app.get('/tasks', async (request, response) => {
-//     try {
-//       const tasks = await Task.find({}); // Find all tasks
-//       return response.status(200).send(tasks);
-//     } catch (error) {
-//       console.log(error.message);
-//       response.status(500).send({ message: 'Error fetching tasks' });
-//     }
-//   });

@@ -25,7 +25,7 @@
 
 
 
-h1 {
+.contact-form h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #E76F51;
@@ -63,7 +63,7 @@ h1 {
 }
 
 
-button {
+.contact-form button {
     background-color: #F4A261;
     /* Green */
     color: #fff;
