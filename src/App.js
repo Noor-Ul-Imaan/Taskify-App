@@ -28,6 +28,12 @@ import DeleteTask from './components/tasks/DeleteTask';
 import EditTask from './components/tasks/EditTask';
 import ShowTask from './components/tasks/ShowTask';
 
+
+import CreateOrg from './components/orgDetails/CreateOrg';
+import DeleteOrg from './components/orgDetails/DeleteOrg';
+import EditOrg from './components/orgDetails/EditOrg';
+import ShowOrg from './components/orgDetails/ShowOrg';
+
 import { useEffect } from 'react';
 import axios from 'axios';
 
@@ -50,6 +56,12 @@ function App() {
             <Route path='/tasks/details/:id' element={<ShowTask/>}/>
             <Route path='/tasks/edit/:id' element={<EditTask/>}/>
             <Route path='/tasks/delete/:id' element={<DeleteTask/>}/>
+            
+            {/* for organizations */}
+            <Route path='/organizations/create' element={<CreateOrg/>}/>
+            <Route path='/organizations/details/:id' element={<ShowOrg/>}/>
+            <Route path='/organizations/edit/:id' element={<EditOrg/>}/>
+            <Route path='/organizations/delete/:id' element={<DeleteOrg/>}/>
 
             <Route path='/mainPageAfterSignUp' element={<mainPageAfterSignUp />} />
             <Route path='/IndivRegis' element={<IndivRegis />} />
