@@ -1,9 +1,10 @@
+
 import mongoose from 'mongoose';
 
 const roleSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: false
     },
     description: {
         type: String,
@@ -15,15 +16,15 @@ const roleSchema = new mongoose.Schema({
 const organizationSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: false
     },
     type: {
         type: String,
-        required: true
+        required: false
     },
     numberOfLevels: {
         type: Number,
-        required: true
+        required: false
     },
     roles: [roleSchema] // Embed role schema as subdocuments
 },
