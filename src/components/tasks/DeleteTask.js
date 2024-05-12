@@ -24,7 +24,7 @@ const DeleteTask = () => {
   return (
     <div>
       <BackButton/>
-      <h1>Delete Book</h1>
+      <h1>Delete Task</h1>
       {loading ? (<p>Loading...</p>) : ('')}
       <div>
         <h3>Are you sure you want to delete this Task?</h3>
