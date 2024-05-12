@@ -21,6 +21,7 @@ import OrgHierarchy from './components/OrgHierarchy';
 import Reorder from './components/Reorder';
 import OrganizationDetails from './components/OrganizationDetails';
 import IndivHomepage from './components/tasks/IndivHomepage';
+import OrgSettings from './components/OrgSettings';
 
 
 import CreateTask from './components/tasks/CreateTask';
@@ -79,13 +80,13 @@ function App() {
             <Route path='/InviteMembers' element={<InviteMembers />} />
             <Route path='/AdminHomepage' element={<AdminHomepage />} />
             <Route path='/Settings' element={<Settings />} />
+            <Route path='/OrgSettings/:id' element={<OrgSettings />} />
             <Route path='/FAQs' element={<FAQs />} />
             <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
             <Route path='/Reorder' element={<Reorder />} />
             <Route path='/OrganizationDetails' element={<OrganizationDetails />} />
             <Route path='/IndivHomepage' element={<IndivHomepage />} />
-
-
+          
 
           </Routes>
         </Router>

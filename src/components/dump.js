@@ -39,6 +39,10 @@ const Dump = () => {
         <br></br>
         <Link to='/IndivHomepage'>
         IndivHomepage</Link>
+
+        <br></br>
+        <Link to='/OrgSettings'>
+        OrgSettings</Link>
     </div>
   )
 }
