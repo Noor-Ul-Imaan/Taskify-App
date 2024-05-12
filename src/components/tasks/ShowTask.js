@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import mongoose from 'mongoose'
+import BackButton from './BackButton'
+import deadlineFormat from './deadlineFormat'
+import './ShowTask.css'
+
 const ShowTask = () => {
   const [task, setTask] = useState([])
   const [loading, setLoading] = useState(false)
@@ -23,53 +27,64 @@ const ShowTask = () => {
         setLoading(false)
       })
   }, []);
+
+
+
   return (
-    <div>
-      <Link>Back</Link>
-      <h1>Show Book</h1>
+    <div className='container'>
+      <Link>
+        <BackButton/>
+      </Link>
+      <h1>Show Task</h1>
       {loading? (
         <p>Loading...</p>
       ):(
-        <div>
-          <div>
-            <span>ID: </span><br></br>
-            <span>{task._id}</span>
+        <table>
+          <tbody>
+
+          
+          <tr>
+            <td>ID: </td><br></br>
+            <td>{task._id}</td>
             <hr></hr>
-          </div>
-          <div>
-            <span>Title: </span><br></br>
-            <span>{task.title}</span>
+          </tr>
+          <tr>
+            <td>Title: </td><br></br>
+            <td>{task.title}</td>
             <hr></hr>
-          </div>
-          <div>
-            <span>Assigned By: </span><br></br>
-            <span>{task.assignedBy}</span>
+          </tr>
+          <tr>
+            <td>Assigned By: </td><br></br>
+            <td>{task.assignedBy}</td>
             <hr></hr>
-          </div>
-          <div>
-            <span>Assigned To: </span><br></br>
-            <span>{task.assignedTo}</span>
+          </tr>
+          <tr>
+            <td>Assigned To: </td><br></br>
+            <td>{task.assignedTo}</td>
             <hr></hr>
-          </div>
-          {/* <div>
-            <span>Description</span>
-            <span>{task.description}</span>
-          </div>
-          <div>
-            <span>Deadline</span>
-            <span>{task.deadline}</span>
-          </div> */}
-          <div>
-            <span>Create Time: </span><br></br>
-            <span>{new Date(task.createdAt).toString()}</span>
+          </tr>
+          <tr>
+            <td>Description</td><br></br>
+            <td>{task.description}</td>
             <hr></hr>
-          </div>
-          <div>
-            <span>Last Update Time: </span><br></br>
-            <span>{new Date(task.updatedAt).toString()}</span>
+          </tr>
+          <tr>
+            <td>Deadline</td><br></br>
+            <td>{deadlineFormat(task.deadline)}</td>
             <hr></hr>
-          </div>
-        </div>
+          </tr>
+          <tr>
+            <td>Create Time: </td><br></br>
+            <td>{deadlineFormat(new Date(task.createdAt).toString())}</td>
+            <hr></hr>
+          </tr>
+          <tr>
+            <td>Last Update Time: </td><br></br>
+            <td>{deadlineFormat(new Date(task.updatedAt).toString())}</td>
+            <hr></hr>
+          </tr>
+          </tbody>
+        </table>
       )}
     </div>
   )

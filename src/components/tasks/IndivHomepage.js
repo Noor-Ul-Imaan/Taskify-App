@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { AiOutlineEdit } from 'react-icons/ai'
+import { BsInfoCircle } from 'react-icons/bs'
+import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md'
+import './IndivHomepage.css'
 
 
 const IndivHomepage = () => {
@@ -23,7 +27,7 @@ const IndivHomepage = () => {
     <div className='indivHomepage'>
       <div>
         <h1>TASKS LIST</h1>
-        <Link to='/tasks/create'>Add</Link>
+        <Link to='/tasks/create'>Add Task<MdOutlineAddBox/></Link>
       </div>      
       {loading ? (<div className="loading-indicator">Loading...</div>
       ): (
@@ -45,9 +49,9 @@ const IndivHomepage = () => {
                 <td>{task.assignedTo}</td>
                 <td>
                   <div>
-                    <Link to={`/tasks/details/${task._id}`}>Details</Link>
-                    <Link to={`/tasks/edit/${task._id}`}>Edit</Link>
-                    <Link to={`/tasks/delete/${task._id}`}>Delete</Link>
+                    <Link to={`/tasks/details/${task._id}`}>Details <BsInfoCircle/></Link>
+                    <Link to={`/tasks/edit/${task._id}`}>Edit <AiOutlineEdit/></Link>
+                    <Link to={`/tasks/delete/${task._id}`}>Delete <MdOutlineDelete/></Link>
                   </div>
                 </td>
               </tr>
