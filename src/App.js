@@ -63,6 +63,7 @@ function App() {
             <Route path='/organizations/details/:id' element={<ShowOrg/>}/>
             <Route path='/organizations/edit/:id' element={<EditOrg/>}/>
             <Route path='/organizations/delete/:id' element={<DeleteOrg/>}/>
+            {/* <Route path="/organizations/:id/settings" component={OrgSettings} /> */}
 
             <Route path='/mainPageAfterSignUp' element={<mainPageAfterSignUp />} />
             <Route path='/IndivRegis' element={<IndivRegis />} />
