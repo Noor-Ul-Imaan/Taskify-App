@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from React Router
-import './WhoAreYou.css'; 
-import logo from './logo.png'; 
+import React from "react";
+import { Link } from "react-router-dom"; // Import Link from React Router
+import "./WhoAreYou.css";
+import logo from "./logo.png";
 
 const WhoAreYou = () => {
   return (
@@ -13,20 +13,19 @@ const WhoAreYou = () => {
         <div className="content">
           <h1>Who are you?</h1>
           <div className="options">
-            <Link to="/indivregis">
-              <button id="individual">
-                I am an Individual
-              </button>
+            <Link to="/IndivRegis">
+              <button id="individual">I am an Individual</button>
             </Link>
-            <Link to="/orgsignup">
-              <button id="organization">
-                I am an Organization
-              </button>
+            <Link to="/OrgSignUp">
+              <button id="organization">I am an Organization</button>
             </Link>
           </div>
         </div>
         <div className="footer">
-          <span>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</span>
+          <span>
+            This site is protected by reCAPTCHA and the Google Privacy Policy
+            and Terms of Service apply.
+          </span>
         </div>
       </div>
     </div>
