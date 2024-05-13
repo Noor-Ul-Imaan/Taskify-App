@@ -97,7 +97,7 @@ body {
     background-color: #e6e6e6;
 }
 
-a {
+.gradient-background a {
     text-decoration: none;
     color: #E76F51;
     /* Dark Blue */

@@ -1,8 +1,8 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-}
+} */
 
 .gradient-background {
     background: linear-gradient(120deg, #2A9D8F, #264653);
@@ -67,7 +67,7 @@ body {
     background-color: #e6e6e6;
 }
 
-button {
+.indiv-notifs button {
     background-color: #2A9D8F;
     color: #fff;
     padding: 10px 0px;

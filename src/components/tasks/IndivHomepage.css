@@ -1,0 +1,59 @@
+.indivHomepage {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .indivHomepage h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .indivHomepage a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .indivHomepage a:hover {
+    text-decoration: underline;
+  }
+  
+  .loading-indicator {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  table td {
+    text-align: left;
+  }
+  
+  table td div {
+    display: flex;
+    gap: 10px;
+  }
+  
+  table td div a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  table td div a:hover {
+    text-decoration: underline;
+  }
+  

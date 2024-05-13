@@ -1,5 +1,6 @@
+import "./App.css";
 import HomePage from "./components/HomePage";
-import MainPageAfterSignUp from "./components/mainPageAfterSignUp";
+import mainPageAfterSignUp from "./components/mainPageAfterSignUp";
 import IndivRegis from "./components/IndivRegis";
 import OrgSignUp from "./components/OrgSignUp";
 import SignIn from "./components/SignIn";
@@ -19,8 +20,28 @@ import FAQs from "./components/FAQs";
 import OrgHierarchy from "./components/OrgHierarchy";
 import Reorder from "./components/Reorder";
 import OrganizationDetails from "./components/OrganizationDetails";
+import IndivHomepage from "./components/tasks/IndivHomepage";
+import OrgSettings from "./components/OrgSettings";
+
+import CreateTask from "./components/tasks/CreateTask";
+import DeleteTask from "./components/tasks/DeleteTask";
+import EditTask from "./components/tasks/EditTask";
+import ShowTask from "./components/tasks/ShowTask";
+
+import CreateOrg from "./components/orgDetails/CreateOrg";
+import DeleteOrg from "./components/orgDetails/DeleteOrg";
+import EditOrg from "./components/orgDetails/EditOrg";
+import ShowOrg from "./components/orgDetails/ShowOrg";
+
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  // useEffect(()=> {
+  //   axios.get('http://localhost:5000/tasks').then (
+  //     response=> console.log(response)
+  //   )
+  // }, [])
   return (
     <div className="App">
       <Router>
@@ -28,7 +49,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route
             path="/mainPageAfterSignUp"
-            element={<MainPageAfterSignUp />}
+            element={<mainPageAfterSignUp />}
           />
           <Route path="/IndivRegis" element={<IndivRegis />} />
           <Route path="/OrgSignUp" element={<OrgSignUp />} />

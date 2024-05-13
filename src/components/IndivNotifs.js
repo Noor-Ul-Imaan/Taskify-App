@@ -16,7 +16,7 @@ function IndivNotifs() {
   }, []);
 
   return (
-    <div>
+    <div className='indiv-notifs'>
       <nav className="navbar">
         <div className="navbar-logo">
           <h1>TASKIFY</h1>

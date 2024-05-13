@@ -1,7 +1,4 @@
-body{
-    margin: 0;
-    padding: 0;
-}
+
 header {
     background-color: #264653;
     color:white;
@@ -41,7 +38,7 @@ header {
     padding: 20px;
   }
   
-  h1 {
+  .join-req h1 {
     font-size: 36px;
     color: #264653;
     margin-bottom: 20px;

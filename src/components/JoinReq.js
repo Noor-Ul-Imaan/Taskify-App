@@ -2,7 +2,7 @@ import React from 'react'
 import './JoinReq'
 function JoinReq() {
   return (
-    <div>
+    <div className='join-req'>
     <header>
   <div className="logo">
     <img src="path_to_your_logo_image" alt="Logo"/>

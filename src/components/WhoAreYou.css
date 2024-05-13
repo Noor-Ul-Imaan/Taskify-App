@@ -32,7 +32,7 @@ body {
     text-align: center;
 }
 
-h1 {
+.gradient-background h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #F4A261;
@@ -44,7 +44,7 @@ h1 {
     flex-direction: column;
 }
 
-button {
+.gradient-background button {
     background-color: #E9C46A;
     /* Green */
     color: #fff;
