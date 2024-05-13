@@ -1,6 +1,6 @@
 import "./App.css";
 import HomePage from "./components/HomePage";
-import mainPageAfterSignUp from "./components/mainPageAfterSignUp";
+import MainPageAfterSignUp from "./components/mainPageAfterSignUp";
 import IndivRegis from "./components/IndivRegis";
 import OrgSignUp from "./components/OrgSignUp";
 import SignIn from "./components/SignIn";
@@ -49,7 +49,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route
             path="/mainPageAfterSignUp"
-            element={<mainPageAfterSignUp />}
+            element={<MainPageAfterSignUp />}
           />
           <Route path="/IndivRegis" element={<IndivRegis />} />
           <Route path="/OrgSignUp" element={<OrgSignUp />} />
