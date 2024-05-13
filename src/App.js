@@ -48,50 +48,37 @@ function App() {
   return (
 
     <div className="App">
-        <Router>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-
-            {/* for tasks */}
-            <Route path='/tasks/create' element={<CreateTask/>}/>
-            <Route path='/tasks/details/:id' element={<ShowTask/>}/>
-            <Route path='/tasks/edit/:id' element={<EditTask/>}/>
-            <Route path='/tasks/delete/:id' element={<DeleteTask/>}/>
-            
-            {/* for organizations */}
-            <Route path='/organizations/create' element={<CreateOrg/>}/>
-            <Route path='/organizations/details/:id' element={<ShowOrg/>}/>
-            <Route path='/organizations/edit/:id' element={<EditOrg/>}/>
-            <Route path='/organizations/delete/:id' element={<DeleteOrg/>}/>
-            {/* <Route path="/organizations/:id/settings" component={OrgSettings} /> */}
-
-            <Route path='/mainPageAfterSignUp' element={<MainPageAfterSignUp />} />
-            <Route path='/IndivRegis' element={<IndivRegis />} />
-            <Route path='/OrgSignUp' element={<OrgSignUp />} />
-            <Route path='/SignIn' element={<SignIn />} />
-            <Route path='/WhoAreYou' element={<WhoAreYou />} />
-            <Route path='/UserManagement' element={<UserManagement />} />
-            <Route path='/AboutUs' element={<AboutUs />} />
-            <Route path='/ContactForm' element={<ContactForm />} />
-            <Route path='/adminHomepage' element={<AdminHomepage />} />
-            <Route path='/createTasks' element={<CreateTasks />} />
-            <Route path='/dump' element={<Dump />} />
-            <Route path='/AdminNotifs' element={<AdminNotifs />} />
-            <Route path='/IndivNotifs' element={<IndivNotifs />} />
-            <Route path='/InviteMembers' element={<InviteMembers />} />
-            <Route path='/AdminHomepage' element={<AdminHomepage />} />
-            <Route path='/Settings' element={<Settings />} />
-            <Route path='/OrgSettings/:id' element={<OrgSettings />} />
-            <Route path='/FAQs' element={<FAQs />} />
-            <Route path='/OrgHierarchy' element={<OrgHierarchy />} />
-            <Route path='/Reorder' element={<Reorder />} />
-            <Route path='/OrganizationDetails' element={<OrganizationDetails />} />
-            <Route path='/IndivHomepage' element={<IndivHomepage />} />
-          
-
-          </Routes>
-        </Router>
-     
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/mainPageAfterSignUp"
+            element={<MainPageAfterSignUp />}
+          />
+          <Route path="/IndivRegis" element={<IndivRegis />} />
+          <Route path="/OrgSignUp" element={<OrgSignUp />} />
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/WhoAreYou" element={<WhoAreYou />} />
+          <Route path="/UserManagement" element={<UserManagement />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/ContactForm" element={<ContactForm />} />
+          <Route path="/adminHomepage" element={<AdminHomepage />} />
+          <Route path="/createTasks" element={<CreateTasks />} />
+          <Route path="/dump" element={<Dump />} />
+          <Route path="/AdminNotifs" element={<AdminNotifs />} />
+          <Route path="/IndivNotifs" element={<IndivNotifs />} />
+          <Route path="/InviteMembers" element={<InviteMembers />} />
+          <Route path="/AdminHomepage" element={<AdminHomepage />} />
+          <Route path="/Settings" element={<Settings />} />
+          <Route path="/FAQs" element={<FAQs />} />
+          <Route path="/OrgHierarchy" element={<OrgHierarchy />} />
+          <Route path="/Reorder" element={<Reorder />} />
+          <Route
+            path="/OrganizationDetails"
+            element={<OrganizationDetails />}
+          />
+        </Routes>
+      </Router>
     </div>
 
   );
