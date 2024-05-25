@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
-import BackButton from './BackButton';
-import './ShowOrg.css';
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import BackButton from "./BackButton";
+import "./ShowOrg.css";
 
 const ShowOrg = () => {
   const [organization, setOrganization] = useState({});
@@ -24,8 +24,8 @@ const ShowOrg = () => {
   }, []);
 
   return (
-    <div className='container'>
-      <Link to='/adminHomepage'>
+    <div className="container">
+      <Link to="/adminHomepage">
         <BackButton />
       </Link>
       <h1>Show Organization</h1>
