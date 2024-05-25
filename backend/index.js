@@ -5,15 +5,21 @@ import { Task } from './models/taskModel.js'
 import { Organization } from './models/OrgDetails.js'
 import tasksRoute from './routes/tasksRoute.js'
 import OrgDetailsRoute from './routes/OrgDetailsRoute.js'
+import userRoute from './routes/userRoute.js'
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
+
+
 
 //Middleware for parsing request body
 app.use(express.json());
 
 //Middleware for handling CORS POLICY
 //Allow all origins
-app.use(cors());
+// app.use(cors());
+
 //Allow custon origins
 // app.use(
 //     cors({
@@ -30,8 +36,14 @@ app.get('/', (request, response) => {
     return response.status(234).send('Welcome to TASKIFY');
 })
 
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
+  })
+
 app.use('/tasks', tasksRoute);
 app.use('/organizations', OrgDetailsRoute);
+app.use('/api/user', userRoute);
 
 
 mongoose 
@@ -45,3 +57,6 @@ mongoose
 .catch((error) => {
     console.log(error)
 });
+
+console.log('Routes registered: /tasks, /organizations, /user');
+
