@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import BackButton from './BackButton';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './CreateTask.css';
 
-const CreateTask = () => {
+import { TasksContext } from '../../context/TaskContext';
 
+const CreateTask = () => {
+  const { dispatch } = useContext(TasksContext);
   const [title, setTitle] = useState('');
   const [assignedBy, setAssignedBy] = useState('');
   const [assignedTo, setAssignedTo] = useState('');
@@ -20,16 +22,18 @@ const CreateTask = () => {
     }
     setLoading(true);
     axios
-      .post('http://localhost:5000/tasks', data)
-      .then(()=> {
+        .post('http://localhost:5000/tasks', data)
+        .then((response) => {
+        // Dispatch CREATE_TASK action with response.data
+        dispatch({ type: 'CREATE_TASK', payload: response.data });
         setLoading(false);
         navigate('/');
-      })
-      .catch((error)=> {
-        setLoading(false)
-        alert('An error occured. Please check console')
-        console.log(error)
-      })
+        })
+        .catch((error) => {
+        setLoading(false);
+        alert('An error occurred. Please check console');
+        console.log(error);
+        });
   }
 
     return (
