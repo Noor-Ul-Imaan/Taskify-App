@@ -1,0 +1,163 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .admin-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .logo h2, .logo p {
+    margin: 0;
+    color: #333;
+  }
+  
+  .menu {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .menu li {
+    padding: 10px 0;
+    color: #555;
+  }
+  
+  .menu li:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+  }
+  
+  .user-info h3, .user-info p {
+    text-align: left;
+    margin: 0;
+    color: WHITE;
+  }
+  
+  .user-actions button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .user-actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  .statistics {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .stat-box {
+    background-color: #f1f3f5;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .stat-box:last-child {
+    margin-right: 0;
+  }
+  
+  .stat-box h4 {
+    margin: 0 0 10px;
+    color: #333;
+  }
+  
+  .stat-box p {
+    font-size: 24px;
+    margin: 0 0 5px;
+    color: #007bff;
+  }
+  
+  .stat-box small {
+    color: #6c757d;
+  }
+  
+  .overview {
+    margin-top: 20px;
+  }
+  
+  .overview h4 {
+    margin: 0 0 10px;
+    color: #333;
+  }
+  
+  .charts {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .chart {
+    background-color: #f1f3f5;
+    padding: 20px;
+    border-radius: 5px;
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .chart:last-child {
+    margin-right: 0;
+  }
+  
+  .chart h5 {
+    margin: 0 0 10px;
+    color: #333;
+  }
+  
+  .chart p {
+    font-size: 24px;
+    margin: 0 0 5px;
+    color: #007bff;
+  }
+  
+  .chart small {
+    color: #6c757d;
+  }
+  
+  .chart-img {
+    height: 150px;
+    background-color: #e9ecef;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  .admin-photo-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* This makes the image appear in a circle */
+    overflow: hidden;
+  }
+  
+  .admin-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
