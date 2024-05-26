@@ -43,6 +43,10 @@ const Dump = () => {
         <br></br>
         <Link to='/OrgSettings'>
         OrgSettings</Link>
+
+        <br></br>
+        <Link to='/JoinOrg'>
+        JoinOrg</Link>
     </div>
   )
 }

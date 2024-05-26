@@ -22,6 +22,7 @@ import Reorder from "./components/Reorder";
 import OrganizationDetails from "./components/OrganizationDetails";
 import IndivHomepage from "./components/tasks/IndivHomepage";
 import OrgSettings from "./components/OrgSettings";
+import JoinOrg from "./components/JoinOrg";
 
 import CreateTask from "./components/tasks/CreateTask";
 import DeleteTask from "./components/tasks/DeleteTask";
@@ -69,6 +70,8 @@ function App() {
           <Route path="/FAQs" element={<FAQs />} />
           <Route path="/OrgHierarchy" element={<OrgHierarchy />} />
           <Route path="/Reorder" element={<Reorder />} />
+          <Route path="/OrgSettings" element={<OrgSettings />} />
+          <Route path="/JoinOrg" element={<JoinOrg />} />
           <Route
             path="/OrganizationDetails"
             element={<OrganizationDetails />}
