@@ -14,11 +14,12 @@ const AdminPannel = () => {
         <ul className="menu">
           <li>Dashboard</li>
           <li>Notifications</li>
+          {/* //here will add user */}
           <li>Total Tasks</li>
           <li>Completed Tasks</li>
           <li>Tasks In Progress</li>
           <li>Completed Tasks Today</li>
-          <li>View All Users</li>
+          <li>Users</li>
           <li>Settings</li>
         </ul>
       </aside>
