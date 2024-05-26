@@ -13,10 +13,10 @@ const IndividualPannel = () => {
         <br></br>
         <ul className="menu">
           <li>Dashboard</li>
+          <li>Join Organization</li>
           <li>Notifications</li>
-          <li>Total Tasks</li>
-          <li>Completed Tasks</li>
-          <li>Tasks In Progress</li>
+          <li>Tasks</li>
+          <li>ToDo</li>
           <li>Completed Tasks Today</li>
           <li>View All Users</li>
           <li>Settings</li>
