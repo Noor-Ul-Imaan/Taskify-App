@@ -35,11 +35,7 @@ const Dump = () => {
       <Link to="/AdminPannel">AdminPanel</Link>
       <br></br>
 
-      <Link to="/IndividualPannel">IndividualPannel</Link>
-
-        <br></br>
-        <Link to='/JoinOrg'>
-        JoinOrg</Link>
+      <Link to="/IndivdualPannel">IndividualPannel</Link>
     </div>
   );
 };
