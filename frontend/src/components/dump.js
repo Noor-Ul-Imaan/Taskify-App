@@ -1,54 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 const Dump = () => {
   return (
     <div>
-        <Link to='/createTasks'>
-        CreateTasks
-        </Link>
+      <Link to="/createTasks">CreateTasks</Link>
 
-        <br></br>
-        
-        <Link to='/AdminNotifs'>
-        AdminNotifs
-        </Link>
+      <br></br>
 
-        <br></br>
+      <Link to="/AdminNotifs">AdminNotifs</Link>
 
-        <Link to='/InviteMembers'>
-        InviteMembers
-        </Link>
+      <br></br>
 
-        <br></br>
-        <Link to='/IndivNotifs'>
-        IndivNotifs
-        </Link>
+      <Link to="/InviteMembers">InviteMembers</Link>
 
-        <br></br>
-        <Link to='/AdminHomepage'>
-        AdminHomepage</Link>
-        
-        <br></br>
-        <Link to='/OrgHierarchy'>
-        OrgHierarchy</Link>
+      <br></br>
+      <Link to="/IndivNotifs">IndivNotifs</Link>
 
-        <br></br>
-        <Link to='/Reorder'>
-        Reorder</Link>
+      <br></br>
+      <Link to="/AdminHomepage">AdminHomepage</Link>
 
-        <br></br>
-        <Link to='/IndivHomepage'>
-        IndivHomepage</Link>
+      <br></br>
+      <Link to="/OrgHierarchy">OrgHierarchy</Link>
 
-        <br></br>
-        <Link to='/OrgSettings'>
-        OrgSettings</Link>
+      <br></br>
+      <Link to="/Reorder">Reorder</Link>
+
+      <br></br>
+      <Link to="/IndivHomepage">IndivHomepage</Link>
+
+      <br></br>
+      <Link to="/OrgSettings">OrgSettings</Link>
+      <br></br>
+
+      <Link to="/AdminPannel">AdminPanel</Link>
+      <br></br>
+
+      <Link to="/IndividualPannel">IndividualPannel</Link>
 
         <br></br>
         <Link to='/JoinOrg'>
         JoinOrg</Link>
     </div>
-  )
-}
+  );
+};
 
-export default Dump
+export default Dump;
