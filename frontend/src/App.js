@@ -33,6 +33,7 @@ import DeleteOrg from "./components/orgDetails/DeleteOrg";
 import EditOrg from "./components/orgDetails/EditOrg";
 import ShowOrg from "./components/orgDetails/ShowOrg";
 import AdminPannel from "./components/AdminPannel";
+import IndividualPannel from "./components/IndividualPannel";
 
 import { useEffect } from "react";
 import axios from "axios";
@@ -87,6 +88,7 @@ function App() {
           <Route path="/organizations/edit/:id" element={<EditOrg />} />
           <Route path="/organizations/delete/:id" element={<DeleteOrg />} />
           <Route path="/AdminPannel" element={<AdminPannel />} />
+          <Route path="/IndividualPannel" element={<IndividualPannel />} />
         </Routes>
       </Router>
     </div>
