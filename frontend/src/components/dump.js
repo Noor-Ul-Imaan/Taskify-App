@@ -39,6 +39,9 @@ const Dump = () => {
       <br></br>
 
       <Link to="/JoinOrg">Join Org</Link>
+      <br></br>
+
+      <Link to="/UserManagement">User Management</Link>
     </div>
   );
 };
