@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useSignup } from "../hooks/useSignup"
+import Navbar from './sections/Navbar'
 
 const Signup = () => {
   const [email, setEmail] = useState('')
@@ -13,7 +14,9 @@ const Signup = () => {
   }
 
   return (
-    <form className="signup" onSubmit={handleSubmit}>
+    <>
+        <Navbar/>
+        <form className="signup" onSubmit={handleSubmit}>
       <h3>Sign Up</h3>
       
       <label>Email address:</label>
@@ -32,6 +35,8 @@ const Signup = () => {
       <button disabled={isLoading}>Sign up</button>
       {error && <div className="error">{error}</div>}
     </form>
+    </>
+
   )
 }
 

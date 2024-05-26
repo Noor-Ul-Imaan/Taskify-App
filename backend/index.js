@@ -18,7 +18,7 @@ app.use(express.json());
 
 //Middleware for handling CORS POLICY
 //Allow all origins
-// app.use(cors());
+app.use(cors());
 
 //Allow custon origins
 // app.use(
@@ -43,7 +43,7 @@ app.use((req, res, next) => {
 
 app.use('/tasks', tasksRoute);
 app.use('/organizations', OrgDetailsRoute);
-app.use('/api/user', userRoute);
+app.use('/user', userRoute);
 
 
 mongoose 
