@@ -11,19 +11,19 @@ const Dump = () => {
 
       <br></br>
 
-      <Link to="/InviteMembers">InviteMembers</Link>
+      {/* <Link to="/InviteMembers">InviteMembers</Link>
 
-      <br></br>
+      <br></br> */}
       <Link to="/IndivNotifs">IndivNotifs</Link>
 
       <br></br>
       <Link to="/AdminHomepage">AdminHomepage</Link>
 
-      <br></br>
+      {/* <br></br>
       <Link to="/OrgHierarchy">OrgHierarchy</Link>
 
       <br></br>
-      <Link to="/Reorder">Reorder</Link>
+      <Link to="/Reorder">Reorder</Link> */}
 
       <br></br>
       <Link to="/IndivHomepage">IndivHomepage</Link>
@@ -42,6 +42,10 @@ const Dump = () => {
       <br></br>
 
       <Link to="/UserManagement">User Management</Link>
+      <br></br>
+
+      <Link to="/OrganizationDetails">OrganizationDetails</Link>
+
     </div>
   );
 };

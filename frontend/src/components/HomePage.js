@@ -70,8 +70,13 @@ const HomePage = () => {
             <div className="figure-description">
               <div className="figure">4.5</div>
               <div className="description">Ratings</div>
+            
             </div>
           </div>
+          <div className="buttons">
+              <Link to='/WhoAreYou' className="button get-started-button">Get Started</Link>
+              <Link to='/SignIn' className="button sign-in-button">Sign In</Link>
+            </div>
         </div>
 
         <div className="main-right">

@@ -121,7 +121,7 @@ const OrganizationDetails = () => {
                             </div>
                         ))}
                         
-                        <button type="button" onClick={handleSaveOrg}>Save Organization</button>
+                        <Link to='/AdminPannel'><button type="button" onClick={handleSaveOrg}>Save Organization</button></Link>
                         
                     </form>
                 </div>
