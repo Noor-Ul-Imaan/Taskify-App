@@ -17,7 +17,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <nav className="navbar">
+      {/* <nav className="navbar">
         <div className="navbar-logo">
           <h1>TASKIFY</h1>
         </div>
@@ -50,7 +50,7 @@ const HomePage = () => {
             )}
           </div>
         </div>
-      </nav>
+      </nav> */}
 
 
       <main className="main-section">

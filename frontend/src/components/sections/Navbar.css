@@ -1,0 +1,32 @@
+.navbar-separator {
+    display: flex;
+    justify-content:space-between ;
+    padding: 20px;
+}
+
+
+.navbar-links-list {
+    font-size: small;
+}
+
+.navbar-links-list ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    
+}
+
+.navbar-links-list ul li{
+    padding-right: 25px;
+    text-decoration: none;
+}
+
+.navbar-links-list a {
+    text-decoration: none;
+    color: #000;
+}
+
+.navbar-links-list a:hover {
+    color: orange;
+}

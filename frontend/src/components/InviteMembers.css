@@ -39,7 +39,7 @@ header {
     padding: 20px;
   }
   
-  h2 {
+  .content h2 {
     margin-top: 120px;
     font-size: 24px;
     color: #264653;
