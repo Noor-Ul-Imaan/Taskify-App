@@ -1,9 +1,12 @@
 import {React, useState} from 'react'
 import { Link } from 'react-router-dom';
 import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from '../../hooks/useAuthContext';
+import './Navbar.css'
 
 const Navbar = () => {
   const { logout } = useLogout()
+  const { user } = useAuthContext()
 
   const handleClick = () => {
     logout()
@@ -14,28 +17,34 @@ const Navbar = () => {
       setIsDropdownOpen(!isDropdownOpen);
     };
   return (
-    <>
-
-
-        <div className="navbar-links">
-          
+    <div className='navbar-separator'>
+        <div className="navbar-logo">
+          <h1>TASKIFY</h1>
+        </div>
+        <div className="navbar-links-list"> 
             <ul>
               <Link to='dump'>
-              Dump
+              <li>Dump</li>
               </Link>
               <Link to='AboutUs'>
                 <li>About Us</li>
               </Link>
-              <li>Features</li>
+              {/* <li>Features</li> */}
               <Link to='ContactForm'>
                 <li>Contact</li>                 
               </Link>
-              <Link to='SignIn'>
-                <li>Sign In</li>
-              </Link>     
-              <div>
+  
+              
+              {user && (<div>
+                <span>{user.email}</span>
                 <button onClick={handleClick}>Log out</button>
-              </div>       
+              </div>  
+              )}     
+              {!user && (
+              <Link to='IndivRegis'>
+                <li>Sign In</li>
+              </Link>   
+              )}
             </ul>
           <div className="dropdown">
             {isDropdownOpen && (
@@ -47,7 +56,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        </>
+        </div>
   )
 }
 

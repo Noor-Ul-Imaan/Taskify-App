@@ -24,6 +24,8 @@ import IndivHomepage from "./components/tasks/IndivHomepage";
 import OrgSettings from "./components/OrgSettings";
 import JoinOrg from "./components/JoinOrg";
 
+import Navbar from "./components/sections/Navbar";
+
 import CreateTask from "./components/tasks/CreateTask";
 import DeleteTask from "./components/tasks/DeleteTask";
 import EditTask from "./components/tasks/EditTask";
@@ -48,6 +50,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar/>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
