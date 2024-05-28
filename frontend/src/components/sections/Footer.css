@@ -1,34 +1,83 @@
+.footer {
+    background-color: white;
+    padding: 40px 20px;
+    border-top: 2px solid #264351;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+    text-align: center;
+}
+
 .footer-section {
     display: flex;
-    justify-content: space-between; 
-    align-items: flex-start; 
-    padding: 80px; 
-    margin-top: 100px;
-    height: 50vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo img {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    color: #264351;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.footer-nav h2,
+.footer-socials h2 {
+    margin-bottom: 10px;
+    color: #264351;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+.footer-nav h2::after,
+.footer-socials h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
     background-color: #20918F;
+    margin: 5px auto 0;
 }
 
-.footer-links {
-    flex: 1; /* Take up equal space */
-    text-align: left;
-}
-
-.footer-mission {
-    flex: 1; /* Take up equal space */
- 
-}
-
-.footer-links ul {
-    list-style: none; /* Remove default list styles */
+.footer-nav ul {
+    list-style-type: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.footer-links ul li {
-    margin-bottom: 10px; /* Add margin between list items */
+.footer-nav ul li a {
+    text-decoration: none;
+    color: #264351;
+    font-size: 1.1rem;
 }
 
-.footer-mission, .footer-links {
-    font-size: 14px; 
-    line-height: 1.5; 
-    color: #c9c9c9; 
+.footer-nav ul li a:hover {
+    color: #20918F;
+}
+
+.footer-socials .social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-socials a {
+    color: #264351;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.footer-socials a:hover {
+    color: #20918F;
 }

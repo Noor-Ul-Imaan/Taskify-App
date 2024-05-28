@@ -6,6 +6,8 @@ import './CreateTask.css';
 
 import { TasksContext } from '../../context/TaskContext';
 
+import { useAuthContext } from '../../hooks/useAuthContext'
+
 const CreateTask = () => {
   const { dispatch } = useContext(TasksContext);
   const [title, setTitle] = useState('');
@@ -16,25 +18,51 @@ const CreateTask = () => {
 
   const [loading, setLoading] = useState('');
   const navigate = useNavigate();
-  const handleSaveTask = () => {
+
+  const { user } = useAuthContext()
+
+  const handleSaveTask = async () => {
+    if (!user) {
+        alert('You must be logged in to create tasks.');
+        return; // Prevent further execution if not logged in
+      }
     const data = {
       title, assignedTo, assignedBy, description, deadline
     }
     setLoading(true);
-    axios
-        .post('http://localhost:5000/tasks', data)
-        .then((response) => {
-        // Dispatch CREATE_TASK action with response.data
+    try {
+        const response = await axios.post('http://localhost:5000/tasks', data, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${user.token}`, // Assuming user object has a 'token' property
+          },
+        });
+  
         dispatch({ type: 'CREATE_TASK', payload: response.data });
         setLoading(false);
         navigate('/');
-        })
-        .catch((error) => {
+      } catch (error) {
         setLoading(false);
-        alert('An error occurred. Please check console');
-        console.log(error);
-        });
-  }
+        console.error('Error creating task:', error);
+        alert('An error occurred. Please check console.'); // Inform user of error
+      }
+    };
+
+
+//     axios
+//         .post('http://localhost:5000/tasks', data)
+//         .then((response) => {
+//         // Dispatch CREATE_TASK action with response.data
+//         dispatch({ type: 'CREATE_TASK', payload: response.data });
+//         setLoading(false);
+//         navigate('/');
+//         })
+//         .catch((error) => {
+//         setLoading(false);
+//         alert('An error occurred. Please check console');
+//         console.log(error);
+//         });
+//   }
 
     return (
         <div className="container">

@@ -1,7 +1,14 @@
 import express from 'express';
 import { Task } from '../models/taskModel.js';
 
+import {requireAuth} from '../middleware/requireAuth.js';
+
+
 const router =  express.Router();
+
+// require auth for all workout routes
+router.use(requireAuth)
+
 
 //Route for Save a new task
 router.post('/', async (request, response)=>{

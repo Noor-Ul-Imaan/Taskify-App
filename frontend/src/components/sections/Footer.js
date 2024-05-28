@@ -1,27 +1,47 @@
-import React from 'react'
-import './Footer.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../images/logo.png';
+import './Footer.css';
+
 const Footer = () => {
   return (
-    <div className='footer-section'>
-        <div className='footer-links'>
-            <h2>Quick Links:</h2>
-            <ul>
-                <li>About Us</li>
-                <li>Contact Us</li>
-                <li>Our Features</li>
-                <li>FAQs</li>
-            </ul>
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-section footer-logo">
+          <img src={logo} alt="Taskify Logo" />
+          <p>© 2024 Taskify. All Rights Reserved</p>
         </div>
-        <div className='footer-mission'>
-            <h2>Our Mission</h2>
-            <p className='our-mission'>
-
-            At Taskify, our mission is to empower teams to achieve their full potential by providing an intuitive and comprehensive task management solution. We strive to simplify task assignment, enhance collaboration, and boost productivity, ultimately helping organizations succeed in their goals. With our platform, we aim to revolutionize the way teams work together, fostering a culture of efficiency, accountability, and excellence.
-            </p>            
+        <div className="footer-section footer-nav">
+          <h2>Quick Links</h2>
+          <ul>
+            <li>
+              <Link to="/aboutus">About Us</Link>
+            </li>
+            <li>
+              <Link to="/contactform">Contact</Link>
+            </li>
+            <li>
+              <Link to="/faqs">FAQs</Link>
+            </li>
+          </ul>
         </div>
-
-    </div>
-  )
+        <div className="footer-section footer-socials">
+          <h2>Socials</h2>
+          <div className="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;
