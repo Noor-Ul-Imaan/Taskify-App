@@ -3,6 +3,7 @@ import BackButton from './BackButton';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './CreateTask.css';
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const EditBook = () => {
 
@@ -14,41 +15,86 @@ const EditBook = () => {
   const [loading, setLoading] = useState('')
   const navigate = useNavigate();
   const {id} = useParams()
+  const { user } = useAuthContext()
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`http://localhost:5000/tasks/${id}`)
-    .then ((response) => {
-      setTitle(response.data.title)
-      setAssignedTo(response.data.assignedTo)
-      setAssignedBy(response.data.assignedBy)
-      setDescription(response.data.description)
-      setDeadline(response.data.deadline)
-    }).catch((error) => {
-      setLoading(false)
-      alert('An error occured. Please check console')
-      console.log(error)
-    })
-  }, [])
+    const fetchTask = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/tasks/${id}`, {
+          headers: {
+            Authorization: `Bearer ${user?.token}`, // Check if user and token exist before using
+          },
+        });
+        setTitle(response.data.title);
+        setAssignedTo(response.data.assignedTo);
+        setAssignedBy(response.data.assignedBy);
+        setDescription(response.data.description);
+        setDeadline(response.data.deadline);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false); // Ensure loading state is set to false even on errors
+      }
+    };
 
-  const handleEditTask = (event) => {
+    if (user) { // Fetch task only if user is logged in
+      fetchTask();
+    }
+  }, [id, user]);
+
+
+
+  //   axios.get(`http://localhost:5000/tasks/${id}`)
+  //   .then ((response) => {
+  //     setTitle(response.data.title)
+  //     setAssignedTo(response.data.assignedTo)
+  //     setAssignedBy(response.data.assignedBy)
+  //     setDescription(response.data.description)
+  //     setDeadline(response.data.deadline)
+  //   }).catch((error) => {
+  //     setLoading(false)
+  //     alert('An error occured. Please check console')
+  //     console.log(error)
+  //   })
+  // }, [])
+
+  const handleEditTask = async (event) => {
     event.preventDefault();
     const data = {
       title, assignedTo, assignedBy, description, deadline
     };
     setLoading(true);
-    axios
-      .put(`http://localhost:5000/tasks/${id}`, data)
-      .then(()=> {
-        setLoading(false);
-        navigate('/IndivHomepage');
-      })
-      .catch((error)=> {
-        setLoading(false)
-        alert('An error occured. Please check console')
-        console.log(error)
-      })
-  }
+
+    try {
+      const response = await axios.put(`http://localhost:5000/tasks/${id}`, data, {
+        headers: {
+          'Content-Type': 'application/json', // Might be unnecessary depending on your backend
+          Authorization: `Bearer ${user?.token}`, // Check if user and token exist before using
+        },
+      });
+      setLoading(false);
+      navigate('/IndivHomepage');
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred. Please check console');
+      setLoading(false);
+    }
+  };
+
+
+  //   axios
+  //     .put(`http://localhost:5000/tasks/${id}`, data)
+  //     .then(()=> {
+  //       setLoading(false);
+  //       navigate('/IndivHomepage');
+  //     })
+  //     .catch((error)=> {
+  //       setLoading(false)
+  //       alert('An error occured. Please check console')
+  //       console.log(error)
+  //     })
+  // }
 
     return (
         <div className="container">

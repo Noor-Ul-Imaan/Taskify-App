@@ -6,27 +6,55 @@ import mongoose from 'mongoose'
 import BackButton from './BackButton'
 import deadlineFormat from './deadlineFormat'
 import './ShowTask.css'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const ShowTask = () => {
   const [task, setTask] = useState([])
   const [loading, setLoading] = useState(false)
   const { id } = useParams();
 
+  const { user } = useAuthContext()
+
+  
   useEffect(()=> {
     console.log("ID:", id)
 
     setLoading(true);
-    axios
-      .get(`http://localhost:5000/tasks/${id}`)
-      .then((response) => {
-        setTask(response.data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-        setLoading(false)
-      })
-  }, []);
+
+    const fetchTask = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/tasks/${id}`, {
+          headers: {
+            'Content-Type': 'application/json', // Might be unnecessary depending on your backend
+            Authorization: `Bearer ${user?.token}`, // Check if user and token exist before using
+          },
+        });
+        setTask(response.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false); // Ensure loading state is set to false even on errors
+      }
+    };
+
+    if (user) { // Fetch task only if user is logged in
+      fetchTask();
+    }
+  }, [id, user]); // Update effect on changes to id and user
+
+
+
+  //   axios
+  //     .get(`http://localhost:5000/tasks/${id}`)
+  //     .then((response) => {
+  //       setTask(response.data)
+  //       setLoading(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //       setLoading(false)
+  //     })
+  // }, []);
 
 
 

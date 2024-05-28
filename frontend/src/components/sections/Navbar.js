@@ -23,16 +23,22 @@ const Navbar = () => {
         </div>
         <div className="navbar-links-list"> 
             <ul>
-              <Link to='dump'>
-              <li>Dump</li>
-              </Link>
-              <Link to='AboutUs'>
-                <li>About Us</li>
-              </Link>
+              <li>
+                <Link to='dump'>
+                Dump
+                </Link>
+              </li>
+              <li>
+                <Link to='AboutUs'>
+                  About Us
+                </Link>
+              </li>
               {/* <li>Features</li> */}
-              <Link to='ContactForm'>
-                <li>Contact</li>                 
-              </Link>
+              <li>
+                <Link to='ContactForm'>
+                Contact                 
+                </Link>
+              </li>
   
               
               {user && (<div>
@@ -41,9 +47,12 @@ const Navbar = () => {
               </div>  
               )}     
               {!user && (
-              <Link to='IndivRegis'>
-                <li>Sign In</li>
-              </Link>   
+                <li>
+                  <Link to='SignIn'>
+                    Sign In
+                  </Link> 
+                </li>
+  
               )}
             </ul>
           <div className="dropdown">
