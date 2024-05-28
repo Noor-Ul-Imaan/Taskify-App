@@ -5,21 +5,68 @@ body {
 }
 
 .user-management {
-    text-align: center;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2A9D8F;
+    padding: 20px;
+    color: white;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background-color: #264653;
+}
+
+.sidebar a.active {
+    background-color: #E76F51;
+}
+
+.main-content {
+    flex-grow: 1;
     padding: 20px;
     background: linear-gradient(120deg, #F4A261, #E9C46A, #F4A261);
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
 .title {
     font-size: 36px;
-    margin-bottom: 40px;
     color: #E76F51;
+}
+
+.search-bar {
+    border: 1px solid #E76F51;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
 }
 
 .subtitle {
     font-size: 24px;
     margin-bottom: 20px;
     color: #E76F51;
+    text-align: left;
+    border-bottom: 2px solid #E76F51;
+    padding-bottom: 10px;
+    margin-top: 40px;
 }
 
 .section {
@@ -37,7 +84,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    width: 350px;
+    width: 300px;
     display: flex;
     align-items: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
