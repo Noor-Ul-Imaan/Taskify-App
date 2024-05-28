@@ -1,63 +1,52 @@
-import {React, useState} from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useLogout } from '../../hooks/useLogout'
+import { useLogout } from '../../hooks/useLogout';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import './Navbar.css'
+import './Navbar.css';
+import logo from '../../images/logo.png';
 
 const Navbar = () => {
-  const { logout } = useLogout()
-  const { user } = useAuthContext()
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
 
   const handleClick = () => {
-    logout()
-  }
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    logout();
+  };
 
-    const toggleDropdown = () => {
-      setIsDropdownOpen(!isDropdownOpen);
-    };
   return (
-    <div className='navbar-separator'>
-        <div className="navbar-logo">
-          <h1>TASKIFY</h1>
-        </div>
-        <div className="navbar-links-list"> 
-            <ul>
-              <Link to='dump'>
-              <li>Dump</li>
-              </Link>
-              <Link to='AboutUs'>
-                <li>About Us</li>
-              </Link>
-              {/* <li>Features</li> */}
-              <Link to='ContactForm'>
-                <li>Contact</li>                 
-              </Link>
-              <Link to='FAQs'><li>FAQs</li></Link>
-              
-              {user && (<div>
-                <span>{user.email}</span>
-                <button onClick={handleClick}>Log out</button>
-              </div>  
-              )}     
-              {!user && (
-              <Link to='IndivRegis'>
-                <li>Sign In</li>
-              </Link>   
-              )}
-            </ul>
-          <div className="dropdown">
-            {isDropdownOpen && (
-              <div className="dropdown-content">
-                <Link to='/settings'>Settings</Link>
-                <Link to ='/'>Sign Out</Link>
-                <Link to ='/faqs'>FAQs</Link>
-              </div>
-            )}
-          </div>
-        </div>
-        </div>
-  )
-}
+    <div className="navbar">
+      <div className="navbar-logo">
+        <img src={logo} alt="Logo" />
+      </div>
+      <div className="navbar-links-list">
+        <ul>
+          <li>
+            <Link to='/dump'>Dump</Link>
+          </li>
+          <li>
+            <Link to='/AboutUs'>About Us</Link>
+          </li>
+          <li>
+            <Link to='/ContactForm'>Contact</Link>
+          </li>
+          <li>
+            <Link to='/FAQs'>FAQs</Link>
+          </li>
+          {user && (
+            <div className="user-info">
+              <span>{user.email}</span>
+              <button onClick={handleClick}>Log out</button>
+            </div>
+          )}
+          {!user && (
+            <li className="sign-in">
+              <Link to='/IndivRegis'>Sign In</Link>
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-export default Navbar
+export default Navbar;
