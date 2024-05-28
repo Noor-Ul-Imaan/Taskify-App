@@ -1,5 +1,6 @@
 import React from "react";
 import "./IndividualPannel.css";
+import { Link } from 'react-router-dom';
 
 const IndividualPannel = () => {
   return (
@@ -8,24 +9,24 @@ const IndividualPannel = () => {
         <div className="logo">
           <h2>Taskify</h2>
           <br></br>
-          <p>Admin Dashboard</p>
+          <p>Alishba's Dashboard</p>
         </div>
         <br></br>
         <ul className="menu">
-          <li>Dashboard</li>
-          <li>Join Organization</li>
-          <li>Notifications</li>
-          <li>Tasks</li>
+          <Link to='/IndividualPannel'><li>Home</li></Link>
+          {/* <Link to='/JoinOrg'><li>Join Organization</li></Link> */}
+          <Link to='/IndivNotifs'><li>Notifications</li></Link>
+          <Link to='/IndivHomePage'><li>To-do</li></Link>
           {/* create task option */}
-          <li>Completed Tasks Today</li>
-          <li>View All Users</li>
-          <li>Settings</li>
+          <Link to='/createTasks'><li>Create Task</li></Link>
+          {/* <li>View All Users</li> */}
+          {/* <li>Settings</li> */}
         </ul>
       </aside>
       <main className="main-content">
         <header className="header">
           <div className="user-info">
-            <h3>Hi, Welcome Back Admin!</h3>
+            <h3>Hi, Welcome Back Alishba!</h3>
             <p>NED UNIVERSITY OF ENGINEERING AND TECHNOLOGY</p>
           </div>
           <div className="user-actions">
@@ -37,7 +38,7 @@ const IndividualPannel = () => {
               />
             </div>
             {/* End of Circle */}
-            <button>Settings</button>
+            <Link to='/Settings'><button>Settings</button></Link>
             <button>Log Out</button>
           </div>
         </header>

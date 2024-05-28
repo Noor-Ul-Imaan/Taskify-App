@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./JoinOrg.css";
 import logo from "./logo.png";
+import { Link } from 'react-router-dom';
 
 function JoinOrg() {
   const [organizations, setOrganizations] = useState([]);
@@ -95,7 +96,7 @@ function JoinOrg() {
                 placeholder="Organization Code"
               />
             </div>
-            <button type="submit">Join</button>
+            <Link to='/IndividualPannel'><button type="submit">Join</button></Link>
           </form>
         </div>
         <div className="footer">
