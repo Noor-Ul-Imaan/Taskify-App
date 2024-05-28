@@ -1,5 +1,7 @@
+
 import express from 'express';
 import { Organization } from '../models/OrgDetails.js';
+import bcrypt from 'bcrypt';
 
 const router =  express.Router();
 
@@ -20,9 +22,7 @@ router.get('/', async (request, response) => {
 //Route for getting one organization by id
 router.get('/:id', async (request, response) => {
     try {
-
         const {id} = request.params;
-
         const organization = await Organization.findById(id);
         return response.status(200).json(organization);
     }
@@ -81,31 +81,29 @@ router.delete('/:id', async (request, response) => {
 //Route for saving a new organization
 router.post('/', async (request, response) => {
     try {
-        // Extract organization data from request body
-        const { name, type, numberOfLevels, roles } = request.body;
+        const { email, password, name, type, numberOfLevels, roles } = request.body;
 
-        // Validate required fields
-        if (!request.body.name || !request.body.type || !request.body.numberOfLevels || !request.body.roles) {
+        if (!email || !password || !name || !type || !numberOfLevels || !roles ) {
             return response.status(400).send({
-                message: 'Send all required fields: name, type, numberOfLevels, and roles'
+                message: 'Send all required fields: name, type, numberOfLevels, roles, email, and password'
             });
         }
 
-        // Create new organization object
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         const newOrganization = new Organization({
-            name: request.body.name,
-            type: request.body.type,
-            numberOfLevels: request.body.numberOfLevels,
-            roles: request.body.roles
+            email,
+            password: hashedPassword,
+            name,
+            type,
+            numberOfLevels,
+            roles
         });
 
-        // Save organization to the database
-        //await newOrganization.save();
-        const organization = await Organization.create(newOrganization);
-
-        return response.status(201).send(newOrganization);
+        const savedOrganization = await newOrganization.save();
+        return response.status(201).send(savedOrganization);
     } catch (error) {
-        console.error('Error saving organization:', error);
+        console.error('Error saving organization:', error.message);
         return response.status(500).send({ message: 'Internal server error' });
     }
 });

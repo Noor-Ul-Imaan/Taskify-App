@@ -14,23 +14,31 @@ const roleSchema = new mongoose.Schema({
 
 // Define Organization schema
 const organizationSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true // Ensure email is unique
+    },
+    password: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
-        required: false
+        required: true
     },
     type: {
         type: String,
-        required: false
+        required: true
     },
     numberOfLevels: {
         type: Number,
-        required: false
+        required: true
     },
     roles: [roleSchema] // Embed role schema as subdocuments
-},
+}, 
 {
     timestamps: true,
-}
-);
+});
 
 export const Organization = mongoose.model('Organization', organizationSchema);
