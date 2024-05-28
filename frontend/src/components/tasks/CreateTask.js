@@ -27,7 +27,7 @@ const CreateTask = () => {
         return; // Prevent further execution if not logged in
       }
     const data = {
-      title, assignedTo, assignedBy, description, deadline
+      title, assignedTo, assignedBy, description, deadline,
     }
     setLoading(true);
     try {
@@ -40,29 +40,16 @@ const CreateTask = () => {
   
         dispatch({ type: 'CREATE_TASK', payload: response.data });
         setLoading(false);
-        navigate('/');
+        navigate('/IndivHomepage');
       } catch (error) {
         setLoading(false);
-        console.error('Error creating task:', error);
+        console.error('Error creating task:', error.response?.data || error);
         alert('An error occurred. Please check console.'); // Inform user of error
       }
     };
 
 
-//     axios
-//         .post('http://localhost:5000/tasks', data)
-//         .then((response) => {
-//         // Dispatch CREATE_TASK action with response.data
-//         dispatch({ type: 'CREATE_TASK', payload: response.data });
-//         setLoading(false);
-//         navigate('/');
-//         })
-//         .catch((error) => {
-//         setLoading(false);
-//         alert('An error occurred. Please check console');
-//         console.log(error);
-//         });
-//   }
+
 
     return (
         <div className="container">
@@ -88,14 +75,7 @@ const CreateTask = () => {
                     <label>Description:</label>
                     <textarea id="taskDescription" value={description} onChange={(e)=> setDescription(e.target.value)} rows="4"></textarea>
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="priorityLevel">Priority Level:</label>
-                    <select id="priorityLevel" name="priorityLevel" value={taskData.priorityLevel} onChange={handleChange}>
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
-                    </select>
-                </div> */}
+          
                 <div className="form-group">
                     <label>Deadline:</label>
                     <input type="datetime-local" id="taskDeadline" value={deadline} onChange={(e)=> setDeadline(e.target.value)}  />
@@ -107,3 +87,21 @@ const CreateTask = () => {
 };
 
 export default CreateTask;
+
+
+
+
+//     axios
+//         .post('http://localhost:5000/tasks', data)
+//         .then((response) => {
+//         // Dispatch CREATE_TASK action with response.data
+//         dispatch({ type: 'CREATE_TASK', payload: response.data });
+//         setLoading(false);
+//         navigate('/');
+//         })
+//         .catch((error) => {
+//         setLoading(false);
+//         alert('An error occurred. Please check console');
+//         console.log(error);
+//         });
+//   }

@@ -1,6 +1,6 @@
 import express from 'express';
 import { Task } from '../models/taskModel.js';
-
+import mongoose from 'mongoose';
 import {requireAuth} from '../middleware/requireAuth.js';
 
 
@@ -28,6 +28,7 @@ router.post('/', async (request, response)=>{
             deadline: request.body.deadline,
             assignedTo: request.body.assignedTo,
             assignedBy: request.body.assignedBy,
+            user_id: request.user._id,
         };
         const task = await Task.create(newTask);
         return response.status(201).send(task);
@@ -41,8 +42,9 @@ router.post('/', async (request, response)=>{
 
 //Route for getting one task
 router.get('/', async (request, response) => {
+    const user_id = request.user._id
     try {
-        const tasks = await Task.find({});
+        const tasks = await Task.find({ user_id });
         return response.status(200).json({
             count: tasks.length,
             data: tasks

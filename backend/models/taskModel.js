@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 
 const taskSchema = mongoose.Schema(
     {
-        //id handled automatically by database
         title: {
             type: String,
             required: true,
@@ -11,10 +10,7 @@ const taskSchema = mongoose.Schema(
             type: String,
             required: false,
         },
-        // attachement: {
-        //     type: Date,
-        //     required: false,
-        // },
+
         deadline: {
             type: Date,
             required: false,
@@ -27,6 +23,10 @@ const taskSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        user_id: {
+            type: String,
+            required: true,
+        }
     }, 
     {
         timestamps: true,
