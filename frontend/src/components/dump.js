@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 const Dump = () => {
   return (
     <div>
-      <Link to="/createTasks">CreateTasks</Link>
+      {/* <Link to="/createTasks">CreateTasks</Link>
 
       <br></br>
 
       <Link to="/AdminNotifs">AdminNotifs</Link>
 
-      <br></br>
+      <br></br> */}
 
       {/* <Link to="/InviteMembers">InviteMembers</Link>
 
       <br></br> */}
-      <Link to="/IndivNotifs">IndivNotifs</Link>
+      {/* <Link to="/IndivNotifs">IndivNotifs</Link> */}
 
       <br></br>
-      <Link to="/AdminHomepage">AdminHomepage</Link>
+      <Link to="/AdminHomepage">AdminHomepage (all org view edit delete option thru id)</Link>
 
       {/* <br></br>
       <Link to="/OrgHierarchy">OrgHierarchy</Link>
@@ -26,25 +26,25 @@ const Dump = () => {
       <Link to="/Reorder">Reorder</Link> */}
 
       <br></br>
-      <Link to="/IndivHomepage">IndivHomepage</Link>
+      <Link to="/IndivHomepage">IndivHomepage (all tasks list) individual ki to do list</Link>
 
-      <br></br>
-      <Link to="/OrgSettings">OrgSettings</Link>
-      <br></br>
+      {/* <br></br>
+      <Link to="/OrgSettings">OrgSettings</Link>*/}
+      <br></br> 
 
-      <Link to="/AdminPannel">AdminPanel</Link>
-      <br></br>
-
-      <Link to="/IndividualPannel">IndividualPannel</Link>
+      <Link to="/AdminPannel">AdminPanel (after org login)</Link>
       <br></br>
 
-      <Link to="/JoinOrg">Join Org</Link>
+      <Link to="/IndividualPannel">IndividualPannel (after indiv login)</Link>
       <br></br>
 
-      <Link to="/UserManagement">User Management</Link>
+      <Link to="/JoinOrg">Join Org (after indiv sign up)</Link>
       <br></br>
 
-      <Link to="/OrganizationDetails">OrganizationDetails</Link>
+      {/* <Link to="/UserManagement">User Management</Link>
+      <br></br> */}
+
+      <Link to="/OrganizationDetails">OrganizationDetails (come after org sign up)</Link>
 
     </div>
   );

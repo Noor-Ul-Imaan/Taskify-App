@@ -33,7 +33,7 @@ const Navbar = () => {
               <Link to='ContactForm'>
                 <li>Contact</li>                 
               </Link>
-  
+              <Link to='FAQs'><li>FAQs</li></Link>
               
               {user && (<div>
                 <span>{user.email}</span>
