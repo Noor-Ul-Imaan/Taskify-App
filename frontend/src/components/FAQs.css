@@ -1,15 +1,12 @@
 .faq-container {
-  margin: 0;
-  padding: 0;
+  margin-top: 0;
+  padding: 40px;
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(120deg, #F4A261, #E9C46A, #F4A261);
+  background-color: #264653;
+  /* Dark blue background */
+  color: #fff;
+  /* White text color */
 }
-
-.faq-container {
-  width: 80%;
-  margin: 40px auto;
-  padding: 40px 0;
-  }
 
 .faq-section {
   display: flex;
@@ -23,7 +20,7 @@
   margin: 20px;
   width: 300px;
   height: 300px;
-  position: center;
+  position: relative;
 }
 
 .front,
@@ -34,36 +31,40 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fcf5f4;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.5s;
   backface-visibility: hidden;
   padding: 20px;
   text-align: center;
-  color: #E76F51;
-  font-family: 'Montserrat', sans-serif;
+  transition: transform 0.5s;
+  /* Added transition for smooth flipping */
+}
+
+.front {
+  background-color: #2A9D8F;
+  color: #fff;
 }
 
 .back {
+  background-color: #E9C46A;
+  color: #264653;
   transform: rotateY(180deg);
+  /* Initially set to rotate to back side */
 }
 
 .faq-card:hover .front {
   transform: rotateY(-180deg);
+  /* Flips to the back side on hover */
 }
 
 .faq-card:hover .back {
   transform: rotateY(0deg);
+  /* Flips to the front side on hover */
 }
-
 .faq-container h2,
 .faq-container p {
   margin: 0;
   padding: 0;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
 }
 
 @media screen and (max-width: 768px) {
