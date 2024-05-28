@@ -40,7 +40,7 @@ const Navbar = () => {
           )}
           {!user && (
             <li className="sign-in">
-              <Link to='/IndivRegis'>Sign In</Link>
+              <Link to='/SignIn'>Sign In</Link>
             </li>
           )}
         </ul>
