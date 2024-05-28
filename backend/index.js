@@ -6,7 +6,6 @@ import { Organization } from './models/OrgDetails.js'
 import tasksRoute from './routes/tasksRoute.js'
 import OrgDetailsRoute from './routes/OrgDetailsRoute.js'
 import userRoute from './routes/userRoute.js'
-import adminRoutes from './routes/adminRoutes.js'
 import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -32,8 +31,6 @@ app.use((req, res, next) => {
 app.use('/tasks', tasksRoute);
 app.use('/organizations', OrgDetailsRoute);
 app.use('/user', userRoute);
-// app.use('/adminOrganization', adminOrgRoute);
-// app.use('/admin', adminRoutes);
 
 
 mongoose 
