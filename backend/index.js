@@ -6,29 +6,17 @@ import { Organization } from './models/OrgDetails.js'
 import tasksRoute from './routes/tasksRoute.js'
 import OrgDetailsRoute from './routes/OrgDetailsRoute.js'
 import userRoute from './routes/userRoute.js'
+import adminRoutes from './routes/adminRoutes.js'
 import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-
-
 //Middleware for parsing request body
 app.use(express.json());
 
-//Middleware for handling CORS POLICY
-//Allow all origins
+//Middleware for handling CORS POLICY. Allow all origins
 app.use(cors());
-
-//Allow custon origins
-// app.use(
-//     cors({
-//         origin: 'http://localhost:3000',
-//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//         allowedHeaders: ['Content-Type'],
-//     })
-// );
-
 
 //for http requests
 app.get('/', (request, response) => {
@@ -44,6 +32,8 @@ app.use((req, res, next) => {
 app.use('/tasks', tasksRoute);
 app.use('/organizations', OrgDetailsRoute);
 app.use('/user', userRoute);
+// app.use('/adminOrganization', adminOrgRoute);
+// app.use('/admin', adminRoutes);
 
 
 mongoose 
