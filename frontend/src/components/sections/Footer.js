@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../images/logo.png';
-import './Footer.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../../images/logo.png";
+import "./Footer.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Footer = () => {
   return (
@@ -23,18 +24,39 @@ const Footer = () => {
             <li>
               <Link to="/faqs">FAQs</Link>
             </li>
+            <li>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=queries.taskify@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fas fa-envelope"></i>
+              </a>
+            </li>
           </ul>
         </div>
         <div className="footer-section footer-socials">
           <h2>Socials</h2>
           <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fab fa-twitter"></i>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fab fa-instagram"></i>
             </a>
           </div>
@@ -42,6 +64,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
