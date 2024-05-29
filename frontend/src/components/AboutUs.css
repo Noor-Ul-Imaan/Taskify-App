@@ -1,32 +1,40 @@
-/* Reset */
+/* AboutUs.css */
+
 .AboutUsPage {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  text-align: center;
+  align-items: center;
 }
 
-.about-heading {
+.heading {
   color: #E76F51;
   font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
-.about-text {
+.sub-heading {
+  color: #F4A261;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.sub-heading h2 {
+  align-items: center;
+}
+.text {
   color: #333;
   font-size: 1.2rem;
   line-height: 1.5;
-  margin-bottom: 30px;
-}
-
-.team-heading {
-  color: #E76F51;
-  font-size: 2.5rem;
   margin-bottom: 20px;
+  text-align: justify;
 }
 
-.team-text {
-  color: #333;
-  font-size: 1.2rem;
-  line-height: 1.5;
+.feature-list {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.section {
+  margin-bottom: 40px;
 }
