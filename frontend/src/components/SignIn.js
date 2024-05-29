@@ -32,7 +32,7 @@ const Login = () => {
             </span>
           </div>
           <div className="content">
-            <h1>Login</h1>
+            <h1>User Login</h1>
             <form className="login" onSubmit={handleSubmit}>
               <div className="input-field">
               <label>Email address:</label>
@@ -57,6 +57,9 @@ const Login = () => {
                 <span>Sign in with Google</span>
               </div>
             </form>
+            <div>
+              <Link to='/login'>For Admin Login</Link>
+            </div>
           </div>
 
           <div className="footer">

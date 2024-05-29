@@ -17,17 +17,6 @@ export const useLogin = () => {
       body: JSON.stringify({ email, password })
     })
     const json = await response.json()
-
-    if (!response.ok) {
-        setIsLoading(false);
-        if (response.status === 400) {
-          setError("Invalid email or password.");
-        } else if (response.status === 409) {
-          setError("Email already in use.");
-        } else {
-          setError("Signup failed. Please try again.");
-        }
-    }
     if (response.ok) {
       // save the user to local storage
       localStorage.setItem('user', JSON.stringify(json))
@@ -38,6 +27,17 @@ export const useLogin = () => {
       // update loading state
       setIsLoading(false)
     }
+    if (!response.ok) {
+        setIsLoading(false);
+        if (response.status === 400) {
+          setError("Invalid email or password.");
+        } else if (response.status === 409) {
+          setError("Email already in use.");
+        } else {
+          setError("Signup failed. Please try again.");
+        }
+    }
+
   }
 
   return { login, isLoading, error }

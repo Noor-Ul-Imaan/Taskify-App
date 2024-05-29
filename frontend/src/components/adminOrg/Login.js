@@ -33,3 +33,57 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+/*
+    return (
+      <>
+    
+    <div className="login">
+      <div className="gradient-background">
+        <div className="container">
+
+          <div className="header">
+            <img src={logo} alt="Taskify Logo" />
+            <span className="signup">
+              Don't have an account?{" "}
+              <Link to="/Whoareyou" className="signup-link">
+                Sign up
+              </Link>
+            </span>
+          </div>
+          <div className="content">
+            <h1>Admin Login</h1>
+            <form className="login" onSubmit={handleSubmit}>
+              <div className="input-field">
+                <label>Email</label>
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              </div>
+              <div className="input-field">
+                <label>Password</label>
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              </div>
+              <button type="submit">Login</button>
+              <div className="social-login">
+                <span>G</span>
+                <span>Sign in with Google</span>
+              </div>
+            </form>
+            <div>
+              <Link to='/SignIn'>For User Login</Link>
+            </div>
+          </div>
+
+          <div className="footer">
+            <span>
+              This site is protected by reCAPTCHA and the Google Privacy Policy
+              and Terms of Service apply.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </>
+  );
+*/
