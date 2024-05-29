@@ -200,9 +200,6 @@ const OrganizationDetails = () => {
 };
 
 export default OrganizationDetails;
-<<<<<<< HEAD
-
-
 
 
 
@@ -380,7 +377,3 @@ export default OrganizationDetails;
 
 
 
-
-
-=======
->>>>>>> d80be74d1e604e4be3fcf5f7dc74cd24b3bff9a7
