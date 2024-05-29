@@ -2,9 +2,15 @@
 import express from 'express';
 import { Organization } from '../models/OrgDetails.js';
 import bcrypt from 'bcrypt';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 const router =  express.Router();
 
+router.get('/me', authMiddleware, async (req, res) => {
+    res.status(200).send(req.organization);
+  });
+
+  
 router.get('/', async (request, response) => {
     try {
         const organization = await Organization.find({});

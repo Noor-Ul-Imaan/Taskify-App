@@ -6,6 +6,11 @@ import { Organization } from './models/OrgDetails.js'
 import tasksRoute from './routes/tasksRoute.js'
 import OrgDetailsRoute from './routes/OrgDetailsRoute.js'
 import userRoute from './routes/userRoute.js'
+
+import authRoute from './routes/authRoute.js';
+import cookieParser from 'cookie-parser';
+
+
 import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -14,8 +19,16 @@ const app = express();
 //Middleware for parsing request body
 app.use(express.json());
 
+
+app.use(cookieParser());
+
 //Middleware for handling CORS POLICY. Allow all origins
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000', // your frontend's origin
+    credentials: true // this allows cookies to be sent from the frontend
+  };
+  
+  app.use(cors(corsOptions));
 
 //for http requests
 app.get('/', (request, response) => {
@@ -31,7 +44,7 @@ app.use((req, res, next) => {
 app.use('/tasks', tasksRoute);
 app.use('/organizations', OrgDetailsRoute);
 app.use('/user', userRoute);
-
+app.use('/auth', authRoute);
 
 mongoose 
 .connect(mongoDBURL)
