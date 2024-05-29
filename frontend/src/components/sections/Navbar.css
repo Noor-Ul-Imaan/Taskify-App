@@ -57,13 +57,19 @@
     background-color: #264351;
 }
 
-.user-info {
+.userInfo {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.user-info button {
+
+
+.user-name {
+    color: black;
+}
+
+.userInfo button {
     background-color: #20918F;
     color: #ffffff;
     border: none;
@@ -72,6 +78,6 @@
     cursor: pointer;
 }
 
-.user-info button:hover {
+.userInfo button:hover {
     background-color: #264351;
 }
