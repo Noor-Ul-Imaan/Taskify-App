@@ -4,10 +4,13 @@ import { useLogout } from '../../hooks/useLogout';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import './Navbar.css';
 import logo from '../../images/logo.png';
+import { useAuth } from '../adminOrg/AuthContext';
 
 const Navbar = () => {
-  const { logout } = useLogout();
-  const { user } = useAuthContext();
+  // const { logout } = useLogout();
+  // const { user } = useAuthContext();
+  const { user, logout } = useAuth();
+
 
   const handleClick = () => {
     logout();
@@ -35,7 +38,7 @@ const Navbar = () => {
           <li>
             <Link to='/FAQs'>FAQs</Link>
           </li>
-          {user && (
+          {/* {user && (
             <div className="userInfo">
               <p className="user-name">Welcome, {user.name}!</p>
               <button onClick={handleClick}>Log out</button>
@@ -45,7 +48,16 @@ const Navbar = () => {
             <li className="sign-in">
               <Link to='/SignIn'>Sign In</Link>
             </li>
-          )}
+          )} */}
+                  {user ? (
+          <>
+            <li>{user.email}</li>
+            <li><button onClick={logout}>Logout</button></li>
+          </>
+        ) : (
+          <li><a href="/login">Login</a></li>
+        )}
+
         </ul>
       </div>
     </div>
