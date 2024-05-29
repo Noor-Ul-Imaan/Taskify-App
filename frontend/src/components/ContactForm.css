@@ -7,13 +7,16 @@
 }
 
 .contact-us-container h1 {
-    font-size: 28px;
+    /* font-size: 28px; */
     margin-bottom: 20px;
+    color: #E76F51;
+    font-size: 2.5rem;
 }
 
 .contact-us-container p {
     font-size: 16px;
     margin-bottom: 20px;
+    text-align: justify;
 }
 
 .form-group {
