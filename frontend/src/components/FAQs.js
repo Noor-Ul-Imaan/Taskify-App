@@ -1,8 +1,11 @@
 import React from 'react';
 import './FAQs.css';
+import Navbar from './sections/Navbar';
+import Footer from './sections/Footer';
 
 const FAQsPage = () => {
   return (
+    <div><Navbar />
     <div className="faq-container">
       <h1>Frequently Asked Questions (FAQs)</h1>
       <div className="faq-section">
@@ -55,6 +58,8 @@ const FAQsPage = () => {
           </div>
         </div>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 }

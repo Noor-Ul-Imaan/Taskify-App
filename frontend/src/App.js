@@ -58,6 +58,7 @@ function App() {
             element={<MainPageAfterSignUp />}
           />
           <Route path="/IndivRegis" element={<IndivRegis />} />
+          <Route path="/HomePage" element={<HomePage />} />
           <Route path="/OrgSignUp" element={<OrgSignUp />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/WhoAreYou" element={<WhoAreYou />} />
