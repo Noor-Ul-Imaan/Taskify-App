@@ -6,12 +6,13 @@ import "./IndivRegis.css"; // Import CSS styles
 const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
   const {signup, error, isLoading} = useSignup()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await signup(email, password)
+    await signup(name, email, password)
   }
 
   return (
@@ -29,6 +30,14 @@ const Signup = () => {
           </div>
           <div className="content">
           <form className="signup" onSubmit={handleSubmit}>
+              <div className="input-field">
+              <label>Name</label>
+                <input 
+                  type="text" 
+                  onChange={(e) => setName(e.target.value)} 
+                  value={name} 
+                />
+              </div>
               <div className="input-field">
               <label>Email address:</label>
                 <input 
