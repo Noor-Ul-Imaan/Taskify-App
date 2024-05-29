@@ -11,24 +11,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-
-
 //Middleware for parsing request body
 app.use(express.json());
 
-//Middleware for handling CORS POLICY
-//Allow all origins
+//Middleware for handling CORS POLICY. Allow all origins
 app.use(cors());
-
-//Allow custon origins
-// app.use(
-//     cors({
-//         origin: 'http://localhost:3000',
-//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//         allowedHeaders: ['Content-Type'],
-//     })
-// );
-
 
 //for http requests
 app.get('/', (request, response) => {
