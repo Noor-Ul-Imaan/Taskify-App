@@ -1,6 +1,6 @@
 import React from "react";
 import "./AdminPannel.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const AdminPannel = () => {
   return (
@@ -13,14 +13,18 @@ const AdminPannel = () => {
         </div>
         <br></br>
         <ul className="menu">
-          <Link to='/AdminPannel'><li>Home</li></Link>
-          <Link to='/AdminNotifs'><li>Notifications</li></Link>
+          <Link to="/AdminPannel">
+            <li>Home</li>
+          </Link>
+
           {/* //here will add user */}
           <li>Total Tasks</li>
           <li>Completed Tasks</li>
           <li>Tasks In Progress</li>
           <li>Completed Tasks Today</li>
-          <Link to='/UserManagement'><li>User Management</li></Link>
+          <Link to="/UserManagement">
+            <li>User Management</li>
+          </Link>
           {/* <li>Settings</li> */}
         </ul>
       </aside>
@@ -39,7 +43,9 @@ const AdminPannel = () => {
               />
             </div>
             {/* End of Circle */}
-            <Link to='/OrgSettings'><button>Settings</button></Link>
+            <Link to="/OrgSettings">
+              <button>Settings</button>
+            </Link>
             <button>Log Out</button>
           </div>
         </header>
