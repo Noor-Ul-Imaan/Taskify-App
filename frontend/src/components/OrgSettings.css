@@ -1,61 +1,133 @@
-.settings-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+/* OrgSettings.css */
+.OrgSettings-container {
+    max-width: 700px;
+    /* Adjust the max-width to make the center part wider */
     margin: 0 auto;
     padding: 20px;
+    border: 2px solid #264653;
+    border-radius: 10px;
+    background-color: #f9f9f9;
 }
 
-.settings-box {
-    width: calc(50% - 20px);
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
+.OrgSettings-h1 {
+    text-align: center;
+    color: #264653;
 }
 
-.settings-box h2 {
-    margin-bottom: 20px;
-    font-size: 20px;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.setting-option {
-    display: flex;
-    align-items: center;
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #264653;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
     margin-bottom: 10px;
-}
-
-.setting-option label {
-    width: 150px;
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-.setting-option input[type="text"],
-.setting-option input[type="file"],
-.setting-option input[type="tel"],
-.setting-option input[type="email"],
-.setting-option textarea,
-.setting-option select {
-    flex: 1;
-    padding: 8px;
     border: 1px solid #ccc;
-    font-size: 16px;
+    border-radius: 5px;
 }
 
-.setting-option button {
-    padding: 8px 16px;
-    background-color: #e74c3c;
+button {
+    padding: 10px 20px;
+    background-color: #E76F51;
     color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.setting-option p {
-    font-size: 14px;
-    color: #e74c3c;
-    margin-bottom: 10px;
+button:hover {
+    background-color: #D44B1D;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.role-item {
+    margin-bottom: 15px;
+    border: 2px solid #264653;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #E9C46A;
+}
+
+h2 {
+    color: #2A9D8F;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.add-role-button,
+.remove-role-button,
+.save-button,
+.logout-button {
+    margin-top: 10px;
+}
+
+.add-role-button {
+    background-color: #2A9D8F;
+    margin-bottom: 20px;
+}
+
+.add-role-button:hover {
+    background-color: #1E7B6A;
+}
+
+.remove-role-button {
+    background-color: #E76F51;
+}
+
+.remove-role-button:hover {
+    background-color: #D44B1D;
+}
+
+.save-button {
+    display: block;
+    width: 100%;
+    background-color: #264653;
+}
+
+.save-button:hover {
+    background-color: #1B3B4D;
+}
+
+.logout-button {
+    margin-top: 20px;
+    background-color: #2A9D8F;
+}
+
+.logout-button:hover {
+    background-color: #1E7B6A;
+}
+
+@media only screen and (max-width: 600px) {
+    .OrgSettings-container {
+        padding: 10px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+
+    .OrgSettings-h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
 }
