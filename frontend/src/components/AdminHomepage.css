@@ -20,19 +20,19 @@
     margin-bottom: 20px;
 }
 
-h1,
-h2,
-h3 {
+.header h1,
+.details h2,
+.roles h3 {
     margin-bottom: 10px;
 }
 
-h1 {
+.header h1 {
     font-size: 32px;
     color: #264653;
 }
 
-h2,
-h3 {
+.details h2,
+.roles h3 {
     font-size: 24px;
     color: #2A9D8F;
 }
@@ -52,7 +52,7 @@ p {
     background-color: #E9C46A;
 }
 
-button {
+.logout button {
     padding: 12px 24px;
     background-color: #E9C46A;
     color: #fff;
@@ -63,7 +63,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+.logout button:hover {
     background-color: #E76F51;
 }
 
