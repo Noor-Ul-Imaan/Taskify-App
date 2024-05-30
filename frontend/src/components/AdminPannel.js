@@ -25,6 +25,9 @@ const AdminPannel = () => {
           <Link to="/UserManagement">
             <li>User Management</li>
           </Link>
+          <Link to="/AdminHomepage">
+            <li>View Organization</li>
+          </Link>
           {/* <li>Settings</li> */}
         </ul>
       </aside>

@@ -18,7 +18,7 @@ const IndividualPannel = () => {
           <br></br>
           <h3>{user.name}'s Dashboard</h3>
         </div>
-        <h2>Organization Details</h2>
+        {/* <h2>Organization Details</h2>
       <p>Email: {user.email}</p>
       <p>Type: {user.type}</p>
       <p>Number of Levels: {user.numberOfLevels}</p>
@@ -28,7 +28,7 @@ const IndividualPannel = () => {
           <p>Name: {role.name}</p>
           <p>Description: {role.description}</p>
         </div>
-      ))}
+      ))} */}
       <button onClick={logout}>Logout</button>
         <div>
 
