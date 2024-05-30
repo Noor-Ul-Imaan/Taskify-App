@@ -1,15 +1,37 @@
 import React from "react";
 import "./IndividualPannel.css";
 import { Link } from 'react-router-dom';
+import { useAuth } from './adminOrg/AuthContext';
+
 
 const IndividualPannel = () => {
+  const { user, logout } = useAuth();
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="admin-container">
       <aside className="sidebar">
         <div className="logo">
           <h2>Taskify</h2>
           <br></br>
-          <p>Alishba's Dashboard</p>
+          <h3>{user.name}'s Dashboard</h3>
+        </div>
+        <h2>Organization Details</h2>
+      <p>Email: {user.email}</p>
+      <p>Type: {user.type}</p>
+      <p>Number of Levels: {user.numberOfLevels}</p>
+      <h3>Roles</h3>
+      {user.roles.map((role, index) => (
+        <div key={index}>
+          <p>Name: {role.name}</p>
+          <p>Description: {role.description}</p>
+        </div>
+      ))}
+      <button onClick={logout}>Logout</button>
+        <div>
+
         </div>
         <br></br>
         <ul className="menu">
@@ -26,8 +48,8 @@ const IndividualPannel = () => {
       <main className="main-content">
         <header className="header">
           <div className="user-info">
-            <h3>Hi, Welcome Back Alishba!</h3>
-            <p>NED UNIVERSITY OF ENGINEERING AND TECHNOLOGY</p>
+            <h3>Hi, Welcome Back ADMIN!</h3>
+            <p>{user.name}</p>
           </div>
           <div className="user-actions">
             {/* Circle for Admin Account Photo */}

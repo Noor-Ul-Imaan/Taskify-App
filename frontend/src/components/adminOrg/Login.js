@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
-    navigate('/adminHomepage');
+    navigate('/IndividualPannel');
   };
 
   return (
@@ -42,7 +42,7 @@ const Login = () => {
           <label>Password</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
-        <button type="submit">Login</button>
+            <button type="submit">Login</button>
               <div className="social-login">
                 <span>G</span>
                 <span>Sign in with Google</span>

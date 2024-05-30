@@ -14,6 +14,10 @@ const roleSchema = new mongoose.Schema({
 });
 
 const organizationSchema = new mongoose.Schema({
+  adminName: {
+    type: String,
+    required: false,
+  },
   email: {
     type: String,
     required: true,

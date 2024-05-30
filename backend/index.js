@@ -23,13 +23,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 //Middleware for handling CORS POLICY. Allow all origins
-// const corsOptions = {
-//     origin: 'http://localhost:3000', // your frontend's origin
-//     credentials: true // this allows cookies to be sent from the frontend
-//   };
+const corsOptions = {
+    origin: 'http://localhost:3000', // your frontend's origin
+    credentials: true // this allows cookies to be sent from the frontend
+  };
   
-//   app.use(cors(corsOptions));
-app.use(cors());
+  app.use(cors(corsOptions));
+// app.use(cors());
 
 //for http requests
 app.get('/', (request, response) => {

@@ -16,7 +16,7 @@ const WhoAreYou = () => {
             <Link to="/IndivRegis">
               <button id="individual">I am an Individual</button>
             </Link>
-            <Link to="/OrgSignUp">
+            <Link to="/OrganizationDetails">
               <button id="organization">I am an Organization</button>
             </Link>
           </div>

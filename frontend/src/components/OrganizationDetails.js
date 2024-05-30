@@ -9,6 +9,7 @@ const OrganizationDetails = () => {
   const navigate = useNavigate();
 
   // State for admin signup
+  const [adminName, setAdminName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -62,13 +63,14 @@ const OrganizationDetails = () => {
         return;
       }
 
-      if (!email || !password || !name || !type || !numberOfLevels || !isValid) {
+      if(!email || !password || !name || !type || !numberOfLevels || !isValid) {
         alert('Please fill in all required fields.');
         setLoading(false);
         return;
       }
 
       const orgData = {
+        adminName,
         email, // include email in organization data
         password, // include password in organization data
         name,
@@ -84,7 +86,7 @@ const OrganizationDetails = () => {
       // await axios.post('http://localhost:3000/signup', { email, password });
 
       setLoading(false);
-      navigate('/adminHomepage');
+      navigate('/IndividualPannel');
     } catch (error) {
       console.error('Error saving organization:', error);
       setLoading(false);
@@ -103,6 +105,15 @@ const OrganizationDetails = () => {
             <h1>Signup and Create Organization</h1>
             <form onSubmit={handleSaveOrg}>
               {/* User Signup Section */}
+              {/* <div className="input-field">
+                <label htmlFor="text">Admin Name</label>
+                <input
+                  type="text"
+                  value={adminName}
+                  onChange={(e) => setAdminName(e.target.value)}
+                  placeholder="Admin Name"
+                />
+              </div> */}
               <div className="input-field">
                 <label htmlFor="email">Email</label>
                 <input
