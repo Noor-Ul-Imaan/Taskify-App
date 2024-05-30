@@ -24,15 +24,6 @@ const Footer = () => {
             <li>
               <Link to="/faqs">FAQs</Link>
             </li>
-            <li>
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=queries.taskify@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fas fa-envelope"></i>
-              </a>
-            </li>
           </ul>
         </div>
         <div className="footer-section footer-socials">
@@ -59,6 +50,13 @@ const Footer = () => {
             >
               <i className="fab fa-instagram"></i>
             </a>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=queries.taskify@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fas fa-envelope"></i>
+              </a>
           </div>
         </div>
       </div>
