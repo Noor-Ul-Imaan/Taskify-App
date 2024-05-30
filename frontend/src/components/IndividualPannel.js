@@ -11,7 +11,7 @@ const IndividualPannel = () => {
         <div className="logo">
           <h2>Taskify</h2>
           <br></br>
-          <h3>{user.name}'s Dashboard</h3>
+          <h3> Dashboard</h3>
         </div>
         {/* <h2>Organization Details</h2>
       <p>Email: {user.email}</p>
@@ -24,7 +24,7 @@ const IndividualPannel = () => {
           <p>Description: {role.description}</p>
         </div>
       ))} */}
-      <button onClick={logout}>Logout</button>
+      {/* <button onClick={logout}>Logout</button> */}
         <div>
 
         </div>
@@ -44,7 +44,7 @@ const IndividualPannel = () => {
         <header className="header">
           <div className="user-info">
             <h3>Hi, Welcome Back ADMIN!</h3>
-            <p>{user.name}</p>
+            <p>NED</p>
           </div>
           <div className="user-actions">
             {/* Circle for Admin Account Photo */}
