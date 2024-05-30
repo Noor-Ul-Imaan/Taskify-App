@@ -80,7 +80,7 @@ function App() {
             <Route path="/organizations/edit/:id" element={<EditOrg />} />
             <Route path="/organizations/delete/:id" element={<DeleteOrg />} />
             {/* <Route path="/AdminPannel" element={<AdminPannel />} /> */}
-            {/* <Route path="/IndividualPannel" element={<IndividualPannel />} /> */}
+            <Route path="/IndividualPannel" element={<IndividualPannel />} />
 
             <Route path="/login" element={<Login />} />
             
