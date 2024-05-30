@@ -34,12 +34,13 @@ import EditOrg from "./components/orgDetails/EditOrg";
 import ShowOrg from "./components/orgDetails/ShowOrg";
 import AdminPannel from "./components/AdminPannel";
 import IndividualPannel from "./components/IndividualPannel";
-import Login from './components/adminOrg/Login';
-import AdminHomepage from './components/AdminHomepage'; // Assuming you have an AdminHomepage component
-import { AuthProvider } from './components/adminOrg/AuthContext';
-import ProtectedRoute from './components/adminOrg/ProtectedRoute';
+import Login from "./components/adminOrg/Login";
+import AdminHomepage from "./components/AdminHomepage"; // Assuming you have an AdminHomepage component
+import { AuthProvider } from "./components/adminOrg/AuthContext";
+import ProtectedRoute from "./components/adminOrg/ProtectedRoute";
 import { useEffect } from "react";
 import axios from "axios";
+import CreateUserForm from "./components/CreateUserForm";
 
 function App() {
   return (
@@ -49,7 +50,10 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/mainPageAfterSignUp" element={<MainPageAfterSignUp />} />
+            <Route
+              path="/mainPageAfterSignUp"
+              element={<MainPageAfterSignUp />}
+            />
             <Route path="/IndivRegis" element={<IndivRegis />} />
             <Route path="/HomePage" element={<HomePage />} />
             <Route path="/OrgSignUp" element={<OrgSignUp />} />
@@ -69,7 +73,10 @@ function App() {
             <Route path="/Reorder" element={<Reorder />} />
             <Route path="/OrgSettings" element={<OrgSettings />} />
             <Route path="/JoinOrg" element={<JoinOrg />} />
-            <Route path="/OrganizationDetails" element={<OrganizationDetails />} />
+            <Route
+              path="/OrganizationDetails"
+              element={<OrganizationDetails />}
+            />
             <Route path="/IndivHomepage" element={<IndivHomepage />} />
             <Route path="/tasks/create" element={<CreateTask />} />
             <Route path="/tasks/details/:id" element={<ShowTask />} />
@@ -83,7 +90,7 @@ function App() {
             <Route path="/IndividualPannel" element={<IndividualPannel />} />
 
             <Route path="/login" element={<Login />} />
-            
+
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route path="/adminHomepage" element={<AdminHomepage />} />
@@ -91,6 +98,7 @@ function App() {
               <Route path="/AdminPannel" element={<AdminPannel />} />
 
               <Route path="/organizations" element={<OrganizationDetails />} />
+              <Route path="/CreateUserForm" element={<CreateUserForm />} />
             </Route>
           </Routes>
         </Router>
@@ -100,10 +108,6 @@ function App() {
 }
 
 export default App;
-
-
-
-
 
 // import "./App.css";
 // import HomePage from "./components/HomePage";
@@ -145,12 +149,10 @@ export default App;
 // import AdminPannel from "./components/AdminPannel";
 // import IndividualPannel from "./components/IndividualPannel";
 
-
 // import Login from './components/adminOrg/Login';
 // import AdminHomepage from './components/AdminHomepage'; // Assuming you have an AdminHomepage component
 // import { AuthProvider } from './components/adminOrg/AuthContext';
 // import ProtectedRoute from './components/adminOrg/ProtectedRoute';
-
 
 // import { useEffect } from "react";
 // import axios from "axios";
@@ -165,7 +167,6 @@ export default App;
 //     <div className="App">
 //       <AuthProvider>
 
-      
 //       <Router>
 //         <Navbar/>
 //         <Routes>
@@ -214,24 +215,22 @@ export default App;
 //           <Route path="/AdminPannel" element={<AdminPannel />} />
 //           <Route path="/IndividualPannel" element={<IndividualPannel />} />
 
-
-
 //           <Route path="/login" element={<Login />} />
-//           <Route 
-//             path="/adminHomepage" 
+//           <Route
+//             path="/adminHomepage"
 //             element={
 //               <ProtectedRoute>
 //                 <AdminHomepage />
 //               </ProtectedRoute>
-//             } 
+//             }
 //           />
-//           <Route 
-//             path="/organizations" 
+//           <Route
+//             path="/organizations"
 //             element={
 //               <ProtectedRoute>
 //                 <OrganizationDetails />
 //               </ProtectedRoute>
-//             } 
+//             }
 //           />
 //         </Routes>
 //       </Router>
