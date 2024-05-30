@@ -1,7 +1,7 @@
 import React from "react";
 import "./AdminPannel.css";
 import { Link } from "react-router-dom";
-import { useAuth } from './adminOrg/AuthContext';
+import { useAuth } from "./adminOrg/AuthContext";
 
 const AdminPannel = () => {
   const { user, logout } = useAuth();
@@ -30,6 +30,9 @@ const AdminPannel = () => {
           <li>Completed Tasks Today</li>
           <Link to="/UserManagement">
             <li>User Management</li>
+          </Link>
+          <Link to="/CreateUserForm">
+            <li>Create User</li>
           </Link>
           <Link to="/AdminHomepage">
             <li>View Organization</li>
