@@ -23,21 +23,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-links-list">
         <ul>
-          <li>
-            <Link to='/dump'>Dump</Link>
-          </li>
-          <li>
-            <Link to='/HomePage'>Home</Link>
-          </li>
-          <li>
-            <Link to='/AboutUs'>About Us</Link>
-          </li>
-          <li>
-            <Link to='/ContactForm'>Contact</Link>
-          </li>
-          <li>
-            <Link to='/FAQs'>FAQs</Link>
-          </li>
+
+
           {/* {user && (
             <div className="userInfo">
               <p className="user-name">Welcome, {user.name}!</p>
@@ -49,13 +36,42 @@ const Navbar = () => {
               <Link to='/SignIn'>Sign In</Link>
             </li>
           )} */}
-                  {user ? (
+          {user ? (
           <>
+            <li>
+             <Link to='/AboutUs'>About Us</Link>
+            </li>
+            <li>
+             <Link to='/ContactForm'>Contact</Link>
+            </li>
+            <li>
+             <Link to='/FAQs'>FAQs</Link>
+            </li>
             <li>{user.email}</li>
             <li><button onClick={logout}>Logout</button></li>
           </>
         ) : (
-          <li><a href="/login">Login</a></li>
+          <>
+            <li>
+            <Link to='/dump'>Dump</Link>
+            </li>
+
+            <li>
+            <Link to='/HomePage'>Home</Link>
+            </li>
+            <li>
+             <Link to='/AboutUs'>About Us</Link>
+            </li>
+            <li>
+             <Link to='/ContactForm'>Contact</Link>
+            </li>
+            <li>
+             <Link to='/FAQs'>FAQs</Link>
+            </li>
+            
+            <li><a href="/SignIn">Login</a></li>
+          </>
+
         )}
 
         </ul>
