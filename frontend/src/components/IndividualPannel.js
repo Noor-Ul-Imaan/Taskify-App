@@ -1,15 +1,10 @@
 import React from "react";
 import "./IndividualPannel.css";
 import { Link } from 'react-router-dom';
-import { useAuth } from './adminOrg/AuthContext';
 
 
 const IndividualPannel = () => {
-  const { user, logout } = useAuth();
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
   return (
     <div className="admin-container">
       <aside className="sidebar">

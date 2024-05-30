@@ -1,8 +1,14 @@
 import React from "react";
 import "./AdminPannel.css";
 import { Link } from "react-router-dom";
+import { useAuth } from './adminOrg/AuthContext';
 
 const AdminPannel = () => {
+  const { user, logout } = useAuth();
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="admin-container">
       <aside className="sidebar">
@@ -35,7 +41,7 @@ const AdminPannel = () => {
         <header className="header">
           <div className="user-info">
             <h3>Hi, Welcome Back Admin!</h3>
-            <p>NED UNIVERSITY OF ENGINEERING AND TECHNOLOGY</p>
+            <p>{user.name}</p>
           </div>
           <div className="user-actions">
             {/* Circle for Admin Account Photo */}
