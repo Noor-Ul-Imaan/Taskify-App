@@ -5,11 +5,11 @@ import jwt from 'jsonwebtoken';
 const roleSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: false
+    required: true
   },
-  description: {
+  level: {
     type: String,
-    required: false
+    required: true
   }
 });
 
@@ -29,10 +29,6 @@ const organizationSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    required: true
-  },
-  numberOfLevels: {
-    type: Number,
     required: true
   },
   roles: [roleSchema]

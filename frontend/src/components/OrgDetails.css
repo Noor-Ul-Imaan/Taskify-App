@@ -1,8 +1,6 @@
-/* OrgDetails.css */
-
 /* Styles for the container */
 .container {
-    max-width: 500px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
@@ -46,6 +44,31 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+}
+
+/* Styles for dynamic levels and roles */
+.level-section {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.level-section h2 {
+    margin-bottom: 10px;
+}
+
+.role-container {
+    margin-top: 10px;
+}
+
+.role-container h3 {
+    margin-bottom: 5px;
+}
+
+.role-container .input-field {
+    margin-bottom: 10px;
 }
 
 /* Styles for the submit button */

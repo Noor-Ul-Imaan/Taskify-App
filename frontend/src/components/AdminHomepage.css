@@ -1,41 +1,87 @@
-.dept-container {
+.container {
+    padding-top: 40px;
     display: flex;
-    flex-direction: row;
-    height: 100vh
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #264653;
+    border-radius: 10px;
+    background-color: #f9f9f9;
 }
 
-.dept-side-bar {
-    background-color: #F0794F;
-    width: 25%;
+.header,
+.details,
+.roles,
+.logout {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.dept-side-bar h1{
-    color: black;
-    margin-top: 20px;
-    text-align: left;
-    padding-left: 40px
-}
-
-.dept-side-bar ul li{
+h1,
+h2,
+h3 {
     margin-bottom: 10px;
-    list-style: none;
 }
 
+h1 {
+    font-size: 32px;
+    color: #264653;
+}
 
+h2,
+h3 {
+    font-size: 24px;
+    color: #2A9D8F;
+}
 
-.dept-section {
-    margin-left: 20px;
+p {
+    margin-bottom: 10px;
+    color: #264653;
+}
+
+.role-container {
     display: flex;
-    flex-wrap: wrap;
-    width: 75%;
+    justify-content: space-between;
+    border: 2px solid #264653;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #E9C46A;
 }
 
-.dept-card {
-    background-color: aliceblue;
-    width: 300px;
-    height: 200px;
-    margin: 20px;
-    padding: 5px;
-    border: 1px solid #ddd; 
+button {
+    padding: 12px 24px;
+    background-color: #E9C46A;
+    color: #fff;
+    border: none;
     border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #E76F51;
+}
+
+.loading {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 50px;
+    color: #264653;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .role-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }
