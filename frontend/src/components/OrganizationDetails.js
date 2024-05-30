@@ -65,7 +65,7 @@ const OrganizationDetails = () => {
 
       await axios.post('http://localhost:5000/organizations', orgData);
       setLoading(false);
-      navigate('/IndividualPannel');
+      navigate('/AdminPannel');
     } catch (error) {
       console.error('Error saving organization:', error);
       setLoading(false);
