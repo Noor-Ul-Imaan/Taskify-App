@@ -22,9 +22,16 @@ const AdminPannel = () => {
           <li>Completed Tasks</li>
           <li>Tasks In Progress</li>
           <li>Completed Tasks Today</li>
-          <Link to="/UserManagement">
-            <li>User Management</li>
-          </Link>
+          <li>
+            UserManagement
+            <Link to="/UserManagement">
+              <li>view users</li>
+            </Link>
+            <Link to="/UserManagement">
+              <li>Create users</li>
+            </Link>
+          </li>
+
           {/* <li>Settings</li> */}
         </ul>
       </aside>
