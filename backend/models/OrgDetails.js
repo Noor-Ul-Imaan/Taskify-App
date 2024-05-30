@@ -14,6 +14,10 @@ const roleSchema = new mongoose.Schema({
 });
 
 const organizationSchema = new mongoose.Schema({
+  adminName: {
+    type: String,
+    required: false,
+  },
   email: {
     type: String,
     required: true,
@@ -23,15 +27,18 @@ const organizationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  
   name: {
     type: String,
     required: true
   },
+
   type: {
     type: String,
     required: true
   },
   roles: [roleSchema]
+
 }, {
   timestamps: true
 });

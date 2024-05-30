@@ -29,6 +29,7 @@ const corsOptions = {
   };
   
   app.use(cors(corsOptions));
+// app.use(cors());
 
 //for http requests
 app.get('/', (request, response) => {

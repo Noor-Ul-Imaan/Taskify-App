@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom"
+import logo from "../logo.png";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
-    navigate('/adminHomepage');
+    navigate('/IndividualPannel');
   };
 
   return (
@@ -24,12 +26,12 @@ const Login = () => {
           <div className="content">
             <form className="login" onSubmit={handleSubmit}>
               <div className="input-field">
-                <label>Email</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <label>Email</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="input-field">
-                <label>Password</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <label>Password</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
               <button type="submit">Login</button>
             </form>
