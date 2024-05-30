@@ -88,7 +88,6 @@ router.delete('/:id', async (request, response) => {
 router.post('/', async (request, response) => {
     try {
         const { email, password, name, type, numberOfLevels, roles } = request.body;
-
         if (!email || !password || !name || !type || !numberOfLevels || !roles ) {
             return response.status(400).send({
                 message: 'Send all required fields: name, type, numberOfLevels, roles, email, and password'

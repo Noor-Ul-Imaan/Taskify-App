@@ -23,19 +23,24 @@ const organizationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  
   name: {
     type: String,
     required: true
   },
+
   type: {
     type: String,
     required: true
   },
+
   numberOfLevels: {
     type: Number,
     required: true
   },
+
   roles: [roleSchema]
+
 }, {
   timestamps: true
 });

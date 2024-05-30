@@ -81,6 +81,7 @@ function App() {
             <Route path="/organizations/delete/:id" element={<DeleteOrg />} />
             <Route path="/AdminPannel" element={<AdminPannel />} />
             <Route path="/IndividualPannel" element={<IndividualPannel />} />
+
             <Route path="/login" element={<Login />} />
             
             {/* Protected Routes */}
