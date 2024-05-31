@@ -1,15 +1,47 @@
-/* body {
-    font-family: Arial, sans-serif;
-    background-color: #2b5d7c;
-} */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.gradient-background {
+    background: linear-gradient(120deg, #F4A261, #E9C46A, #F4A261);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
+    max-width: 700px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container .form-group label {
+    color: #E76F51;
+    text-align: left;
+    font-size: small;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.header {
+    text-align: center;
+}
+
+.content {
+    margin-top: 20px;
+    width: 100%;
+    
+}
+
+.content h1 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .container h1 {
@@ -21,9 +53,14 @@
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    font-weight: bold;
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f2f1f1;
+
 }
 
 input[type="text"],
@@ -31,8 +68,8 @@ textarea,
 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: none;
+    background-color: #f2f1f1;
     box-sizing: border-box;
     font-size: 16px;
 }
@@ -40,16 +77,28 @@ select {
 .container button {
     padding: 10px 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
 
 button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
     background-color: #007bff;
-    color: #fff;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 button[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+/* Styles for the footer */
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
 }

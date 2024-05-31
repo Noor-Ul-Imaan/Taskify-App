@@ -45,6 +45,8 @@ const Dump = () => {
       <br></br> */}
 
       <Link to="/OrganizationDetails">OrganizationDetails (come after org sign up)</Link>
+      <br></br>
+      <Link to="/SubmitTask">Submit Tasks</Link>
 
     </div>
   );
