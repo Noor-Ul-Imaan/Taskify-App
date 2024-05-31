@@ -41,6 +41,7 @@ import ProtectedRoute from "./components/adminOrg/ProtectedRoute";
 import { useEffect } from "react";
 import axios from "axios";
 import CreateUserForm from "./components/CreateUserForm";
+import SubmitTask from "./components/SubmitTask";
 
 function App() {
   return (
@@ -88,6 +89,7 @@ function App() {
             <Route path="/organizations/delete/:id" element={<DeleteOrg />} />
             {/* <Route path="/AdminPannel" element={<AdminPannel />} /> */}
             <Route path="/IndividualPannel" element={<IndividualPannel />} />
+            <Route path="/SubmitTask" element={<SubmitTask />} />
 
             <Route path="/login" element={<Login />} />
 
