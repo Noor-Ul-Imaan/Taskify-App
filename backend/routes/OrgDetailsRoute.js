@@ -1,9 +1,22 @@
+// OrgDetailsRoute.js
 import express from 'express';
 import { Organization } from '../models/OrgDetails.js';
 import bcrypt from 'bcrypt';
 import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
+
+router.get('/roles', authMiddleware, async (req, res) => {
+  try {
+    const organization = req.organization;
+    if (!organization) {
+      return res.status(404).json({ message: 'Organization not found' });
+    }
+    res.status(200).json({ roles: organization.roles });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 router.get('/me', authMiddleware, async (req, res) => {
   res.status(200).send(req.organization);

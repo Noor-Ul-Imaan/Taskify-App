@@ -1,44 +1,38 @@
-import { User } from "../models/CreateUserModel.js";
-import { Organization } from "../models/OrgDetails.js";
-import { v4 as uuidv4 } from "uuid";
-import bcrypt from "bcrypt";
-import crypto from "crypto";
+import { User } from '../models/CreateUserModel.js';
+import { Organization } from '../models/OrgDetails.js';
+import bcrypt from 'bcrypt';
 
 export const createUser = async (req, res) => {
-  const { name, lastname, role, level } = req.body;
-  console.log("hi");
   try {
-    const userId = uuidv4();
-    const email = `${name}.${lastname}@example.com`.toLowerCase();
+    const { firstname, lastname, email, roleId, password } = req.body; // Include password in the request body
+    const organization = req.organization;
 
-    const plainPassword = crypto.randomBytes(3).toString("hex");
-    const password = await bcrypt.hash("defaultPassword", 5);
-
-    // Ensure email uniqueness
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ error: "Email already exists" });
+    if (!organization) {
+      return res.status(404).json({ message: 'Organization not found' });
     }
 
+    const role = organization.roles.id(roleId);
+    if (!role) {
+      return res.status(404).json({ message: 'Role not found' });
+    }
+
+    const username = `${firstname}${lastname}${Math.floor(Math.random() * 1000)}`;
+
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the generated password
+
     const newUser = new User({
-      userId,
-      name,
+      firstname,
       lastname,
       email,
-      password,
-      role,
-      level,
+      organizationName: organization.name,
+      role: { name: role.name, level: role.level },
+      username,
+      password: hashedPassword, // Save the hashed password to the database
     });
 
     await newUser.save();
-
-    res.status(201).json({
-      message: "User created successfully",
-      user: newUser,
-      plainPassword,
-    });
+    res.status(201).json({ message: 'User created successfully', username, plainPassword: password });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ message: error.message });
   }
 };
