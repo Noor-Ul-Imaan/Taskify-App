@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     await axios.post('http://localhost:5000/auth/logout', {}, { withCredentials: true });
     setUser(null);
+    
   };
 
   return (

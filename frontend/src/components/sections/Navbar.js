@@ -38,14 +38,12 @@ const Navbar = () => {
           )} */}
           {user ? (
           <>
+     
             <li>
-             <Link to='/AboutUs'>About Us</Link>
+             <Link to='/AdminPannel'>Dashboard</Link>
             </li>
             <li>
-             <Link to='/ContactForm'>Contact</Link>
-            </li>
-            <li>
-             <Link to='/FAQs'>FAQs</Link>
+             <Link to='/AdminHomepage'>View Organization</Link>
             </li>
             <li>{user.email}</li>
             <li><button onClick={logout}>Logout</button></li>

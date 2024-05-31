@@ -24,6 +24,12 @@
     margin-left: 15px;
 }
 
+.navbar-links-list button{
+  
+    margin-right: 25px;
+    margin-left: 15px;
+}
+
 .navbar-links-list ul {
     display: flex;
     list-style: none;

@@ -3,11 +3,13 @@ import { useSignup } from "../hooks/useSignup"
 import Navbar from './sections/Navbar'
 import "./IndivRegis.css"; // Import CSS styles
 
+
 const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const {signup, error, isLoading} = useSignup()
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()

@@ -83,12 +83,11 @@ function App() {
             <Route path="/IndividualPannel" element={<IndividualPannel />} />
 
             <Route path="/login" element={<Login />} />
-            
+            <Route path="/AdminPannel" element={<AdminPannel />} />
+
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route path="/adminHomepage" element={<AdminHomepage />} />
-              {/* <Route path="/IndividualPannel" element={<IndividualPannel />} /> */}
-              <Route path="/AdminPannel" element={<AdminPannel />} />
 
               <Route path="/organizations" element={<OrganizationDetails />} />
             </Route>
