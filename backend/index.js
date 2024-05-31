@@ -16,6 +16,14 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+
+//Middleware for handling CORS POLICY. Allow all origins
+// const corsOptions = {
+//   origin: 'http://localhost:3000', // your frontend's origin
+//   credentials: true // this allows cookies to be sent from the frontend
+// };
+
+
 app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 

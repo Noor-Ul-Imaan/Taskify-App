@@ -87,7 +87,7 @@ function App() {
             <Route path="/organizations/details/:id" element={<ShowOrg />} />
             <Route path="/organizations/edit/:id" element={<EditOrg />} />
             <Route path="/organizations/delete/:id" element={<DeleteOrg />} />
-            {/* <Route path="/AdminPannel" element={<AdminPannel />} /> */}
+            <Route path="/AdminPannel" element={<AdminPannel />} />
             <Route path="/IndividualPannel" element={<IndividualPannel />} />
             <Route path="/SubmitTask" element={<SubmitTask />} />
 
