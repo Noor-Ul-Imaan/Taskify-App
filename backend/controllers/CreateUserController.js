@@ -18,7 +18,12 @@ export const createUser = async (req, res) => {
 
     const username = `${firstname}${lastname}${Math.floor(Math.random() * 1000)}`;
 
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash the generated password
+    // const hashedPassword = await bcrypt.hash(password, 10); // Hash the generated password
+    // const salt = await bcrypt.genSalt();
+    // const  hashedPassword = await bcrypt.hash(password.trim(), salt);
+
+        const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
 
     const newUser = new User({
       firstname,

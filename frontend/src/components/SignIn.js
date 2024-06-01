@@ -1,32 +1,59 @@
-import { useState } from "react"
-import { useLogin } from "../hooks/useLogin"
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom"
 import logo from "./logo.png";
-import { useNavigate } from 'react-router-dom';
-
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const {login, error, isLoading} = useLogin()
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
 
-
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/user/login', { username, password });
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      console.log('successful');
 
-    await login(email, password)
-    navigate('/IndividualPannel');
+      navigate('/IndividualPannel');
+      
+    } catch (error) {
+      console.log('Error:',
+       error)
+      setError(error.response.data.message || 'Login failed');
+    }
+  };
+
+  return (
+    // <>
+    //   <form onSubmit={handleSubmit}>
+    //     <input
+    //       type="text"
+    //       placeholder="Username"
+    //       value={username}
+    //       onChange={(e) => setUsername(e.target.value)}
+    //       required
+    //     />
+    //     <input
+    //       type="password"
+    //       placeholder="Password"
+    //       value={password}
+    //       onChange={(e) => setPassword(e.target.value)}
+    //       required
+    //     />
+    //     <button type="submit">Login</button>
+    //   </form>
+    //   {error && <p style={{ color: 'red' }}>{error}</p>}
 
 
-  }
 
-    return (
-      <>
-    
-    <div className="login">
+
+
+          <div className="login">
       <div className="gradient-background">
         <div className="container">
 
@@ -41,25 +68,28 @@ const Login = () => {
           </div>
           <div className="content">
             <h1>User Login</h1>
-            <form className="login" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
               <div className="input-field">
               <label>Email address:</label>
-              <input 
-                type="email" 
-                onChange={(e) => setEmail(e.target.value)} 
-                value={email} 
-              />
+       <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
               </div>
               <div className="input-field">
               <label>Password:</label>
-              <input 
-                type="password" 
-                onChange={(e) => setPassword(e.target.value)} 
-                value={password} 
-              />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
               </div>
-              <button disabled={isLoading}>Log in</button>
-              {error && <div className="error">Error on page signIn: {error}</div>}
+        <button type="submit">Login</button>
               <div className="social-login">
                 <span>G</span>
                 <span>Sign in with Google</span>
@@ -79,13 +109,112 @@ const Login = () => {
         </div>
       </div>
     </div>
-    </>
+
   );
+};
+
+export default Login;
 
 
-}
 
-export default Login
+
+
+
+
+
+
+
+
+
+
+// import { useState } from "react"
+// import { useLogin } from "../hooks/useLogin"
+// import { Link } from "react-router-dom"
+// import logo from "./logo.png";
+// import { useNavigate } from 'react-router-dom';
+
+
+// const Login = () => {
+//   const [email, setEmail] = useState('')
+//   const [password, setPassword] = useState('')
+//   const {login, error, isLoading} = useLogin()
+//   const navigate = useNavigate();
+
+
+
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault()
+
+//     await login(email, password)
+//     navigate('/IndividualPannel');
+
+
+//   }
+
+//     return (
+//       <>
+    
+//     <div className="login">
+//       <div className="gradient-background">
+//         <div className="container">
+
+//           <div className="header">
+//             <img src={logo} alt="Taskify Logo" />
+//             <span className="signup">
+//               Don't have an account?{" "}
+//               <Link to="/Whoareyou" className="signup-link">
+//                 Sign up
+//               </Link>
+//             </span>
+//           </div>
+//           <div className="content">
+//             <h1>User Login</h1>
+//             <form className="login" onSubmit={handleSubmit}>
+//               <div className="input-field">
+//               <label>Email address:</label>
+//               <input 
+//                 type="email" 
+//                 onChange={(e) => setEmail(e.target.value)} 
+//                 value={email} 
+//               />
+//               </div>
+//               <div className="input-field">
+//               <label>Password:</label>
+//               <input 
+//                 type="password" 
+//                 onChange={(e) => setPassword(e.target.value)} 
+//                 value={password} 
+//               />
+//               </div>
+//               <button disabled={isLoading}>Log in</button>
+//               {error && <div className="error">Error on page signIn: {error}</div>}
+//               <div className="social-login">
+//                 <span>G</span>
+//                 <span>Sign in with Google</span>
+//               </div>
+//             </form>
+//             <div>
+//               <Link to='/login'>For Admin Login</Link>
+//             </div>
+//           </div>
+
+//           <div className="footer">
+//             <span>
+//               This site is protected by reCAPTCHA and the Google Privacy Policy
+//               and Terms of Service apply.
+//             </span>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//     </>
+//   );
+
+
+// }
+
+// export default Login
 
 
 // import { useState, React } from "react";

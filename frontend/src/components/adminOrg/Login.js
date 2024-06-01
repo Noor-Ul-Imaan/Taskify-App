@@ -36,6 +36,9 @@ const Login = () => {
               <button type="submit">Login</button>
             </form>
           </div>
+          <div>
+              <Link to='/SignIn'>For User Login</Link>
+            </div>
         </div>
       </div>
     </div>

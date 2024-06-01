@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }) => {
     );
     setUser(null);
     
+    
   };
 
   return (

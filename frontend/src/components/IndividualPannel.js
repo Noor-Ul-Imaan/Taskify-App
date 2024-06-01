@@ -1,41 +1,74 @@
 import React from "react";
 import "./IndividualPannel.css";
 import { Link } from 'react-router-dom';
-import { useAuthContext } from '../hooks/useAuthContext';
-import { useLogout } from '../hooks/useLogout';
+// import { useAuthContext } from '../hooks/useAuthContext';
+// import { useLogout } from '../hooks/useLogout';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const IndividualPannel = () => {
-    const { logout } = useLogout();
-  const { user } = useAuthContext();
-  const handleClick = () => {
-    logout();
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
   };
 
-
   return (
-    <div className="admin-container">
-      <aside className="sidebar">
-        <div className="logo">
-          <h2>Taskify</h2>
-          <br></br>
-          <h3> Dashboard</h3>
-        </div>
-        <h2>Organization Details{user ? (user.email) : (<p>logged out</p>)}</h2>
-      {/* <p>Email: {user.email}</p> */}
-      {/* <p>Type: {user.type}</p>
-      <p>Number of Levels: {user.numberOfLevels}</p>
-      <h3>Roles</h3>
-      {user.roles.map((role, index) => (
-        <div key={index}>
-          <p>Name: {role.name}</p>
-          <p>Description: {role.description}</p>
-        </div>
-      ))} */}
-      <button onClick={handleClick}>Logout</button>
-        <div>
+    <div>
 
+
+
+      {user ? (
+        <div>
+          <h1>Welcome, {user.firstname} {user.lastname}</h1>
+          {/* <button onClick={handleLogout}>Logout</button> */}
         </div>
+      ) : (
+        <div>
+          <p>You need to be logged in</p>
+          <button onClick={() => navigate('/login')}>Login</button>
+        </div>
+      )}
+
+
+
+
+     <div className="admin-container">
+       <aside className="sidebar">
+         <div className="logo">
+           <h2>Taskify</h2>
+           <br></br>
+           <h3> Dashboard</h3>
+        </div>
+
+        {user ?(
+        <>
+
+
+        <h2>User Details </h2>
+      <p>Email: {user.email}</p>
+      <p>Name: {user.firstname} {user.lastname}</p>
+      <p>Level: {user.level}</p>
+      <p>Position: {user.role}</p>
+
+      <button onClick={handleLogout}>Logout</button>
+      </>)
+      : (<p>logged out</p>)
+      
+}
         <br></br>
         <ul className="menu">
           <Link to='/IndividualPannel'><li>Home</li></Link>
@@ -51,7 +84,7 @@ const IndividualPannel = () => {
       <main className="main-content">
         <header className="header">
           <div className="user-info">
-            {/* <h3>Hi, Welcome Back {user.name}!</h3> */}
+            <h3>Hi, Welcome Back {user.name}!</h3>
             <p>NED</p>
           </div>
           <div className="user-actions">
@@ -64,7 +97,7 @@ const IndividualPannel = () => {
             </div>
             {/* End of Circle */}
             <Link to='/Settings'><button>Settings</button></Link>
-            <button>Log Out</button>
+            <button >Log Out</button>
           </div>
         </header>
         <section className="statistics">
@@ -109,7 +142,11 @@ const IndividualPannel = () => {
         </section>
       </main>
     </div>
-  );
+
+
+      
+</div>
+);
 };
 
 export default IndividualPannel;

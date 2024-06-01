@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useLogout } from '../../hooks/useLogout';
-// import { useAuthContext } from '../../hooks/useAuthContext';
 import './Navbar.css';
 import logo from '../../images/logo.png';
 import { useAuth } from '../adminOrg/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   // const { logout } = useLogout();
   // const { user } = useAuthContext();
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
 
   const handleClick = () => {
     logout();
+    navigate('/Login')
+
   };
 
   return (
