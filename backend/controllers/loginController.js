@@ -22,7 +22,7 @@ export const login = async (req, res) => {
     console.log('Password Match:', isMatch);
 
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid username or password' });
+      return res.status(401).json({ message: 'password' });
     }
 
     const token = jwt.sign({ _id: user._id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1d' });
@@ -36,7 +36,8 @@ export const login = async (req, res) => {
         lastname: user.lastname, 
         email: user.email, 
         level: user.role.level, 
-        role: user.role.name 
+        role: user.role.name,
+        id: user._id
       } 
     });
     console.log(user.username);

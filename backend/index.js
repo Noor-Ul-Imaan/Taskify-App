@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import { PORT, mongoDBURL } from "./config.js";
 import tasksRoute from "./routes/tasksRoute.js";
 import OrgDetailsRoute from "./routes/OrgDetailsRoute.js";
-// import userRoute from "./routes/userRoute.js";
+import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import CreateUserRoute from "./routes/CreateUserRoute.js";
 import authMiddleware from './middleware/authMiddleware.js';
@@ -38,6 +38,9 @@ app.use("/organizations", OrgDetailsRoute);
 // app.use("/user", userRoute);
 app.use("/auth", authRoute);
 // app.use("/create", CreateUserRoute);
+
+app.use('/users', userRoute); 
+
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to TASKIFY");
 });

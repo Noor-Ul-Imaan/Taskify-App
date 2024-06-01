@@ -26,6 +26,11 @@ const taskSchema = mongoose.Schema(
         user_id: {
             type: String,
             required: true,
+        },
+        isSubmitted: {
+            type: Boolean,
+            default: false
+
         }
     }, 
     {
@@ -33,7 +38,6 @@ const taskSchema = mongoose.Schema(
     }
 );
 
-export const Task = mongoose.model('Task',taskSchema); //Task instead of Book
-
+export const Task = mongoose.model('Task',taskSchema); 
 
 

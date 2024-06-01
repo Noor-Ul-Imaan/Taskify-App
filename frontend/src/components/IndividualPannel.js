@@ -76,7 +76,8 @@ const IndividualPannel = () => {
           <Link to='/IndivNotifs'><li>Notifications</li></Link>
           <Link to='/IndivHomePage'><li>To-do</li></Link>
           {/* create task option */}
-          <Link to='/createTasks'><li>Create Task</li></Link>
+          {/* <Link to='/createTasks'><li>Create Task</li></Link> */}
+          <Link to='/TaskManager'><li>Create Task</li></Link>
           {/* <li>View All Users</li> */}
           {/* <li>Settings</li> */}
         </ul>

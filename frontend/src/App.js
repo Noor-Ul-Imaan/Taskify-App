@@ -43,6 +43,9 @@ import axios from "axios";
 import CreateUserForm from "./components/CreateUserForm";
 import SubmitTask from "./components/SubmitTask";
 
+import TaskManager from './components/taskHandle/TaskManager';
+
+
 function App() {
   return (
     <div className="App">
@@ -93,12 +96,16 @@ function App() {
 
             <Route path="/login" element={<Login />} />
 
+            <Route path="/TaskManager" element={<TaskManager />} />
+
+
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route path="/adminHomepage" element={<AdminHomepage />} />
 
               <Route path="/organizations" element={<OrganizationDetails />} />
               <Route path="/CreateUserForm" element={<CreateUserForm />} />
+
             </Route>
           </Routes>
         </Router>
