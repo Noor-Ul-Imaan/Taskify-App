@@ -7,6 +7,7 @@ const CreateTasks = () => {
         taskName: '',
         taskDescription: '',
         priorityLevel: 'high',
+        assignTo: '',
         taskDeadline: ''
     });
 
@@ -26,6 +27,7 @@ const CreateTasks = () => {
             taskName: '',
             taskDescription: '',
             priorityLevel: 'high',
+            assignTo: '',
             taskDeadline: ''
         });
     };
@@ -56,6 +58,10 @@ const CreateTasks = () => {
                             </select>
                         </div>
                         <div className="form-group">
+                            <label htmlFor="assignTo">Assign To:</label>
+                            <input type="text" id="assignTo" name="assignTo" value={taskData.assignTo} onChange={handleChange} required />
+                        </div>
+                        <div className="form-group">
                             <label htmlFor="taskDeadline">Deadline:</label>
                             <input type="datetime-local" id="taskDeadline" name="taskDeadline" value={taskData.taskDeadline} onChange={handleChange} />
                         </div>
@@ -64,7 +70,6 @@ const CreateTasks = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 
