@@ -70,7 +70,7 @@ const Login = () => {
             <h1>User Login</h1>
       <form onSubmit={handleSubmit}>
               <div className="input-field">
-              <label>Email address:</label>
+              <label>ID:</label>
        <input
           type="text"
           placeholder="Username"
