@@ -1,6 +1,4 @@
 import { User } from '../models/CreateUserModel.js';
-import { Organization } from '../models/OrgDetails.js';
-import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 import fs from 'fs';
 
@@ -41,10 +39,9 @@ const sendEmail = async (to, subject, html) => {
   }
 };
 
-
 export const createUser = async (req, res) => {
   try {
-    const { firstname, lastname, email, roleId, password } = req.body; // Include password in the request body
+    const { firstname, lastname, email, roleId, password } = req.body;
     const organization = req.organization;
 
     if (!organization) {
@@ -58,13 +55,6 @@ export const createUser = async (req, res) => {
 
     const username = `${firstname}${lastname}${Math.floor(Math.random() * 1000)}`;
 
-    // const hashedPassword = await bcrypt.hash(password, 10); // Hash the generated password
-    // const salt = await bcrypt.genSalt();
-    // const  hashedPassword = await bcrypt.hash(password.trim(), salt);
-
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
-
     const newUser = new User({
       firstname,
       lastname,
@@ -72,7 +62,7 @@ export const createUser = async (req, res) => {
       organizationName: organization.name,
       role: { name: role.name, level: role.level },
       username,
-      password: hashedPassword, // Save the hashed password to the database
+      password // Save the plain password; Mongoose middleware will hash it
     });
 
     await newUser.save();
@@ -85,7 +75,7 @@ export const createUser = async (req, res) => {
 
     // Send email with generated username and password
     await sendEmail(email, 'Your Taskify Credentials', emailHtml);
-    
+
     res.status(201).json({ message: 'User created successfully', username, plainPassword: password });
   } catch (error) {
     res.status(500).json({ message: error.message });
