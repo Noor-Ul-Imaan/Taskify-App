@@ -1,3 +1,4 @@
+// loginRoute.js
 import express from 'express';
 import { login } from '../controllers/loginController.js';
 

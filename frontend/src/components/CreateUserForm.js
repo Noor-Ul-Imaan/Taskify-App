@@ -25,22 +25,23 @@ const CreateUserForm = () => {
   }, []);
 
   const generateRandomPassword = () => {
-    const randomPassword = Math.floor(1000000 + Math.random() * 9000000).toString();
-    setGeneratedPassword(randomPassword);
+    return Math.floor(1000000 + Math.random() * 9000000).toString();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const randomPassword = generateRandomPassword(); // Generate random password here
+
     try {
-      generateRandomPassword(); // Generate random password
       const response = await CreateUserApiService.createUser({
         firstname,
         lastname,
         email,
         roleId: selectedRole,
-        password: generatedPassword, // Include generated password in the request body
+        password: randomPassword, // Use generated password in the request body
       });
       setGeneratedUsername(response.data.username);
+      setGeneratedPassword(randomPassword); // Set the generated password to state
       alert('User created successfully');
     } catch (error) {
       console.error('Error creating user', error.response ? error.response.data : error.message);
