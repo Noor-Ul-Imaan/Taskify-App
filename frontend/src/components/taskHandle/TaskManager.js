@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
-
 const TaskManager = () => {
+
   const [tasks, setTasks] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
@@ -34,6 +34,12 @@ const TaskManager = () => {
     setTasks(tasks.filter(task => task._id !== taskId));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
+
   return (
     <div>
       <h1>Task Manager</h1>
@@ -43,6 +49,9 @@ const TaskManager = () => {
         onUpdateTask={handleUpdateTask} 
         onDeleteTask={handleDeleteTask} 
       />
+
+<button onClick={handleLogout}>Logout</button>
+
     </div>
   );
 };

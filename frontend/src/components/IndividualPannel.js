@@ -7,11 +7,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
 const IndividualPannel = () => {
 
   const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
+
 
   React.useEffect(() => {
     const token = localStorage.getItem('token');
@@ -19,7 +19,6 @@ const IndividualPannel = () => {
       navigate('/login');
     }
   }, [navigate]);
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
