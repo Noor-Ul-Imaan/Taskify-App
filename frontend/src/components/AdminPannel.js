@@ -13,7 +13,7 @@ const AdminPannel = () => {
     <div className="admin-container">
       <aside className="sidebar">
         <div className="logo">
-          <h2>Taskify</h2>
+          {/* <h2>Taskify</h2> */}
           <br></br>
           <p>Admin's Dashboard</p>
         </div>
@@ -24,10 +24,10 @@ const AdminPannel = () => {
           </Link>
 
           {/* //here will add user */}
-          <li>Total Tasks</li>
+          {/* <li>Total Tasks</li>
           <li>Completed Tasks</li>
           <li>Tasks In Progress</li>
-          <li>Completed Tasks Today</li>
+          <li>Completed Tasks Today</li> */}
           <Link to="/UserManagement">
             <li>User Management</li>
           </Link>
@@ -37,6 +37,9 @@ const AdminPannel = () => {
           <Link to="/AdminHomepage">
             <li>View Organization</li>
           </Link>
+          <Link to="/OrgSettings">
+              <li>Settings</li>
+            </Link>
           {/* <li>Settings</li> */}
         </ul>
       </aside>
@@ -55,10 +58,8 @@ const AdminPannel = () => {
               />
             </div>
             {/* End of Circle */}
-            <Link to="/OrgSettings">
-              <button>Settings</button>
-            </Link>
-            <button>Log Out</button>
+
+        
           </div>
         </header>
         <section className="statistics">

@@ -87,7 +87,7 @@ function App() {
             <Route path="/organizations/details/:id" element={<ShowOrg />} />
             <Route path="/organizations/edit/:id" element={<EditOrg />} />
             <Route path="/organizations/delete/:id" element={<DeleteOrg />} />
-            {/* <Route path="/AdminPannel" element={<AdminPannel />} /> */}
+            <Route path="/AdminPannel" element={<AdminPannel />} />
             <Route path="/IndividualPannel" element={<IndividualPannel />} />
             <Route path="/SubmitTask" element={<SubmitTask />} />
 
@@ -96,8 +96,6 @@ function App() {
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route path="/adminHomepage" element={<AdminHomepage />} />
-              {/* <Route path="/IndividualPannel" element={<IndividualPannel />} /> */}
-              <Route path="/AdminPannel" element={<AdminPannel />} />
 
               <Route path="/organizations" element={<OrganizationDetails />} />
               <Route path="/CreateUserForm" element={<CreateUserForm />} />

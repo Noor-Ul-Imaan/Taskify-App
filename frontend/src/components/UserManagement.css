@@ -16,6 +16,10 @@ body {
     color: white;
 }
 
+.logo h2, .logo h3 {
+    color:#2A9D8F;
+}
+
 .sidebar a {
     display: block;
     padding: 10px;

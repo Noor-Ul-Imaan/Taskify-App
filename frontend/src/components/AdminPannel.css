@@ -28,13 +28,25 @@ body {
   .menu li {
     padding: 10px 0;
     color: #555;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: medium;
   }
   
   .menu li:hover {
-    background-color: #e9ecef;
+    background-color: #ffffff;
     cursor: pointer;
   }
   
+  .menu a:hover {
+    background-color: #ffffff;
+    text-decoration: underline;
+  }
+  .menu button {
+    background-color: white;
+    color: grey;
+  }
+
   .main-content {
     flex: 1;
     padding: 20px;

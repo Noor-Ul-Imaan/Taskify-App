@@ -2,12 +2,14 @@ import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
 import { Link } from "react-router-dom"
 import logo from "./logo.png";
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const {login, error, isLoading} = useLogin()
+  const navigate = useNavigate();
 
 
 
@@ -16,6 +18,9 @@ const Login = () => {
     e.preventDefault()
 
     await login(email, password)
+    navigate('/IndividualPannel');
+
+
   }
 
     return (
@@ -54,7 +59,7 @@ const Login = () => {
               />
               </div>
               <button disabled={isLoading}>Log in</button>
-              {error && <div className="error">{error}</div>}
+              {error && <div className="error">Error on page signIn: {error}</div>}
               <div className="social-login">
                 <span>G</span>
                 <span>Sign in with Google</span>

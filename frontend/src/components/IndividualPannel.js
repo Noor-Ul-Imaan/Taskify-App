@@ -1,9 +1,17 @@
 import React from "react";
 import "./IndividualPannel.css";
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
 
 
 const IndividualPannel = () => {
+    const { logout } = useLogout();
+  const { user } = useAuthContext();
+  const handleClick = () => {
+    logout();
+  };
+
 
   return (
     <div className="admin-container">
@@ -13,9 +21,9 @@ const IndividualPannel = () => {
           <br></br>
           <h3> Dashboard</h3>
         </div>
-        {/* <h2>Organization Details</h2>
-      <p>Email: {user.email}</p>
-      <p>Type: {user.type}</p>
+        <h2>Organization Details{user ? (user.email) : (<p>logged out</p>)}</h2>
+      {/* <p>Email: {user.email}</p> */}
+      {/* <p>Type: {user.type}</p>
       <p>Number of Levels: {user.numberOfLevels}</p>
       <h3>Roles</h3>
       {user.roles.map((role, index) => (
@@ -24,7 +32,7 @@ const IndividualPannel = () => {
           <p>Description: {role.description}</p>
         </div>
       ))} */}
-      {/* <button onClick={logout}>Logout</button> */}
+      <button onClick={handleClick}>Logout</button>
         <div>
 
         </div>
@@ -43,7 +51,7 @@ const IndividualPannel = () => {
       <main className="main-content">
         <header className="header">
           <div className="user-info">
-            <h3>Hi, Welcome Back ADMIN!</h3>
+            {/* <h3>Hi, Welcome Back {user.name}!</h3> */}
             <p>NED</p>
           </div>
           <div className="user-actions">

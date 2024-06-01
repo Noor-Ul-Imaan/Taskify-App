@@ -1,3 +1,4 @@
+// authMiddleware.js
 import jwt from 'jsonwebtoken';
 import { Organization } from '../models/OrgDetails.js';
 
@@ -11,6 +12,9 @@ const authMiddleware = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.organization = await Organization.findById(decoded._id);
+    if (!req.organization) {
+      return res.status(404).send({ message: 'Organization not found' });
+    }
     next();
   } catch (error) {
     return res.status(400).send({ message: 'Invalid token' });
