@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import logo from "../logo.png";
 
 const Login = () => {
@@ -9,16 +9,28 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, password);
-    navigate('/AdminPannel');
+    setLoading(true);
+    setError('');
+    try {
+      await login(email, password);
+      navigate('/AdminPannel');
+    } catch (err) {
+      setError(err.message);  // Set error message to the one from the thrown error
+    } finally {
+      setLoading(false);
+    }
   };
- const toggleShowPassword = () => {
+
+  const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
   return (
     <div className="login">
       <div className="gradient-background">
@@ -33,21 +45,28 @@ const Login = () => {
           </div>
           <div className="content">
             <h1>Admin Login</h1>
+            {error && <div className="error-alert">{error}</div>}
             <form className="login" onSubmit={handleSubmit}>
               <div className="input-field">
-          <label>Email:</label>
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <label>Email:</label>
+                <input 
+                  type="email" 
+                  placeholder="Email" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  required 
+                />
               </div>
               <div className="input-field">
-          <label>Password:</label>
-          <input
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-                />              
-                </div>
+                <label>Password:</label>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
               <div className="checkbox-field">
                 <input
                   type="checkbox"
@@ -57,13 +76,14 @@ const Login = () => {
                 />
                 <label htmlFor="showPassword">Show Password</label>
               </div>
-              <button type="submit">Login</button>
+              <button type="submit" disabled={loading}>
+                {loading ? 'Loading...' : 'Login'}
+              </button>
             </form>
             <div className="admin-login">
               <Link to='/SignIn'>For User Login</Link>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

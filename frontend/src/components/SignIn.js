@@ -9,10 +9,13 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
     try {
       const response = await axios.post('http://localhost:5000/api/user/login', { username, password });
       localStorage.setItem('token', response.data.token);
@@ -21,7 +24,9 @@ const Login = () => {
       navigate('/IndividualPannel');
     } catch (error) {
       console.log('Error:', error);
-      setError(error.response.data.message || 'Login failed');
+      setError('Invalid credentials');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,16 +38,9 @@ const Login = () => {
     <div className="login">
       <div className="gradient-background">
         <div className="container">
-          {/* <div className="header">
-            <span className="signup">
-              Don't have an account?{" "}
-              <Link to="/OrganizationDetails" className="signup-link">
-                Sign up
-              </Link>
-            </span>
-          </div> */}
           <div className="content">
             <h1>User Login</h1>
+            {error && <div className="error-alert">{error}</div>} {/* Display error message */}
             <form onSubmit={handleSubmit}>
               <div className="input-field">
                 <label>Username:</label>
@@ -73,7 +71,9 @@ const Login = () => {
                 />
                 <label htmlFor="showPassword">Show Password</label>
               </div>
-              <button type="submit">Login</button>
+              <button type="submit" disabled={loading}>
+                {loading ? 'Loading...' : 'Login'}
+              </button>
             </form>
             <div className="admin-login">
               <Link to='/login'>For Admin Login</Link>

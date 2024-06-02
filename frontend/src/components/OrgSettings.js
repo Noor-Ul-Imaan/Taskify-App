@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BackButton from './BackButton';
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
 import { useAuth } from './adminOrg/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './OrgSettings.css'; // Import the CSS file
@@ -9,6 +10,8 @@ const EditOrg = () => {
     const { user, logout } = useAuth();
     const [name, setName] = useState('');
     const [type, setType] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [password, setPassword] = useState('');
     const [roles, setRoles] = useState([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -37,24 +40,51 @@ const EditOrg = () => {
         setRoles(updatedRoles);
     };
 
-    const handleSaveOrg = () => {
-        const data = {
-            name,
-            type,
-            roles
-        };
-        setLoading(true);
-        axios.put(`http://localhost:5000/organizations/${user._id}`, data)
-            .then(() => {
-                setLoading(false);
-                navigate('/AdminPannel');
-                window.location.reload();
-            })
-            .catch((error) => {
-                setLoading(false);
-                alert('An error occurred while saving the organization details.');
-            });
+const handleSaveOrg = async () => {
+  // Define password conditions
+  const passwordConditions = {
+    minLength: 8,
+    hasUpperCase: /[A-Z]/,
+    hasLowerCase: /[a-z]/,
+    hasNumber: /\d/,
+    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/,
+  };
+
+  // Check password conditions
+  const isPasswordValid = (
+    password.length >= passwordConditions.minLength &&
+    passwordConditions.hasUpperCase.test(password) &&
+    passwordConditions.hasLowerCase.test(password) &&
+    passwordConditions.hasNumber.test(password) &&
+    passwordConditions.hasSpecialChar.test(password)
+  );
+
+  if (!isPasswordValid) {
+    alert('Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.');
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const data = {
+      name,
+      type,
+      password: hashedPassword,
+      roles
     };
+    setLoading(true);
+    await axios.put(`http://localhost:5000/organizations/${user._id}`, data);
+    setLoading(false);
+    navigate('/AdminPannel');
+    window.location.reload();
+  } catch (error) {
+    setLoading(false);
+    alert('An error occurred while saving the organization details.');
+  }
+};
+
+
 
     const handleAddRole = () => {
         setRoles([...roles, { name: '', level: '' }]);
@@ -80,7 +110,9 @@ const EditOrg = () => {
                 });
         }
     };
-
+ const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
     return (
         <div className="OrgSettings-container">
             <BackButton />
@@ -95,6 +127,19 @@ const EditOrg = () => {
                         <label>Organization Type:</label>
                         <input type="text" value={type} onChange={(e) => setType(e.target.value)} required />
                     </div>
+                    <div className="form-group">
+                        <label>New Password:</label>
+                        <input type={showPassword ? 'text' : 'password'} placeholder="Enter New Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    </div>
+                    <div className="checkbox-field">
+                <input
+                  type="checkbox"
+                  id="showPassword"
+                  checked={showPassword}
+                  onChange={toggleShowPassword}
+                />
+                <label htmlFor="showPassword">Show Password</label>
+              </div>
                     <div>
                         <h2>Roles:</h2>
                         <button type="button" className="add-role-button" onClick={handleAddRole}>Add Role</button>
@@ -112,7 +157,7 @@ const EditOrg = () => {
                             ))}
                         </ul>
                     </div>
-                    <button type="button" className="save-button" onClick={handleSaveOrg}>Save Organization</button>
+                    <button type="button" onClick={handleSaveOrg}>Save Organization</button>
                 </form>
             )}
             <h2>Delete Organization</h2>
