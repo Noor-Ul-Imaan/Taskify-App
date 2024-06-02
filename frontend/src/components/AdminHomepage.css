@@ -74,6 +74,17 @@ p {
     color: #264653;
 }
 
+
+
+.fix {
+    display: flex;
+    flex-direction: column;
+}
+
+.fix h2 {
+    margin-top: 0;
+}
+
 /* Responsive styles */
 @media (max-width: 600px) {
     .container {
