@@ -45,6 +45,32 @@ router.get('/:id', async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
+router.put('/:id/change-password', async (request, response) => {
+  try {
+    const { id } = request.params;
+    const { currentPassword, newPassword } = request.body;
+    const organization = await Organization.findById(id);
+
+    if (!organization) {
+      return response.status(404).json({ message: 'Organization not found' });
+    }
+
+    const isPasswordMatch = await bcrypt.compare(currentPassword, organization.password);
+
+    if (!isPasswordMatch) {
+      return response.status(400).json({ message: 'Current password is incorrect' });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    organization.password = hashedPassword;
+    await organization.save();
+
+    return response.status(200).json({ message: 'Password updated successfully' });
+  } catch (error) {
+    console.error('Error updating password:', error.message);
+    return response.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 router.put('/:id', async (request, response) => {
   try {

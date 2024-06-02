@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './adminOrg/AuthContext'; // Make sure to import the useAuth hook
 
 const OrganizationDetails = () => {
   const navigate = useNavigate();
+  const { login } = useAuth(); // Destructure the login function from useAuth
   const [showPassword, setShowPassword] = useState(false);
 
   // State for admin signup
@@ -39,6 +41,31 @@ const OrganizationDetails = () => {
   const handleSaveOrg = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    // Define password conditions
+    const passwordConditions = {
+      minLength: 8,
+      hasUpperCase: /[A-Z]/,
+      hasLowerCase: /[a-z]/,
+      hasNumber: /\d/,
+      hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/,
+    };
+
+    // Check password conditions
+    const isPasswordValid = (
+      password.length >= passwordConditions.minLength &&
+      passwordConditions.hasUpperCase.test(password) &&
+      passwordConditions.hasLowerCase.test(password) &&
+      passwordConditions.hasNumber.test(password) &&
+      passwordConditions.hasSpecialChar.test(password)
+    );
+
+    if (!isPasswordValid) {
+      alert('Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.');
+      setLoading(false);
+      return;
+    }
+
     try {
       if (!email || !password || !name || !type || numberOfRoles <= 0) {
         alert('Please fill in all required fields.');
@@ -64,17 +91,23 @@ const OrganizationDetails = () => {
       };
 
       await axios.post('http://localhost:5000/organizations', orgData);
+      
+      // Automatically log in the user
+      await login(email, password);
+      
       setLoading(false);
       navigate('/AdminPannel');
     } catch (error) {
       console.error('Error saving organization:', error);
       setLoading(false);
-      alert('An error occurred. Please check console');
+      alert('An error occurred. Please try again later');
     }
   };
+
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
   return (
     <div className="login">
       <div className="gradient-background">

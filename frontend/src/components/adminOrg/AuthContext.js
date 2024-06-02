@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }) => {
       setUser(data);
     } catch (error) {
       console.error("Login error:", error);
+      throw new Error('Invalid credentials');
     }
   };
 
@@ -50,8 +51,6 @@ export const AuthProvider = ({ children }) => {
       { withCredentials: true }
     );
     setUser(null);
-    
-    
   };
 
   return (
