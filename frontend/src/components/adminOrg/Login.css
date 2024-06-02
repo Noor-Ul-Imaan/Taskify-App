@@ -24,14 +24,14 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    /* margin-bottom: 10px; */
 }
 
 .signup {
     color: #E76F51;
     font-size: 14px;
     margin-right: 10px;
-    align-items: right;
+    align-items: center;
+    text-align: center;
 }
 
 .signup-link {

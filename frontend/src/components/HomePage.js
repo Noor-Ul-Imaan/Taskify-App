@@ -67,7 +67,7 @@ const HomePage = () => {
           </p>
 
           <div className="btn-group">
-            <Link to="/WhoAreYou" className="btn btn-primary">
+            <Link to="/OrganizationDetails" className="btn btn-primary">
               Get Started
             </Link>
             <Link to="/SignIn" className="btn btn-secondary">

@@ -43,7 +43,10 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+.options a {
+    text-decoration: none;
+    /* Remove underline from anchor tags */
+}
 .gradient-background button {
     background-color: #E9C46A;
     /* Green */
