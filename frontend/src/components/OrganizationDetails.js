@@ -114,7 +114,6 @@ const OrganizationDetails = () => {
       <div className="gradient-background">
         <div className="container">
           <div className="header">
-            <img src={logo} alt="Taskify Logo" />
           </div>
           <div className="content">
             <h1>Signup and Create Organization</h1>
