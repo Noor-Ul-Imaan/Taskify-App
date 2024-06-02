@@ -66,6 +66,10 @@ h2 {
     margin-top: 20px;
 }
 
+.front h2 {
+    color: white;
+}
+
 .add-role-button,
 .remove-role-button,
 .save-button,
