@@ -30,14 +30,6 @@ const taskSchema = mongoose.Schema(
             type: Boolean,
             default: false
         },
-        task_attachment: {
-            type: String, // Assuming task attachment will be stored as a file path or URL
-            required: false,
-        },
-        submission_attachment: {
-            type: String, // Assuming submission attachment will be stored as a file path or URL
-            required: false,
-        },
         rating: {
             type: Number,
             min: 1,

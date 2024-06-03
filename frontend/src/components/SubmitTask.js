@@ -56,7 +56,7 @@ const SubmitTask = () => {
       <div className="task-details">
         <h1>{task.title}</h1>
         <p>{task.description}</p>
-        <p>Assigned to: {task.assignedTo}</p>
+        <p>Assigned by: {task.assignedBy}</p>
         <p>Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
       </div>
       <div className="task-submit">
