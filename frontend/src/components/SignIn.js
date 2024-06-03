@@ -2,29 +2,35 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import './SignIn.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
     try {
       const response = await axios.post('http://localhost:5000/api/user/login', { username, password });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      console.log('successful');
+      Swal.fire({ // SweetAlert2 success message
+        title: 'Welcome!',
+        text: 'You have successfully logged in!',
+        icon: 'success'
+      });
       navigate('/IndividualPannel');
     } catch (error) {
-      console.log('Error:', error);
-      setError('Invalid credentials');
+      Swal.fire({ // SweetAlert2 error message
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Invalid credentials'
+      });
     } finally {
       setLoading(false);
     }
@@ -40,7 +46,6 @@ const Login = () => {
         <div className="container">
           <div className="content">
             <h1>User Login</h1>
-            {error && <div className="error-alert">{error}</div>} {/* Display error message */}
             <form onSubmit={handleSubmit}>
               <div className="input-field">
                 <label>Username:</label>

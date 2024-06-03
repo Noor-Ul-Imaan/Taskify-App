@@ -1,0 +1,52 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .container {
+    width: 650px;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  .container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .task-section {
+    border: 2px solid #ce9999;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .task-section h3 {
+    margin: 0 0 10px 0;
+    color: #E76F51;
+  }
+  
+  .task-section p {
+    margin: 5px 0;
+  }
+  
+  .task-section button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #E76F51;
+    color: #ffffff;
+  }
+  
+  .no-tasks {
+    text-align: center;
+    color: #E76F51;
+    font-size: 18px;
+  }
+
+  

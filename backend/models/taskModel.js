@@ -10,7 +10,6 @@ const taskSchema = mongoose.Schema(
             type: String,
             required: false,
         },
-
         deadline: {
             type: Date,
             required: false,
@@ -30,7 +29,24 @@ const taskSchema = mongoose.Schema(
         isSubmitted: {
             type: Boolean,
             default: false
-
+        },
+        task_attachment: {
+            type: String, // Assuming task attachment will be stored as a file path or URL
+            required: false,
+        },
+        submission_attachment: {
+            type: String, // Assuming submission attachment will be stored as a file path or URL
+            required: false,
+        },
+        rating: {
+            type: Number,
+            min: 1,
+            max: 5,
+            required: false,
+        },
+        comment: {
+            type: String, // Optional comment field
+            required: false,
         }
     }, 
     {
@@ -38,6 +54,4 @@ const taskSchema = mongoose.Schema(
     }
 );
 
-export const Task = mongoose.model('Task',taskSchema); 
-
-
+export const Task = mongoose.model('Task', taskSchema);

@@ -44,7 +44,8 @@ import CreateUserForm from "./components/CreateUserForm";
 import SubmitTask from "./components/SubmitTask";
 
 import TaskManager from './components/taskHandle/TaskManager';
-
+import ViewTasksAssignedByYou from './components/taskHandle/ViewAssignedByYou';
+import ViewTasksAssignedToYou from './components/taskHandle/ViewAssignedToYou';
 
 function App() {
   return (
@@ -93,11 +94,13 @@ function App() {
             <Route path="/AdminPannel" element={<AdminPannel />} />
             <Route path="/IndividualPannel" element={<IndividualPannel />} />
             <Route path="/SubmitTask" element={<SubmitTask />} />
+            <Route path="/SubmitTask/:id" element={<SubmitTask />} />
 
             <Route path="/login" element={<Login />} />
 
             <Route path="/TaskManager" element={<TaskManager />} />
-
+            <Route path="/ViewAssignedByYou" element={<ViewTasksAssignedByYou />} />
+            <Route path="/ViewAssignedToYou" element={<ViewTasksAssignedToYou />} />
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
