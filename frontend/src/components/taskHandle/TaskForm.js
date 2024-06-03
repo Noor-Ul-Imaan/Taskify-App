@@ -22,12 +22,21 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
     e.preventDefault();
     const taskData = { title, description, deadline, assignedTo, assignedBy: user.username };
 
+    // Check if deadline is in the future
+    const deadlineDate = new Date(deadline);
+    const currentDate = new Date();
+    if (deadlineDate <= currentDate) {
+      alert('The deadline must be a future date and time.');
+      return;
+    }
+
     if (existingTask) {
       axios.put(`http://localhost:5000/tasks/${existingTask._id}`, taskData, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
         onUpdateTask(response.data);
+        alert('Task updated successfully');
       })
       .catch(error => console.error('Error updating task:', error));
     } else {
@@ -36,6 +45,7 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
       })
       .then(response => {
         onCreateTask(response.data);
+        alert('Task created successfully');
       })
       .catch(error => console.error('Error creating task:', error));
     }
@@ -48,6 +58,7 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="taskName">Task Name:</label>
       <input 
         type="text" 
         placeholder="Title" 
@@ -55,16 +66,22 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
         onChange={(e) => setTitle(e.target.value)}
         required
       />
+      <br />
+      <label htmlFor="taskDescription">Description:</label>
       <textarea 
         placeholder="Description" 
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
+      <br />
+      <label htmlFor="taskDeadline">Deadline:</label>
       <input 
-        type="date" 
+        type="datetime-local" 
         value={deadline}
         onChange={(e) => setDeadline(e.target.value)}
       />
+      <br />
+      <label htmlFor="assignTo">Assign To:</label>
       <select 
         value={assignedTo}
         onChange={(e) => setAssignedTo(e.target.value)}
@@ -77,6 +94,7 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
           </option>
         ))}
       </select>
+      <br />
       <button type="submit">{existingTask ? 'Update' : 'Create'} Task</button>
     </form>
   );

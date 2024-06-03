@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import TaskForm from './TaskForm';
-import TaskList from './TaskList';
-const TaskManager = () => {
+import './TaskManager.css'; // Import the CSS file here
 
+const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
@@ -26,32 +26,12 @@ const TaskManager = () => {
     setTasks([...tasks, task]);
   };
 
-  const handleUpdateTask = (updatedTask) => {
-    setTasks(tasks.map(task => task._id === updatedTask._id ? updatedTask : task));
-  };
-
-  const handleDeleteTask = (taskId) => {
-    setTasks(tasks.filter(task => task._id !== taskId));
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/login');
-  };
-
   return (
-    <div>
-      <h1>Task Manager</h1>
-      <TaskForm onCreateTask={handleCreateTask} />
-      <TaskList 
-        tasks={tasks} 
-        onUpdateTask={handleUpdateTask} 
-        onDeleteTask={handleDeleteTask} 
-      />
-
-<button onClick={handleLogout}>Logout</button>
-
+    <div className="gradient-background">
+      <div className="container" id="create-task-container">
+        <h1>Create Task</h1>
+        <TaskForm onCreateTask={handleCreateTask} />
+      </div>
     </div>
   );
 };
