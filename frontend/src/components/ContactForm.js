@@ -3,6 +3,7 @@ import './ContactForm.css';
 import Navbar from './sections/Navbar';
 import Footer from './sections/Footer';
 import emailjs from '@emailjs/browser'; // Correct import statement
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 const ContactUsPage = () => {
   // State variables for form fields
@@ -34,11 +35,21 @@ const ContactUsPage = () => {
           setEmail('');
           setMessage('');
           setTopic('');
-          alert('Message sent successfully!');
+          Swal.fire({
+            title: 'Success!',
+            text: 'Message sent successfully!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
         },
         (error) => {
           console.log('FAILED...', error);
-          alert('Message not sent. Please try again later.');
+          Swal.fire({
+            title: 'Error!',
+            text: 'Message not sent. Please try again later.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
         }
       );
   };

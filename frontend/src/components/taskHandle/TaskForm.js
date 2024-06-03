@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
   const [title, setTitle] = useState(existingTask ? existingTask.title : '');
@@ -26,7 +27,12 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
     const deadlineDate = new Date(deadline);
     const currentDate = new Date();
     if (deadlineDate <= currentDate) {
-      alert('The deadline must be a future date and time.');
+      Swal.fire({
+        title: 'Error',
+        text: 'The deadline must be a future date and time.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
       return;
     }
 
@@ -36,18 +42,44 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
       })
       .then(response => {
         onUpdateTask(response.data);
-        alert('Task updated successfully');
+        Swal.fire({
+          title: 'Success',
+          text: 'Task updated successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
       })
-      .catch(error => console.error('Error updating task:', error));
+      .catch(error => {
+        console.error('Error updating task:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Error updating task',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      });
     } else {
       axios.post('http://localhost:5000/tasks', taskData, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
         onCreateTask(response.data);
-        alert('Task created successfully');
+        Swal.fire({
+          title: 'Success',
+          text: 'Task created successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
       })
-      .catch(error => console.error('Error creating task:', error));
+      .catch(error => {
+        console.error('Error creating task:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Error creating task',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      });
     }
 
     setTitle('');
