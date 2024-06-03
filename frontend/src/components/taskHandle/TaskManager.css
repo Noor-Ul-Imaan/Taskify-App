@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .container {
+    width: 650px; /* Fixed the max-width to 850px */
+    margin: 5px auto; /* Reduced the top margin */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #e76f51;
+    text-align: left;
+    font-size: small;
+    display: block;
+  }
+
+  .container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #858585;
+    border-radius: 5px;
+    background-color: #f2f1f1;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  .container button {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }

@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './TaskManager.css'; // Import the CSS file here
 
 const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
   const token = localStorage.getItem('token');
@@ -13,31 +15,22 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
     .catch(error => console.error('Error deleting task:', error));
   };
 
-  const handleSubmit = (taskId) => {
-    axios.put(`http://localhost:5000/tasks/${taskId}/submit`, {}, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(response => onUpdateTask(response.data))
-    .catch(error => console.error('Error submitting task:', error));
-  };
-
   return (
     <div>
-      <h2>Your Tasks</h2>
-      <ul>
-        {tasks.map(task => (
-          <li key={task._id}>
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
-            <p>Assigned to: {task.assignedTo}</p>
-            <p>Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
-            {task.assignedTo === user.username && !task.isSubmitted && (
-              <button onClick={() => handleSubmit(task._id)}>Submit</button>
-            )}
-            <button onClick={() => handleDelete(task._id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      {tasks.map(task => (
+        <div key={task._id} className="task-section">
+          <h2 className="task-title">{task.title}</h2>
+          <p className="task-details">{task.description}</p>
+          <p className="task-details">Assigned to: {task.assignedTo}</p>
+          <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
+          {task.assignedTo === user.username && !task.isSubmitted && (
+            <Link to={`/SubmitTask/${task._id}`} state={{ task }}>
+              <button>Submit</button>
+            </Link>
+          )}
+          <button onClick={() => handleDelete(task._id)}>Delete</button>
+        </div>
+      ))}
     </div>
   );
 };
