@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreateUserApiService from './services/CreateUserApiService';
+import Swal from 'sweetalert2'; // Import SweetAlert
+import './CreateUserForm.css'; // Import the CSS file
 
 const CreateUserForm = () => {
   const [firstname, setFirstname] = useState('');
@@ -42,7 +44,12 @@ const CreateUserForm = () => {
       });
       setGeneratedUsername(response.data.username);
       setGeneratedPassword(randomPassword); // Set the generated password to state
-      alert('User created successfully');
+      Swal.fire({
+        title: 'User Created Successfully',
+        text: `Username: ${response.data.username}\nPassword: ${randomPassword}`,
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
     } catch (error) {
       console.error('Error creating user', error.response ? error.response.data : error.message);
       setError(error.response ? error.response.data.message : 'Error creating user');
@@ -50,51 +57,72 @@ const CreateUserForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="First Name"
-          value={firstname}
-          onChange={(e) => setFirstname(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={lastname}
-          onChange={(e) => setLastname(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <select value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required>
-          <option value="">Select Role</option>
-          {roles.map((role) => (
-            <option key={role._id} value={role._id}>
-              {role.name}
-            </option>
-          ))}
-        </select>
-        <button type="submit">Create User</button>
-      </form>
-      {generatedUsername && (
-        <div>
-          <h3>User Created</h3>
-          <p>Username: {generatedUsername}</p>
-          <p>Password: {generatedPassword}</p>
+    <div className="gradient-background">
+      <div className="container">
+      
+        <div className="content">
+          <h1>Create User</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="input-field">
+              <label htmlFor="firstname">First Name</label>
+              <input
+                type="text"
+                id="firstname"
+                placeholder="First Name"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="lastname">Last Name</label>
+              <input
+                type="text"
+                id="lastname"
+                placeholder="Last Name"
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-field">
+              <label htmlFor="role">Role</label>
+              <select id="role" value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required>
+                <option value="">Select Role</option>
+                {roles.map((role) => (
+                  <option key={role._id} value={role._id}>
+                    {role.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button type="submit">Create User</button>
+          </form>
+          {generatedUsername && (
+            <div>
+              <h3>User Created</h3>
+              <p>Username: {generatedUsername}</p>
+              <p>Password: {generatedPassword}</p>
+            </div>
+          )}
+          {error && (
+            <div>
+              <p style={{ color: 'red' }}>{error}</p>
+            </div>
+          )}
         </div>
-      )}
-      {error && (
-        <div>
-          <p style={{ color: 'red' }}>{error}</p>
-        </div>
-      )}
+      </div>
     </div>
   );
 };
