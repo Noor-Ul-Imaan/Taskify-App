@@ -1,215 +1,118 @@
-import React, { useState } from "react";
-import "./UserManagement.css";
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useAuth } from "./adminOrg/AuthContext"; // Import useAuth hook
 
-const departmentMembers = {
-  chairman: { name: "John Doe", department: "Administration" },
-  hod: { name: "Jane Smith", department: "Chemistry" },
-  professors: [
-    { name: "Alice Johnson", department: "Organic Chemistry" },
-    { name: "Robert Brown", department: "Inorganic Chemistry" },
-    { name: "Emily Davis", department: "Physical Chemistry" },
-  ],
-  associateProfessors: [
-    { name: "Michael Wilson", department: "Analytical Chemistry" },
-    { name: "Sarah Miller", department: "Biochemistry" },
-    { name: "David Anderson", department: "Environmental Chemistry" },
-    { name: "Laura Thomas", department: "Nuclear Chemistry" },
-    { name: "James Moore", department: "Polymer Chemistry" },
-    { name: "Emma Taylor", department: "Theoretical Chemistry" },
-  ],
-  electrical: [
-    { name: "Dr. Vivek Kumar", department: "Electrical Engineering" },
-    { name: "Dr. John Smith", department: "Electrical Engineering" },
-    { name: "Dr. Andrew Brown", department: "Electrical Engineering" },
-    // ... (add more members as needed)
-  ],
-  management: [
-    { name: "Dr. Michael Johnson", department: "Management Sciences" },
-    { name: "Dr. Sarah Wilson", department: "Management Sciences" },
-    { name: "Dr. Robert Davis", department: "Management Sciences" },
-    // ... (add more members as needed)
-  ],
-};
+// const UserManagement = () => {
+//   const [users, setUsers] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const { user } = useAuth(); // Use useAuth hook to access user data
+
+//   useEffect(() => {
+//     const fetchUsers = async () => {
+//       try {
+//         if (!user || !user.token) {
+//           // Check for both user and token
+//           setError("Please log in to access users.");
+//           setLoading(false);
+//           return;
+//         }
+
+//         const token = user.token; // Assuming token is stored in user object
+
+//         const response = await axios.get("http://localhost:5000/api/users", {
+//           // Assuming backend expects token in a custom header
+//           headers: {
+//             Authorization: `Bearer ${token}`, // Include JWT token in Authorization header
+//           },
+//           withCredentials: true, // Include credentials for cookie-based authentication
+//         });
+//         setUsers(response.data);
+//       } catch (error) {
+//         console.error(error);
+//         setError("Error fetching users. Please try again later.");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchUsers();
+//   }, [user]); // Re-run useEffect when user changes (e.g., after login)
+
+//   if (loading) return <div>Loading...</div>;
+//   if (error) return <div>{error}</div>;
+
+//   return (
+//     <div>
+//       <h1>Users</h1>
+//       <ul>
+//         {users.map((user) => (
+//           <li key={user._id}>
+//             {user.firstname} {user.lastname} - {user.email}
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default UserManagement;
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "./adminOrg/AuthContext"; // Import useAuth hook
 
 const UserManagement = () => {
-  const [selectedSection, setSelectedSection] = useState("allUsers");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { user } = useAuth(); // Use useAuth hook to access user data
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        if (!user || !user.token) {
+          // Check for both user and token
+          setError("Please log in to access users.");
+          setLoading(false);
+          return;
+        }
 
-  const getFilteredMembers = (members) => {
-    return members.filter((member) =>
-      member.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  };
+        const token = user.token; // Assuming token is stored in user object
 
-  const renderSection = () => {
-    switch (selectedSection) {
-      case "allUsers":
-        return (
-          <>
-            <Section
-              title="CHAIRMAN"
-              members={getFilteredMembers([departmentMembers.chairman])}
-            />
-            <Section
-              title="HOD"
-              members={getFilteredMembers([departmentMembers.hod])}
-            />
-            <Section
-              title="PROFESSORS"
-              members={getFilteredMembers(departmentMembers.professors)}
-            />
-            <Section
-              title="ASSOCIATE PROFESSORS"
-              members={getFilteredMembers(
-                departmentMembers.associateProfessors
-              )}
-            />
-            <Section
-              title="Department of Electrical Engineering"
-              members={getFilteredMembers(departmentMembers.electrical)}
-            />
-            <Section
-              title="Department of Management Sciences"
-              members={getFilteredMembers(departmentMembers.management)}
-            />
-          </>
-        );
-      case "chairman":
-        return (
-          <Section
-            title="CHAIRMAN"
-            members={getFilteredMembers([departmentMembers.chairman])}
-          />
-        );
-      case "hod":
-        return (
-          <Section
-            title="HOD"
-            members={getFilteredMembers([departmentMembers.hod])}
-          />
-        );
-      case "professors":
-        return (
-          <Section
-            title="PROFESSORS"
-            members={getFilteredMembers(departmentMembers.professors)}
-          />
-        );
-      case "associateProfessors":
-        return (
-          <Section
-            title="ASSOCIATE PROFESSORS"
-            members={getFilteredMembers(departmentMembers.associateProfessors)}
-          />
-        );
-      case "electrical":
-        return (
-          <Section
-            title="Department of Electrical Engineering"
-            members={getFilteredMembers(departmentMembers.electrical)}
-          />
-        );
-      case "management":
-        return (
-          <Section
-            title="Department of Management Sciences"
-            members={getFilteredMembers(departmentMembers.management)}
-          />
-        );
-      default:
-        return null;
-    }
-  };
+        const response = await axios.get("http://localhost:5000/api/users", {
+          // Assuming backend expects token in a custom header
+          headers: {
+            Authorization: `Bearer ${token}`, // Include JWT token in Authorization header
+          },
+          withCredentials: true, // Include credentials for cookie-based authentication
+        });
+        setUsers(response.data);
+      } catch (error) {
+        console.error(error);
+        setError("Error fetching users. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, [user]); // Re-run useEffect when user changes (e.g., after login)
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
-    <div className="user-management">
-      <div className="sidebar">
-        <a
-          href="#"
-          className={selectedSection === "allUsers" ? "active" : ""}
-          onClick={() => setSelectedSection("allUsers")}
-        >
-          All Users
-        </a>
-        <a
-          href="#"
-          className={selectedSection === "chairman" ? "active" : ""}
-          onClick={() => setSelectedSection("chairman")}
-        >
-          Chairman
-        </a>
-        <a
-          href="#"
-          className={selectedSection === "hod" ? "active" : ""}
-          onClick={() => setSelectedSection("hod")}
-        >
-          HOD
-        </a>
-        <a
-          href="#"
-          className={selectedSection === "professors" ? "active" : ""}
-          onClick={() => setSelectedSection("professors")}
-        >
-          Professors
-        </a>
-        <a
-          href="#"
-          className={selectedSection === "associateProfessors" ? "active" : ""}
-          onClick={() => setSelectedSection("associateProfessors")}
-        >
-          Associate Professors
-        </a>
-        <a
-          href="#"
-          className={selectedSection === "electrical" ? "active" : ""}
-          onClick={() => setSelectedSection("electrical")}
-        >
-          Electrical Engineering
-        </a>
-        <a
-          href="#"
-          className={selectedSection === "management" ? "active" : ""}
-          onClick={() => setSelectedSection("management")}
-        >
-          Management Sciences
-        </a>
-      </div>
-      <div className="main-content">
-        <div className="header">
-          <h1 className="title">Random University</h1>
-          <input
-            type="text"
-            className="search-bar"
-            placeholder="Search user..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-        </div>
-        {renderSection()}
-      </div>
+    <div>
+      <h1>Users</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user._id}>
+            {user.firstname} {user.lastname} - {user.email}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
-
-const Section = ({ title, members }) => (
-  <div className="section">
-    <h2 className="subtitle">{title}</h2>
-    <div className="flex-container">
-      {members.map((member, index) => (
-        <div key={index} className="card">
-          <div className="circle"></div>
-          <div className="card-info">
-            <p>{member.name}</p>
-            <p>{member.department}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
 
 export default UserManagement;
