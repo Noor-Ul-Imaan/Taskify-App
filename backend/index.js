@@ -10,9 +10,9 @@ import OrgDetailsRoute from "./routes/OrgDetailsRoute.js";
 import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import CreateUserRoute from "./routes/CreateUserRoute.js";
-import authMiddleware from './middleware/authMiddleware.js';
-import loginRoute from './routes/loginRoute.js';
-
+import authMiddleware from "./middleware/authMiddleware.js";
+import loginRoute from "./routes/loginRoute.js";
+import UserManagementRoute from "./routes/UserManagementRoutes.js";
 dotenv.config();
 const app = express();
 
@@ -24,14 +24,8 @@ app.use(express.json());
 //   credentials: true // this allows cookies to be sent from the frontend
 // };
 
-
 app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-
-app.use('/api/user/login', loginRoute);
-
-app.use('/api/user', CreateUserRoute);
-
 
 app.use("/tasks", tasksRoute);
 app.use("/organizations", OrgDetailsRoute);
@@ -39,7 +33,12 @@ app.use("/organizations", OrgDetailsRoute);
 app.use("/auth", authRoute);
 // app.use("/create", CreateUserRoute);
 
-app.use('/users', userRoute); 
+app.use("/users", userRoute);
+app.use("/api", UserManagementRoute);
+
+app.use("/api/user/login", loginRoute);
+
+app.use("/api/user", CreateUserRoute);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to TASKIFY");
@@ -57,4 +56,6 @@ mongoose
     console.log(error);
   });
 
-console.log("Routes registered: /tasks, /organizations, /user, /auth, /api/user");
+console.log(
+  "Routes registered: /tasks, /organizations, /user, /auth, /api/user"
+);
