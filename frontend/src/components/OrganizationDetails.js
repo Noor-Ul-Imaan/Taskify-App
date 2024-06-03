@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './adminOrg/AuthContext'; // Make sure to import the useAuth hook
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const OrganizationDetails = () => {
   const navigate = useNavigate();
@@ -61,14 +62,22 @@ const OrganizationDetails = () => {
     );
 
     if (!isPasswordValid) {
-      alert('Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Password Validation Error',
+        text: 'Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.'
+      });
       setLoading(false);
       return;
     }
 
     try {
       if (!email || !password || !name || !type || numberOfRoles <= 0) {
-        alert('Please fill in all required fields.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Missing Information',
+          text: 'Please fill in all required fields.'
+        });
         setLoading(false);
         return;
       }
@@ -77,7 +86,11 @@ const OrganizationDetails = () => {
       const isValid = roles.every(role => role.name.trim() !== '' && role.level.trim() !== '');
 
       if (!isValid) {
-        alert('Please provide a name and level for each role.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Role Details',
+          text: 'Please provide a name and level for each role.'
+        });
         setLoading(false);
         return;
       }
@@ -96,12 +109,21 @@ const OrganizationDetails = () => {
       await login(email, password);
       
       setLoading(false);
+      Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful',
+        text: 'Your organization has been successfully registered!'
+      });
       navigate('/AdminPannel');
       
     } catch (error) {
       console.error('Error saving organization:', error);
       setLoading(false);
-      alert('An error occurred. Please try again later');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred. Please try again later'
+      });
     }
   };
 
@@ -137,7 +159,7 @@ const OrganizationDetails = () => {
                   required
                 />
               </div>
-<div className="checkbox-field">
+              <div className="checkbox-field">
                 <input
                   type="checkbox"
                   id="showPassword"
@@ -191,19 +213,21 @@ const OrganizationDetails = () => {
                   </div>
                   <div>
                     <div className="input-field">
-                      <label>Role Name:</label>
-                      <input
-                        type="text"
-                        value={role.name}
-                        onChange={(e) => handleRoleNameChange(e, index)}
-                        placeholder="Enter role name"
-                        required
-                      />
-                    </div>
-                    <div className="input-field">
+                  <label>Role Name:</label>
+                  <input
+                    type="text"
+                    value={role.name}
+                    onChange={(e) => handleRoleNameChange(e, index)}
+                    placeholder="Enter role name"
+                    required
+                    pattern="[A-Za-z\s]+"
+                    title="Only alphabets and spaces allowed"
+                  />
+                </div>
+                  <div className="input-field">
                       <label>Level:</label>
                       <input
-                        type="text"
+                        type="number"
                         value={role.level}
                         onChange={(e) => handleRoleLevelChange(e, index)}
                         placeholder="Enter role level"
@@ -225,3 +249,4 @@ const OrganizationDetails = () => {
 };
 
 export default OrganizationDetails;
+

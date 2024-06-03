@@ -4,6 +4,7 @@ import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import { useAuth } from './adminOrg/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import './OrgSettings.css'; // Import the CSS file
 
 const EditOrg = () => {
@@ -40,51 +41,54 @@ const EditOrg = () => {
         setRoles(updatedRoles);
     };
 
-const handleSaveOrg = async () => {
-  // Define password conditions
-  const passwordConditions = {
-    minLength: 8,
-    hasUpperCase: /[A-Z]/,
-    hasLowerCase: /[a-z]/,
-    hasNumber: /\d/,
-    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/,
-  };
+    const handleSaveOrg = async () => {
+        const passwordConditions = {
+            minLength: 8,
+            hasUpperCase: /[A-Z]/,
+            hasLowerCase: /[a-z]/,
+            hasNumber: /\d/,
+            hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/,
+        };
 
-  // Check password conditions
-  const isPasswordValid = (
-    password.length >= passwordConditions.minLength &&
-    passwordConditions.hasUpperCase.test(password) &&
-    passwordConditions.hasLowerCase.test(password) &&
-    passwordConditions.hasNumber.test(password) &&
-    passwordConditions.hasSpecialChar.test(password)
-  );
+        const isPasswordValid = (
+            password === '' || (
+                password.length >= passwordConditions.minLength &&
+                passwordConditions.hasUpperCase.test(password) &&
+                passwordConditions.hasLowerCase.test(password) &&
+                passwordConditions.hasNumber.test(password) &&
+                passwordConditions.hasSpecialChar.test(password)
+            )
+        );
 
-  if (!isPasswordValid) {
-    alert('Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.');
-    setLoading(false);
-    return;
-  }
+        if (password !== '' && !isPasswordValid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Password Validation Error',
+                text: 'Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.'
+            });
+            return;
+        }
 
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const data = {
-      name,
-      type,
-      password: hashedPassword,
-      roles
+        try {
+            const requestData = {
+                name,
+                type,
+                roles
+            };
+            if (password !== '') {
+                const hashedPassword = await bcrypt.hash(password, 10);
+                requestData.password = hashedPassword;
+            }
+            setLoading(true);
+            await axios.put(`http://localhost:5000/organizations/${user._id}`, requestData);
+            setLoading(false);
+            navigate('/AdminPannel');
+            window.location.reload();
+        } catch (error) {
+            setLoading(false);
+            alert('An error occurred while saving the organization details.');
+        }
     };
-    setLoading(true);
-    await axios.put(`http://localhost:5000/organizations/${user._id}`, data);
-    setLoading(false);
-    navigate('/AdminPannel');
-    window.location.reload();
-  } catch (error) {
-    setLoading(false);
-    alert('An error occurred while saving the organization details.');
-  }
-};
-
-
 
     const handleAddRole = () => {
         setRoles([...roles, { name: '', level: '' }]);
@@ -96,23 +100,49 @@ const handleSaveOrg = async () => {
     };
 
     const handleDeleteOrg = () => {
-        if (window.confirm('Are you sure you want to delete your organization? This action cannot be undone.')) {
-            setLoading(true);
-            axios.delete(`http://localhost:5000/organizations/${user._id}`)
-                .then(() => {
-                    setLoading(false);
-                    navigate('/HomePage'); 
-                    logout();                
-                })
-                .catch((error) => {
-                    setLoading(false);
-                    alert('An error occurred while deleting the organization.');
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your account has been deleted.",
+                    icon: "success"
                 });
-        }
+                // Here you can add the deletion logic
+                // For now, let's just navigate back to homepage
+                navigate('/HomePage');
+            }
+        });
     };
- const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    // Function to handle confirming saving changes
+    const handleConfirmSaveChanges = () => {
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            denyButtonText: `Don't save`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                handleSaveOrg(); // Call save function if confirmed
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'error');
+            }
+        });
+    };
+
     return (
         <div className="OrgSettings-container">
             <BackButton />
@@ -132,14 +162,14 @@ const handleSaveOrg = async () => {
                         <input type={showPassword ? 'text' : 'password'} placeholder="Enter New Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
                     <div className="checkbox-field">
-                <input
-                  type="checkbox"
-                  id="showPassword"
-                  checked={showPassword}
-                  onChange={toggleShowPassword}
-                />
-                <label htmlFor="showPassword">Show Password</label>
-              </div>
+                        <input
+                            type="checkbox"
+                            id="showPassword"
+                            checked={showPassword}
+                            onChange={toggleShowPassword}
+                        />
+                        <label htmlFor="showPassword">Show Password</label>
+                    </div>
                     <div>
                         <h2>Roles:</h2>
                         <button type="button" className="add-role-button" onClick={handleAddRole}>Add Role</button>
@@ -157,7 +187,7 @@ const handleSaveOrg = async () => {
                             ))}
                         </ul>
                     </div>
-                    <button type="button" onClick={handleSaveOrg}>Save Organization</button>
+                    <button type="button" onClick={handleConfirmSaveChanges}>Save Organization</button>
                 </form>
             )}
             <h2>Delete Organization</h2>
@@ -168,3 +198,4 @@ const handleSaveOrg = async () => {
 };
 
 export default EditOrg;
+
