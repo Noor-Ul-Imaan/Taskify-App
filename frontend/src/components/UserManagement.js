@@ -70,23 +70,24 @@ const UserManagement = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        if (!user || !user.token) {
+        if (!user) {
           // Check for both user and token
           setError("Please log in to access users.");
           setLoading(false);
           return;
         }
 
-        const token = user.token; // Assuming token is stored in user object
+        // const token = user.token; // Assuming token is stored in user object
 
         const response = await axios.get("http://localhost:5000/api/users", {
           // Assuming backend expects token in a custom header
-          headers: {
-            Authorization: `Bearer ${token}`, // Include JWT token in Authorization header
-          },
+          // headers: {
+          //   Authorization: `Bearer ${token}`, // Include JWT token in Authorization header
+          // },
           withCredentials: true, // Include credentials for cookie-based authentication
         });
         setUsers(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error(error);
         setError("Error fetching users. Please try again later.");
