@@ -12,6 +12,7 @@ const CreateUserForm = () => {
   const [generatedUsername, setGeneratedUsername] = useState('');
   const [generatedPassword, setGeneratedPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false); // Add loading state
 
   useEffect(() => {
     const fetchRoles = async () => {
@@ -30,40 +31,41 @@ const CreateUserForm = () => {
     return Math.floor(1000000 + Math.random() * 9000000).toString();
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  const randomPassword = generateRandomPassword(); // Generate random password here
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const randomPassword = generateRandomPassword(); // Generate random password here
+    setLoading(true); // Set loading to true when starting the request
 
-  try {
-    const response = await CreateUserApiService.createUser({
-      firstname,
-      lastname,
-      email,
-      roleId: selectedRole,
-      password: randomPassword, // Use generated password in the request body
-    });
-    setGeneratedUsername(response.data.username);
-    setGeneratedPassword(randomPassword); // Set the generated password to state
-    Swal.fire({
-      title: 'User Created Successfully',
-      icon: 'success',
-      html: `
-        <p><b>Username:</b> ${response.data.username}</p>
-        <p><b>Password:</b> ${randomPassword}</p>
-      `,
-      confirmButtonText: 'OK'
-    });
-  } catch (error) {
-    console.error('Error creating user', error.response ? error.response.data : error.message);
-    setError(error.response ? error.response.data.message : 'Error creating user');
-  }
-};
-
+    try {
+      const response = await CreateUserApiService.createUser({
+        firstname,
+        lastname,
+        email,
+        roleId: selectedRole,
+        password: randomPassword, // Use generated password in the request body
+      });
+      setGeneratedUsername(response.data.username);
+      setGeneratedPassword(randomPassword); // Set the generated password to state
+      Swal.fire({
+        title: 'User Created Successfully',
+        icon: 'success',
+        html: `
+          <p><b>Username:</b> ${response.data.username}</p>
+          <p><b>Password:</b> ${randomPassword}</p>
+        `,
+        confirmButtonText: 'OK'
+      });
+      setLoading(false); // Set loading to false after the request is done
+    } catch (error) {
+      console.error('Error creating user', error.response ? error.response.data : error.message);
+      setError(error.response ? error.response.data.message : 'Error creating user');
+      setLoading(false); // Set loading to false after the request is done
+    }
+  };
 
   return (
     <div className="gradient-background">
       <div className="container">
-      
         <div className="content">
           <h1>Create User</h1>
           <form onSubmit={handleSubmit}>
@@ -111,7 +113,9 @@ const handleSubmit = async (e) => {
                 ))}
               </select>
             </div>
-            <button type="submit">Create User</button>
+            <button type="submit" disabled={loading}>
+              {loading ? 'Loading...' : 'Create User'}
+            </button>
           </form>
           {generatedUsername && (
             <div>
