@@ -102,13 +102,13 @@ const IndividualPannel = () => {
               
             </div>
             <div className="user-actions">
-              <div className="admin-photo-circle">
+{/*               <div className="admin-photo-circle">
                 <img
                   src="\frontend\src\images\person1.jpg"
                   className="admin-photo"
                   alt="User"
                 />
-              </div>
+              </div> */}
   
       
             </div>
