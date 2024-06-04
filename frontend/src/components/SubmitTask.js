@@ -48,7 +48,7 @@ const SubmitTask = () => {
         icon: 'success',
         confirmButtonText: 'OK'
       });
-      navigate('/tasks'); // Navigate back to the tasks list
+      navigate('/ViewAssignedToYou'); // Navigate back to the tasks list
     } catch (error) {
       console.error('Error submitting task:', error);
       Swal.fire({
