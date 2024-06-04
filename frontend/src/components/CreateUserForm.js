@@ -63,6 +63,39 @@ const CreateUserForm = () => {
     }
   };
 
+  const validateName = (name) => {
+    const regex = /^[a-zA-Z]+$/;
+    return regex.test(name);
+  };
+
+  const handleFirstnameChange = (e) => {
+    const { value } = e.target;
+    if (validateName(value)) {
+      setFirstname(value);
+    } else {
+      Swal.fire({
+        title: 'Invalid Input',
+        text: 'First name should only contain alphabetic characters and no spaces.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
+    }
+  };
+
+  const handleLastnameChange = (e) => {
+    const { value } = e.target;
+    if (validateName(value)) {
+      setLastname(value);
+    } else {
+      Swal.fire({
+        title: 'Invalid Input',
+        text: 'Last name should only contain alphabetic characters and no spaces.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
+    }
+  };
+
   return (
     <div className="gradient-background">
       <div className="container">
@@ -76,7 +109,7 @@ const CreateUserForm = () => {
                 id="firstname"
                 placeholder="First Name"
                 value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
+                onChange={handleFirstnameChange}
                 required
               />
             </div>
@@ -87,7 +120,7 @@ const CreateUserForm = () => {
                 id="lastname"
                 placeholder="Last Name"
                 value={lastname}
-                onChange={(e) => setLastname(e.target.value)}
+                onChange={handleLastnameChange}
                 required
               />
             </div>

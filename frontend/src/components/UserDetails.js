@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import './UserDetails.css';
 
 const UserDetails = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
   const { user } = location.state || {};
 
   const [taskStats, setTaskStats] = useState({
@@ -14,11 +16,20 @@ const UserDetails = () => {
     missedTasks: 0,
   });
 
-  // Confirmation before deletion (optional)
   const handleDeleteConfirmation = () => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
-      handleDelete();
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove them!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleDelete();
+      }
+    });
   };
 
   const handleDelete = async () => {
@@ -26,14 +37,22 @@ const UserDetails = () => {
       await axios.delete(`http://localhost:5000/api/users/${user._id}`, {
         withCredentials: true,
       });
-      // Redirect to User Management page after deletion
-      navigate("/user-management"); // Use navigate for redirection
+      Swal.fire(
+        "Deleted!",
+        "The user has been deleted.",
+        "success"
+      );
+      navigate("/user-management");
     } catch (error) {
       console.error("Error deleting user:", error);
+      Swal.fire(
+        "Error!",
+        "There was an error deleting the user.",
+        "error"
+      );
     }
   };
 
-  // Fetch user tasks and calculate stats on component mount
   useEffect(() => {
     if (user) {
       const fetchUserTasks = async () => {
@@ -62,50 +81,48 @@ const UserDetails = () => {
           });
         } catch (error) {
           console.error("Error fetching user tasks:", error);
+          Swal.fire(
+            "Error!",
+            "There was an error fetching the user tasks.",
+            "error"
+          );
         }
       };
 
       fetchUserTasks();
     }
-  }, [user]); // Run effect only when user changes
+  }, [user]);
 
   return (
     <div className="user-details">
       <h1>User Details</h1>
       {user ? (
-        <div>
-          <p>
-            <strong>First Name:</strong> {user.firstname}
-          </p>
-          <p>
-            <strong>Last Name:</strong> {user.lastname}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>Organization Name:</strong> {user.organizationName}
-          </p>
-          <p>
-            <strong>Role:</strong> {user.role.name}
-          </p>
-          <p>
-            <strong>Username:</strong> {user.username}
-          </p>
-          <h2>Task Statistics</h2>
-          <p>
-            <strong>Total Tasks:</strong> {taskStats.totalTasks}
-          </p>
-          <p>
-            <strong>Completed Tasks:</strong> {taskStats.completedTasks}
-          </p>
-          <p>
-            <strong>Pending Tasks:</strong> {taskStats.pendingTasks}
-          </p>
-          <p>
-            <strong>Missed Tasks:</strong> {taskStats.missedTasks}
-          </p>
-          <button onClick={handleDeleteConfirmation}>Delete</button>
+        <div className="info-container">
+          <div className="info-grid">
+            <div>
+              <h2>Name</h2>
+              <p><strong>First Name:</strong> {user.firstname}</p>
+              <p><strong>Last Name:</strong> {user.lastname}</p>
+            </div>
+            <div>
+              <h2>Contact</h2>
+              <p><strong>Email:</strong> {user.email}</p>
+              <p><strong>Username:</strong> {user.username}</p>
+            </div>
+            <div>
+              <h2>Organization</h2>
+              <p><strong>Organization Name:</strong> {user.organizationName}</p>
+              <p><strong>Role:</strong> {user.role.name}</p>
+            </div>
+            <div>
+              <h2>Task Statistics</h2>
+              <p><strong>Total Tasks:</strong> {taskStats.totalTasks}</p>
+              <p><strong>Completed Tasks:</strong> {taskStats.completedTasks}</p>
+              <p><strong>Pending Tasks:</strong> {taskStats.pendingTasks}</p>
+              <p><strong>Missed Tasks:</strong> {taskStats.missedTasks}</p>
+            </div>
+          </div>
+          <button onClick={handleDeleteConfirmation}>Remove from Organization</button>
         </div>
       ) : (
         <p>No user data available.</p>

@@ -37,7 +37,11 @@ const taskSchema = mongoose.Schema(
             required: false,
         },
         comment: {
-            type: String, // Optional comment field
+            type: String, 
+            required: false,
+        },
+        attachment: {
+            type: String, 
             required: false,
         }
     }, 
@@ -47,3 +51,5 @@ const taskSchema = mongoose.Schema(
 );
 
 export const Task = mongoose.model('Task', taskSchema);
+
+

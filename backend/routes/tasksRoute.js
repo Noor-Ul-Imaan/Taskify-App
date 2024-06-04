@@ -96,8 +96,8 @@ router.post('/:id/submit', upload.single('file'), async (req, res) => {
     }
 });
 
-// Route for saving a new task
-router.post('/', async (req, res) => {
+// Route for saving a new task with file upload
+router.post('/', upload.single('file'), async (req, res) => {
     try {
         if (!req.body.title || !req.body.assignedTo || !req.body.assignedBy) {
             return res.status(400).send({
@@ -111,6 +111,10 @@ router.post('/', async (req, res) => {
             assignedTo: req.body.assignedTo,
             assignedBy: req.body.assignedBy,
             user_id: req.user._id,
+            attachment: req.file ? req.file.path : null,
+            createdBy: req.user.username,
+            comment: null,
+            rating: null
         };
         const task = await Task.create(newTask);
         return res.status(201).send(task);
@@ -121,10 +125,23 @@ router.post('/', async (req, res) => {
 });
 
 // Route for getting tasks assigned to the current user
-router.get('/', async (req, res) => {
+router.get('/to', async (req, res) => {
     const username = req.user.username;
     try {
         const tasks = await Task.find({ assignedTo: username });
+        res.status(200).json({ count: tasks.length, data: tasks });
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        res.status(500).json({ message: 'Error fetching tasks' });
+    }
+});
+
+// Route for getting tasks assigned BY the current user
+
+router.get('/by', async (req, res) => {
+    const username = req.user.username;
+    try {
+        const tasks = await Task.find({ assignedBy: username });
         res.status(200).json({ count: tasks.length, data: tasks });
     } catch (error) {
         console.error('Error fetching tasks:', error);
@@ -144,8 +161,20 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// Route for getting all tasks
+router.get('/', async (req, res) => {
+    try {
+        const tasks = await Task.find();
+        res.status(200).json({ count: tasks.length, data: tasks });
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        res.status(500).json({ message: 'Error fetching tasks' });
+    }
+});
+
+
 // Route for updating a task
-router.put('/:id', async (req, res) => {
+router.put('/:id', upload.single('file'), async (req, res) => {
     try {
         if (!req.body.title || !req.body.assignedTo || !req.body.assignedBy) {
             return res.status(400).send({
@@ -153,7 +182,17 @@ router.put('/:id', async (req, res) => {
             });
         }
         const { id } = req.params;
-        const result = await Task.findByIdAndUpdate(id, req.body);
+        const updatedTask = {
+            title: req.body.title,
+            description: req.body.description,
+            deadline: req.body.deadline,
+            assignedTo: req.body.assignedTo,
+            assignedBy: req.body.assignedBy,
+        };
+        if (req.file) {
+            updatedTask.attachment = req.file.path;
+        }
+        const result = await Task.findByIdAndUpdate(id, updatedTask);
 
         if (!result) {
             return res.status(404).json({ message: 'Task not found' });
@@ -165,6 +204,29 @@ router.put('/:id', async (req, res) => {
         res.status(500).send({ message: error.message });
     }
 });
+
+// Route for updating the rating of a task assigned by the current user
+router.put('/by/:id/rate', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { rating } = req.body;
+
+        // Validate rating (e.g., ensure it's a number between 1 and 5)
+        // You can add validation logic here if needed
+
+        const task = await Task.findByIdAndUpdate(id, { rating }, { new: true });
+
+        if (!task) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
+
+        return res.status(200).json({ message: 'Rating updated successfully', task });
+    } catch (error) {
+        console.error('Error updating rating:', error);
+        return res.status(500).json({ message: 'Error updating rating' });
+    }
+});
+
 
 // Route for deleting a task
 router.delete('/:id', async (req, res) => {

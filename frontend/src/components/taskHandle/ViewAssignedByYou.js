@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import './ViewAssigned.css'; // Import the CSS file here
 
 const ViewTasksAssignedByYou = () => {
@@ -10,7 +11,7 @@ const ViewTasksAssignedByYou = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:5000/tasks', {
+        axios.get('http://localhost:5000/tasks/by', {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(response => {
@@ -26,23 +27,41 @@ const ViewTasksAssignedByYou = () => {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.filter(task => task._id !== taskId));
-            alert('Task deleted successfully');
+            Swal.fire({
+                icon: 'success',
+                title: 'Task deleted successfully',
+                showConfirmButton: false,
+                timer: 1500
+            });
         } catch (error) {
             console.error('Error deleting task:', error);
-            alert('Error deleting task');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error deleting task',
+                text: error.message,
+            });
         }
     };
 
     const handleRatingChange = async (taskId, rating) => {
         try {
-            await axios.put(`http://localhost:5000/tasks/${taskId}/rate`, { rating }, {
+            await axios.put(`http://localhost:5000/tasks/by/${taskId}/rate`, { rating }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.map(task => task._id === taskId ? { ...task, rating } : task));
-            alert('Rating updated successfully');
+            Swal.fire({
+                icon: 'success',
+                title: 'Rating updated successfully',
+                showConfirmButton: false,
+                timer: 1500
+            });
         } catch (error) {
             console.error('Error updating rating:', error);
-            alert('Error updating rating');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error updating rating',
+                text: error.message,
+            });
         }
     };
 
@@ -81,8 +100,9 @@ const ViewTasksAssignedByYou = () => {
                                             type="range"
                                             min="1"
                                             max="5"
-                                            value={task.rating || 1}
-                                            onChange={(e) => handleRatingChange(task._id, e.target.value)}
+                                            defaultValue={task.rating || 1}
+                                            onMouseUp={(e) => handleRatingChange(task._id, e.target.value)}
+                                            onChange={(e) => setTasks(tasks.map(t => t._id === task._id ? { ...t, rating: parseInt(e.target.value, 10) } : t))}
                                         />
                                         <span>{task.rating || 1}</span>
                                     </div>

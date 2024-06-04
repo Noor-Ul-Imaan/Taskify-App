@@ -34,11 +34,15 @@ const OrganizationDetails = () => {
   };
 
   const handleRoleLevelChange = (event, index) => {
-    const updatedRoles = [...roles];
-    updatedRoles[index].level = event.target.value;
-    setRoles(updatedRoles);
+    const { value } = event.target;
+    // Allow only positive numbers
+    if (value === '' || /^[1-9]\d*$/.test(value)) {
+      const updatedRoles = [...roles];
+      updatedRoles[index].level = value;
+      setRoles(updatedRoles);
+    }
   };
-
+  
   const handleSaveOrg = async (e) => {
     e.preventDefault();
     setLoading(true);

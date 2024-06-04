@@ -1,60 +1,87 @@
-.settings-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 75%;
+/* Settings.css */
+
+.settings-page {
+    max-width: 700px;
     margin: 0 auto;
     padding: 20px;
+    border: 2px solid #264653;
+    border-radius: 10px;
+    background-color: #f9f9f9;
 }
 
-.settings-box {
-    width: 100%;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    /* Adjust margin between boxes */
+.settings-page h2 {
+    text-align: center;
+    color: #264653;
+    margin-top: 20px;
 }
 
-.settings-box h2 {
-    margin-bottom: 20px;
-    font-size: 20px;
-    margin-top: 0;
-    /* Adjust font size */
-}
-
-.setting-option {
-    display: flex;
-    align-items: center;
+.settings-page .error-message {
+    color: #FF0000;
     margin-bottom: 10px;
 }
 
-.setting-option label {
-    width: 150px;
-    margin-right: 10px;
-    font-size: 16px;
-    /* Adjust font size */
+.settings-page form {
+    margin-bottom: 20px;
 }
 
-.setting-option input[type="email"],
-.setting-option input[type="password"],
-.setting-option input[type="text"],
-.setting-option input[type="file"],
-.setting-option select {
-    flex: 1;
-    padding: 8px;
+.settings-page .form-group {
+    margin-bottom: 15px;
+}
+
+.settings-page .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #264653;
+}
+
+.settings-page .form-group input[type="text"],
+.settings-page .form-group input[type="email"],
+.settings-page .form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
-    font-size: 16px;
-    /* Adjust font size */
+    border-radius: 5px;
 }
 
-.setting-option button {
-    padding: 8px 16px;
-    background-color: #e74c3c;
+.settings-page button {
+    padding: 10px 20px;
+    background-color: #E76F51;
     color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    /* Adjust font size */
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.settings-page button:hover {
+    background-color: #D44B1D;
+}
+
+.settings-page .warning-message {
+    color: #FFA500;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .settings-page {
+        padding: 10px;
+    }
+
+    .settings-page .form-group input[type="text"],
+    .settings-page .form-group input[type="email"],
+    .settings-page .form-group input[type="password"] {
+        padding: 8px;
+    }
+
+    .settings-page button {
+        padding: 8px 16px;
+    }
+
+    .settings-page h2 {
+        font-size: 28px;
+    }
 }

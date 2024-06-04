@@ -9,7 +9,7 @@ const ViewTasksAssignedToYou = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/tasks', {
+    axios.get('http://localhost:5000/tasks/to', {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(response => setTasks(response.data.data.filter(task => task.assignedTo === user.username && !task.isSubmitted)))
@@ -20,17 +20,12 @@ const ViewTasksAssignedToYou = () => {
     setTasks(tasks.map(task => task._id === updatedTask._id ? updatedTask : task));
   };
 
-  const handleDeleteTask = (taskId) => {
-    setTasks(tasks.filter(task => task._id !== taskId));
-  };
-
   return (
     <div className="container" id="view-tasks-container">
       <h1>Pending Tasks Assigned to You</h1>
       <TaskList 
         tasks={tasks} 
-        onUpdateTask={handleUpdateTask} 
-        onDeleteTask={handleDeleteTask} 
+        onUpdateTask={handleUpdateTask}
       />
     </div>
   );

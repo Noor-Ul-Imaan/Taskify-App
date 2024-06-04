@@ -94,7 +94,7 @@ const IndividualPannel = () => {
               <>
                 <h3>Welcome, {user.firstname} {user.lastname}!</h3>
                 <p>{user.email}</p>
-                <p>{user.role}</p>
+                <p>{user.role.name}</p>
               </>
             ) : (
               <p>logged out</p>
@@ -102,13 +102,13 @@ const IndividualPannel = () => {
               
             </div>
             <div className="user-actions">
-              <div className="admin-photo-circle">
+{/*               <div className="admin-photo-circle">
                 <img
                   src="\frontend\src\images\person1.jpg"
                   className="admin-photo"
                   alt="User"
                 />
-              </div>
+              </div> */}
   
       
             </div>

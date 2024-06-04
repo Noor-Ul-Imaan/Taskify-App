@@ -1,53 +1,75 @@
-.user-management {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-  }
-  
-  .search-filter {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    
-  }
-  
-  .search-filter input,
-  .search-filter select {
-    margin: 0 10px;
-    padding: 5px;
-    font-size: 16px;
-    width: 29%;
-  }
-  
-  
-  
+/* UserManagement.css */
 
-  .user-list {
-    display: flex;
-    justify-content: center;
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 60%;
-  }
-  
-  th,
-  td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f0f0f0;
-    font-weight: bold;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
+.user-management {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #264653;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.user-management h1 {
+  font-size: 32px;
+  color: #264653;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-filter input[type="text"] {
+  padding: 10px;
+  width: 70%;
+  border: 1px solid #264653;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search-filter select {
+  padding: 10px;
+  width: 28%;
+  border: 1px solid #264653;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.user-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-list th,
+.user-list td {
+  padding: 10px;
+  border-bottom: 1px solid #264653;
+  text-align: left;
+}
+
+.user-list th {
+  background-color: #264653;
+  color: #fff;
+}
+
+.user-list td a {
+  color: #264653;
+  text-decoration: none;
+}
+
+.user-list td a:hover {
+  text-decoration: underline;
+}
+
+.user-list td:last-child {
+  color: #2A9D8F;
+}
+
+.user-list td:last-child:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

@@ -27,21 +27,21 @@ const SubmitTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     // Prepare form data
     const formData = new FormData();
     formData.append('submission_attachment', file);
-    formData.append('comment', comment);
-
+    formData.append('comment', comment); // Include the comment in the form data
+  
     try {
       // Replace with your backend endpoint
-      await axios.put(`http://localhost:5000/tasks/${task._id}/submit`, formData, {
+      await axios.post(`http://localhost:5000/tasks/${task._id}/submit`, formData, { // Change PUT to POST
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-
+  
       Swal.fire({
         title: 'Success',
         text: 'Task submitted successfully!',
@@ -61,6 +61,7 @@ const SubmitTask = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="submit-task">
