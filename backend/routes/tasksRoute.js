@@ -112,6 +112,7 @@ router.post('/', upload.single('file'), async (req, res) => {
             assignedBy: req.body.assignedBy,
             user_id: req.user._id,
             attachment: req.file ? req.file.path : null,
+            createdBy: req.user.username 
         };
         const task = await Task.create(newTask);
         return res.status(201).send(task);
@@ -125,7 +126,7 @@ router.post('/', upload.single('file'), async (req, res) => {
 router.get('/', async (req, res) => {
     const username = req.user.username;
     try {
-        const tasks = await Task.find({ assignedTo: username });
+        const tasks = await Task.find({ assignedBy: username });
         res.status(200).json({ count: tasks.length, data: tasks });
     } catch (error) {
         console.error('Error fetching tasks:', error);
