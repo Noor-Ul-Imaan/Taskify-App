@@ -23,7 +23,7 @@ const ViewTasksAssignedByYou = () => {
 
     const handleDeleteTask = async (taskId) => {
         try {
-            await axios.delete(`http://localhost:5000/tasks/by/${taskId}`, {
+            await axios.delete(`http://localhost:5000/tasks/${taskId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.filter(task => task._id !== taskId));
