@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./adminOrg/AuthContext"; // Import useAuth hook
 import "./UserManagement.css"; // Import CSS for styling
@@ -94,7 +95,9 @@ const UserManagement = () => {
             {filteredUsers.map((user) => (
               <tr key={user._id}>
                 <td>
-                  {user.firstname} {user.lastname}
+                  <Link to={`/user-details/${user._id}`} state={{ user: user }}>
+                    {user.firstname} {user.lastname}
+                  </Link>
                 </td>
                 <td>{user.role.name}</td>
               </tr>
