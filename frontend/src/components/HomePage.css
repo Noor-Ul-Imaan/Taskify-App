@@ -12,11 +12,13 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.hero {
+.hero {    
+    margin-top: 84px;
+
     display: flex;
     align-items: left;
     justify-content: space-between;
-    height: 90vh;
+    height: 100vh;
     background: #008080;
     padding: 0 20px;
     color: white;

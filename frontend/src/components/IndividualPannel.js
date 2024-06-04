@@ -49,6 +49,16 @@ const IndividualPannel = () => {
     navigate('/login');
   };
 
+  const [isOpen, setIsOpen] = useState(false); // State variable for sidebar visibility
+
+const toggleSidebar = () => {
+  setIsOpen(!isOpen);
+};
+
+// ... rest of your application code
+
+
+
   return (
     <div>
       {user ? (
@@ -61,8 +71,17 @@ const IndividualPannel = () => {
           <button onClick={() => navigate('/login')}>Login</button>
         </div>
       )}
+            <button onClick={toggleSidebar}>
+        toggle
+    </button>
       <div className="admin-container">
-        <aside className="sidebar">
+
+
+
+    <aside className={`sidebar ${isOpen ? 'active' : ''}`}>
+      {/* ... your sidebar content from aside.jsx */}
+    {/* </aside>
+        <aside className="sidebar"> */}
           <div className="logo">
             {/* <h2>Taskify</h2>
             <br></br> */}
@@ -87,6 +106,8 @@ const IndividualPannel = () => {
             <Link to='/Settings'><button>Settings</button></Link>
           </ul>
         </aside>
+
+
         <main className="main-content">
           <header className="header">
             <div className="user-info">

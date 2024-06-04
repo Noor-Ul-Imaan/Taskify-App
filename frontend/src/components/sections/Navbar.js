@@ -38,7 +38,7 @@ const Navbar = () => {
           <ul>
             {user ? (
               <>
-                <li>
+                {/* <li>
                   <Link to="/AdminPannel">Dashboard</Link>
                 </li>
                 <li>
@@ -47,7 +47,7 @@ const Navbar = () => {
                 <li>{user.email}</li>
                 <li>
                   <button onClick={handleClick}>Logout</button>
-                </li>
+                </li> */}
               </>
             ) : (
               <>
@@ -87,7 +87,7 @@ const Navbar = () => {
         <ul>
           {user ? (
             <>
-              <li>
+              {/* <li>
                 <Link to="/AdminPannel" onClick={toggleMenu}>
                   Dashboard
                 </Link>
@@ -107,7 +107,7 @@ const Navbar = () => {
                 >
                   Logout
                 </button>
-              </li>
+              </li> */}
             </>
           ) : (
             <>

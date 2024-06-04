@@ -93,3 +93,20 @@ button[type="submit"]:disabled {
 button[type="submit"] {
     margin-right: 0;
 }
+
+
+@media (max-width: 980px) {
+
+    .task-details, .task-submit{
+        max-width: 400px;
+   
+    }
+
+    .submit-task {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+}

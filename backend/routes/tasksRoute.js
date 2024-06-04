@@ -42,29 +42,29 @@ router.get('/organization-users', async (req, res) => {
 });
 
 // Route for updating a task's submission status
-router.put('/:id/submit', async (req, res) => {
-    try {
-        const { id } = req.params;
-        const task = await Task.findById(id);
+// router.put('/:id/submit', async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const task = await Task.findById(id);
 
-        if (!task) {
-            return res.status(404).json({ message: 'Task not found' });
-        }
+//         if (!task) {
+//             return res.status(404).json({ message: 'Task not found' });
+//         }
 
-        // Ensure only the assigned user can submit the task
-        if (task.assignedTo !== req.user.username) {
-            return res.status(403).json({ message: 'You are not authorized to submit this task' });
-        }
+//         // Ensure only the assigned user can submit the task
+//         if (task.assignedTo !== req.user.username) {
+//             return res.status(403).json({ message: 'You are not authorized to submit this task' });
+//         }
 
-        task.isSubmitted = true;
-        await task.save();
+//         task.isSubmitted = true;
+//         await task.save();
 
-        res.status(200).json({ message: 'Task submitted successfully' });
-    } catch (error) {
-        console.error('Error submitting task:', error);
-        res.status(500).json({ message: 'Error submitting task' });
-    }
-});
+//         res.status(200).json({ message: 'Task submitted successfully' });
+//     } catch (error) {
+//         console.error('Error submitting task:', error);
+//         res.status(500).json({ message: 'Error submitting task' });
+//     }
+// });
 
 // Route for submitting a task with file attachments and comments
 router.post('/:id/submit', upload.single('file'), async (req, res) => {
@@ -72,6 +72,7 @@ router.post('/:id/submit', upload.single('file'), async (req, res) => {
         const { id } = req.params;
         const { comment } = req.body;
         const file = req.file ? req.file.path : null;
+        console.log("id/submit file: ", file)
 
         const task = await Task.findById(id);
 
@@ -84,7 +85,38 @@ router.post('/:id/submit', upload.single('file'), async (req, res) => {
             return res.status(403).json({ message: 'You are not authorized to submit this task' });
         }
 
-        task.attachments = file;
+
+        task.submissionAttachment = req.file ? req.file.path : null;
+        task.comment = comment;
+        task.isSubmitted = true;
+        await task.save();
+
+        res.status(200).json({ message: 'Task submitted successfully' });
+    } catch (error) {
+        console.error('Error submitting task:', error);
+        res.status(500).json({ message: 'Error submitting task', error });
+    }
+});
+router.put('/:id/submit', upload.single('file'), async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { comment } = req.body;
+        const file = req.file ? req.file.path : null;
+        console.log("id/submit file: ", file)
+
+        const task = await Task.findById(id);
+
+        if (!task) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
+
+        // Ensure only the assigned user can submit the task
+        if (task.assignedTo !== req.user.username) {
+            return res.status(403).json({ message: 'You are not authorized to submit this task' });
+        }
+
+
+        task.submissionAttachment = req.file ? req.file.path : null;
         task.comment = comment;
         task.isSubmitted = true;
         await task.save();

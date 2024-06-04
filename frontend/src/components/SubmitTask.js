@@ -4,6 +4,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import './SubmitTask.css';
 
+
 const SubmitTask = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const SubmitTask = () => {
   const [file, setFile] = useState(null);
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem('token');
 
   if (!task) {
     return <div>Task not found</div>;
@@ -28,17 +30,28 @@ const SubmitTask = () => {
     e.preventDefault();
     setLoading(true);
 
+
     // Prepare form data
     const formData = new FormData();
-    formData.append('submission_attachment', file);
-    formData.append('comment', comment);
+    if (file) {
+        formData.append('file', file);
+        console.log('fileflound' , file)
+
+    }
+    else {
+      console.log('file not ofuns')
+    }
+    if(comment) {
+      formData.append('comment', comment);
+
+    }
 
     try {
       // Replace with your backend endpoint
       await axios.put(`http://localhost:5000/tasks/${task._id}/submit`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${token}`
         }
       });
 
@@ -60,6 +73,7 @@ const SubmitTask = () => {
     } finally {
       setLoading(false);
     }
+    setFile(null); 
   };
 
   return (
@@ -72,14 +86,14 @@ const SubmitTask = () => {
       </div>
       <div className="task-submit">
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="file">Upload Your Work</label>
             <input
               type="file"
               id="file"
               onChange={handleFileChange}
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <label htmlFor="comment">Leave a Comment</label>
             <textarea
@@ -89,6 +103,15 @@ const SubmitTask = () => {
               placeholder="Add a comment"
             ></textarea>
           </div>
+          <div className="form-group">
+            <label htmlFor="taskFile">Upload File:</label>
+            <input 
+            type="file" 
+            name="file"
+            onChange={(e) => setFile(e.target.files[0])}  // Update the file state
+            />
+          </div>
+
           <button type="submit" disabled={loading}>
             {loading ? 'Submitting...' : 'Submit Task'}
           </button>
