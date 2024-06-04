@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
   const [title, setTitle] = useState(existingTask ? existingTask.title : '');
@@ -10,6 +11,7 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
   const [users, setUsers] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:5000/tasks/organization-users', {
@@ -47,6 +49,8 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
           text: 'Task updated successfully',
           icon: 'success',
           confirmButtonText: 'OK'
+        }).then(() => {
+          navigate('/ViewAssignedByYou');
         });
       })
       .catch(error => {
