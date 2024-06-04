@@ -39,6 +39,10 @@ const taskSchema = mongoose.Schema(
         comment: {
             type: String, // Optional comment field
             required: false,
+        },
+        attachment: {
+            type: String, // Field for storing the file path
+            required: false,
         }
     }, 
     {
@@ -47,3 +51,5 @@ const taskSchema = mongoose.Schema(
 );
 
 export const Task = mongoose.model('Task', taskSchema);
+
+

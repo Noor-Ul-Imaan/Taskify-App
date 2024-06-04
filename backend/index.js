@@ -7,12 +7,18 @@ import dotenv from "dotenv";
 import { PORT, mongoDBURL } from "./config.js";
 import tasksRoute from "./routes/tasksRoute.js";
 import OrgDetailsRoute from "./routes/OrgDetailsRoute.js";
+import path from 'path';
+
+import { fileURLToPath } from 'url';
 import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import CreateUserRoute from "./routes/CreateUserRoute.js";
 import authMiddleware from "./middleware/authMiddleware.js";
 import loginRoute from "./routes/loginRoute.js";
 import UserManagementRoute from "./routes/UserManagementRoutes.js";
+// index.js (add this after other middleware)
+
+
 dotenv.config();
 const app = express();
 
@@ -24,8 +30,13 @@ app.use(express.json());
 //   credentials: true // this allows cookies to be sent from the frontend
 // };
 
+// Get __dirname equivalent in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use('./uploads', express.static("files"))
 
 app.use("/tasks", tasksRoute);
 app.use("/organizations", OrgDetailsRoute);
@@ -39,6 +50,9 @@ app.use("/api", UserManagementRoute);
 app.use("/api/user/login", loginRoute);
 
 app.use("/api/user", CreateUserRoute);
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to TASKIFY");

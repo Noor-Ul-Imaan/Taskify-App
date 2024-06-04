@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './TaskManager.css'; // Import the CSS file here
+import TaskItem from './TaskItem';
 
 const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
   const token = localStorage.getItem('token');
@@ -18,6 +19,14 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
   return (
     <div>
       {tasks.map(task => (
+        <TaskItem 
+          key={task._id} 
+          task={task} 
+          onUpdateTask={onUpdateTask} 
+          onDeleteTask={onDeleteTask} 
+        />
+      ))}
+      {/* {tasks.map(task => (
         <div key={task._id} className="task-section">
           <h2 className="task-title">{task.title}</h2>
           <p className="task-details">{task.description}</p>
@@ -30,7 +39,7 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
           )}
           <button onClick={() => handleDelete(task._id)}>Delete</button>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };
