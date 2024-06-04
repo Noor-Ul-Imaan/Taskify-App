@@ -16,6 +16,8 @@ import UserManagementRoute from "./routes/UserManagementRoutes.js";
 import DeleteUserRoutes from "./routes/DeleteUserRoute.js";
 import TaskDetailsRoutes from "./routes/TaskDetailsRoutes.js";
 
+import AdminPannelUserRoutes from "./routes/AdminPannelUserRoutes.js";
+
 dotenv.config();
 const app = express();
 
@@ -38,6 +40,9 @@ app.use("/api/user/login", loginRoute);
 app.use("/api/user", CreateUserRoute);
 app.use("/api", DeleteUserRoutes);
 app.use("/api/tasks", TaskDetailsRoutes);
+
+// app.use("/api", AdminStatsRoutes);
+app.use("/api", AdminPannelUserRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to TASKIFY");
