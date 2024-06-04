@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './TaskManager.css'; // Import the CSS file here
-import TaskItem from './TaskItem';
 
 const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
   const token = localStorage.getItem('token');
