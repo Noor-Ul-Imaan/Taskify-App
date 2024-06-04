@@ -9,7 +9,7 @@ const ViewTasksAssignedToYou = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/tasks', {
+    axios.get('http://localhost:5000/tasks/to', {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(response => setTasks(response.data.data.filter(task => task.assignedTo === user.username && !task.isSubmitted)))

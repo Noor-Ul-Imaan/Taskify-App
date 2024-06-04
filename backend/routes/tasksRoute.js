@@ -123,7 +123,20 @@ router.post('/', upload.single('file'), async (req, res) => {
 });
 
 // Route for getting tasks assigned to the current user
-router.get('/', async (req, res) => {
+router.get('/to', async (req, res) => {
+    const username = req.user.username;
+    try {
+        const tasks = await Task.find({ assignedTo: username });
+        res.status(200).json({ count: tasks.length, data: tasks });
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        res.status(500).json({ message: 'Error fetching tasks' });
+    }
+});
+
+// Route for getting tasks assigned BY the current user
+
+router.get('/by', async (req, res) => {
     const username = req.user.username;
     try {
         const tasks = await Task.find({ assignedBy: username });
