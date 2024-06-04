@@ -13,16 +13,11 @@ import CreateUserRoute from "./routes/CreateUserRoute.js";
 import authMiddleware from "./middleware/authMiddleware.js";
 import loginRoute from "./routes/loginRoute.js";
 import UserManagementRoute from "./routes/UserManagementRoutes.js";
+import DeleteUserRoutes from "./routes/DeleteUserRoute.js";
 dotenv.config();
 const app = express();
 
 app.use(express.json());
-
-//Middleware for handling CORS POLICY. Allow all origins
-// const corsOptions = {
-//   origin: 'http://localhost:3000', // your frontend's origin
-//   credentials: true // this allows cookies to be sent from the frontend
-// };
 
 app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
@@ -39,7 +34,7 @@ app.use("/api", UserManagementRoute);
 app.use("/api/user/login", loginRoute);
 
 app.use("/api/user", CreateUserRoute);
-
+app.use("/api", DeleteUserRoutes);
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to TASKIFY");
 });
