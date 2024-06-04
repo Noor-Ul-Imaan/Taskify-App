@@ -72,7 +72,7 @@ const ViewTasksAssignedByYou = () => {
     return (
         <div id="task-manager-container">
             <div className="container" id="view-tasks-container">
-                <h1>Tasks Assigned by You</h1>
+                <h1>Tasks Created by You</h1>
                 {tasks.length > 0 ? (
                     <div>
                         {tasks.map(task => (
