@@ -22,7 +22,7 @@ const ViewTasksAssignedByYou = () => {
 
     const handleDeleteTask = async (taskId) => {
         try {
-            await axios.delete(`http://localhost:5000/tasks/by${taskId}`, {
+            await axios.delete(`http://localhost:5000/tasks/by/${taskId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.filter(task => task._id !== taskId));
@@ -35,7 +35,7 @@ const ViewTasksAssignedByYou = () => {
 
     const handleRatingChange = async (taskId, rating) => {
         try {
-            await axios.put(`http://localhost:5000/tasks/by${taskId}/rate`, { rating }, {
+            await axios.put(`http://localhost:5000/tasks/by/${taskId}/rate`, { rating }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.map(task => task._id === taskId ? { ...task, rating } : task));
@@ -81,8 +81,9 @@ const ViewTasksAssignedByYou = () => {
                                             type="range"
                                             min="1"
                                             max="5"
-                                            value={task.rating || 1}
-                                            onChange={(e) => handleRatingChange(task._id, e.target.value)}
+                                            defaultValue={task.rating || 1}
+                                            onMouseUp={(e) => handleRatingChange(task._id, e.target.value)}
+                                            onChange={(e) => setTasks(tasks.map(t => t._id === task._id ? { ...t, rating: parseInt(e.target.value, 10) } : t))}
                                         />
                                         <span>{task.rating || 1}</span>
                                     </div>

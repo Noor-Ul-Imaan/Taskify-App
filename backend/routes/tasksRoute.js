@@ -193,6 +193,29 @@ router.put('/:id', upload.single('file'), async (req, res) => {
     }
 });
 
+// Route for updating the rating of a task assigned by the current user
+router.put('/by/:id/rate', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { rating } = req.body;
+
+        // Validate rating (e.g., ensure it's a number between 1 and 5)
+        // You can add validation logic here if needed
+
+        const task = await Task.findByIdAndUpdate(id, { rating }, { new: true });
+
+        if (!task) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
+
+        return res.status(200).json({ message: 'Rating updated successfully', task });
+    } catch (error) {
+        console.error('Error updating rating:', error);
+        return res.status(500).json({ message: 'Error updating rating' });
+    }
+});
+
+
 // Route for deleting a task
 router.delete('/:id', async (req, res) => {
     try {
