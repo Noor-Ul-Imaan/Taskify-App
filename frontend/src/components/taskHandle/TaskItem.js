@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TaskItem = ({ task, onUpdateTask, onDeleteTask }) => {
+const TaskItem = ({ task, onUpdateTask}) => {
   console.log('Task:', task);  // Check task content
 
   const handleDownload = () => {
@@ -29,7 +29,6 @@ const TaskItem = ({ task, onUpdateTask, onDeleteTask }) => {
         <p>No attachment</p>
       )}
       <button onClick={() => onUpdateTask(task)}>Update Task</button>
-      <button onClick={() => onDeleteTask(task._id)}>Delete Task</button>
     </div>
   );
 };

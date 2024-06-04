@@ -20,17 +20,12 @@ const ViewTasksAssignedToYou = () => {
     setTasks(tasks.map(task => task._id === updatedTask._id ? updatedTask : task));
   };
 
-  const handleDeleteTask = (taskId) => {
-    setTasks(tasks.filter(task => task._id !== taskId));
-  };
-
   return (
     <div className="container" id="view-tasks-container">
       <h1>Pending Tasks Assigned to You</h1>
       <TaskList 
         tasks={tasks} 
-        onUpdateTask={handleUpdateTask} 
-        onDeleteTask={handleDeleteTask} 
+        onUpdateTask={handleUpdateTask}
       />
     </div>
   );
