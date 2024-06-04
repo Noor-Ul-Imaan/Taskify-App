@@ -180,7 +180,7 @@ const EditOrg = () => {
                                         <label>Role Name:</label>
                                         <input type="text" value={role.name} onChange={(e) => handleRolesChange(index, 'name', e.target.value)} required />
                                         <label>Level Number:</label>
-                                        <input type="number" value={role.level} onChange={(e) => handleRolesChange(index, 'level', e.target.value)} required />
+                                        <input type="number" value={role.level} onChange={(e) => handleRolesChange(index, 'level', e.target.value >= 0 ? e.target.value : '')} required />
                                         <button type="button" className="remove-role-button" onClick={() => handleRemoveRole(index)}>Remove Role</button>
                                     </div>
                                 </li>

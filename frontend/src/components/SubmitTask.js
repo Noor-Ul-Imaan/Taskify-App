@@ -48,13 +48,13 @@ const SubmitTask = () => {
 
     try {
       // Replace with your backend endpoint
-      await axios.put(`http://localhost:5000/tasks/${task._id}/submit`, formData, {
+      await axios.post(`http://localhost:5000/tasks/${task._id}/submit`, formData, { // Change PUT to POST
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`
         }
       });
-
+  
       Swal.fire({
         title: 'Success',
         text: 'Task submitted successfully!',
@@ -75,6 +75,7 @@ const SubmitTask = () => {
     }
     setFile(null); 
   };
+  
 
   return (
     <div className="submit-task">

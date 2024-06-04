@@ -115,7 +115,7 @@ const toggleSidebar = () => {
               <>
                 <h3>Welcome, {user.firstname} {user.lastname}!</h3>
                 <p>{user.email}</p>
-                <p>{user.role}</p>
+                <p>{user.role.name}</p>
               </>
             ) : (
               <p>logged out</p>

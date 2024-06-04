@@ -17,7 +17,11 @@ import authMiddleware from "./middleware/authMiddleware.js";
 import loginRoute from "./routes/loginRoute.js";
 import UserManagementRoute from "./routes/UserManagementRoutes.js";
 import DeleteUserRoutes from "./routes/DeleteUserRoute.js";
+import userRoutes from './routes/userRoutes.js';
+
 import TaskDetailsRoutes from "./routes/TaskDetailsRoutes.js";
+
+import AdminPannelUserRoutes from "./routes/AdminPannelUserRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -54,7 +58,14 @@ app.use("/api/user", CreateUserRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api", DeleteUserRoutes);
+
+app.use('/settings', userRoutes);
+
+
 app.use("/api/tasks", TaskDetailsRoutes);
+
+// app.use("/api", AdminStatsRoutes);
+app.use("/api", AdminPannelUserRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to TASKIFY");
