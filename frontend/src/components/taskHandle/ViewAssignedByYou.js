@@ -10,7 +10,7 @@ const ViewTasksAssignedByYou = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:5000/tasks', {
+        axios.get('http://localhost:5000/tasks/by', {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(response => {
@@ -22,7 +22,7 @@ const ViewTasksAssignedByYou = () => {
 
     const handleDeleteTask = async (taskId) => {
         try {
-            await axios.delete(`http://localhost:5000/tasks/${taskId}`, {
+            await axios.delete(`http://localhost:5000/tasks/by${taskId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.filter(task => task._id !== taskId));
@@ -35,7 +35,7 @@ const ViewTasksAssignedByYou = () => {
 
     const handleRatingChange = async (taskId, rating) => {
         try {
-            await axios.put(`http://localhost:5000/tasks/${taskId}/rate`, { rating }, {
+            await axios.put(`http://localhost:5000/tasks/by${taskId}/rate`, { rating }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.map(task => task._id === taskId ? { ...task, rating } : task));

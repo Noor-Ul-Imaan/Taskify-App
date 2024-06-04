@@ -37,11 +37,11 @@ const taskSchema = mongoose.Schema(
             required: false,
         },
         comment: {
-            type: String, // Optional comment field
+            type: String, 
             required: false,
         },
         attachment: {
-            type: String, // Field for storing the file path
+            type: String, 
             required: false,
         }
     }, 
