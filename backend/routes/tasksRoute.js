@@ -112,7 +112,9 @@ router.post('/', upload.single('file'), async (req, res) => {
             assignedBy: req.body.assignedBy,
             user_id: req.user._id,
             attachment: req.file ? req.file.path : null,
-            createdBy: req.user.username 
+            createdBy: req.user.username,
+            comment: null,
+            rating: null
         };
         const task = await Task.create(newTask);
         return res.status(201).send(task);
