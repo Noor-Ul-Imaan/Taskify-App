@@ -1,52 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './ViewAssigned.css'; // Import the CSS file here
-import { Link } from 'react-router-dom';
 
 const ViewTasksAssignedByYou = () => {
     const [tasks, setTasks] = useState([]);
-    
-    
-    
-    // const [editingTaskId, setEditingTaskId] = useState(null);
-    // const [editTaskData, setEditTaskData] = useState({
-    //     title: '',
-    //     description: '',
-    //     deadline: '',
-    //     assignedTo: ''
-    // });
-
-
-
     const user = JSON.parse(localStorage.getItem('user'));
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:5000/tasks', {
+        axios.get('http://localhost:5000/tasks/by', {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then(response => {
-                const filteredTasks = response.data.data.filter(task => task.assignedBy === user.username);
-                setTasks(filteredTasks);
-            })
-            .catch(error => console.error('Error fetching tasks:', error));
+        .then(response => {
+            const filteredTasks = response.data.data.filter(task => task.assignedBy === user.username);
+            setTasks(filteredTasks);
+        })
+        .catch(error => console.error('Error fetching tasks:', error));
     }, [token, user.username]);
 
     const handleDeleteTask = async (taskId) => {
         try {
-            await axios.delete(`http://localhost:5000/tasks/${taskId}`, {
+            await axios.delete(`http://localhost:5000/tasks/by${taskId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.filter(task => task._id !== taskId));
             alert('Task deleted successfully');
         } catch (error) {
             console.error('Error deleting task:', error);
+            alert('Error deleting task');
         }
     };
 
     const handleRatingChange = async (taskId, rating) => {
         try {
-            await axios.put(`http://localhost:5000/tasks/${taskId}/rate`, { rating }, {
+            await axios.put(`http://localhost:5000/tasks/by${taskId}/rate`, { rating }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(tasks.map(task => task._id === taskId ? { ...task, rating } : task));
@@ -57,56 +46,9 @@ const ViewTasksAssignedByYou = () => {
         }
     };
 
-
-/* 
-
-    const handleEditClick = (task) => {
-        setEditingTaskId(task._id);
-        setEditTaskData({
-            title: task.title,
-            description: task.description,
-            deadline: new Date(task.deadline).toISOString().substring(0, 16),
-            assignedTo: task.assignedTo
-        });
+    const handleEditTask = (task) => {
+        navigate('/TaskManager', { state: { task } });
     };
-
-    const handleCancelEdit = () => {
-        setEditingTaskId(null);
-        setEditTaskData({
-            title: '',
-            description: '',
-            deadline: '',
-            assignedTo: ''
-        });
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setEditTaskData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
-
-    const handleSaveEdit = async (e, taskId) => {
-        e.preventDefault();
-        try {
-            await axios.put(`http://localhost:5000/tasks/${taskId}`, editTaskData, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            setTasks(tasks.map(task => task._id === taskId ? { ...task, ...editTaskData } : task));
-            setEditingTaskId(null);
-            alert('Task updated successfully');
-        } catch (error) {
-            console.error('Error updating task:', error);
-            alert('Error updating task');
-        }
-    };
-
-
- */
-
-
 
     return (
         <div id="task-manager-container">
@@ -145,14 +87,8 @@ const ViewTasksAssignedByYou = () => {
                                         <span>{task.rating || 1}</span>
                                     </div>
                                 )}
-
-                            
                                 <div>
-                                    <Link to={`/edit-task/${task._id}`} state={{ task }}>
-                                        {/* <button onClick={() => handleEditClick(task)}>Edit</button> */}
-                                        <button>Edit</button>
-                                    </Link>
-
+                                    <button onClick={() => handleEditTask(task)}>Edit</button>
                                     <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
                                 </div>
                             </div>

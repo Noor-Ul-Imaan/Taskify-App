@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import './SubmitTask.css';
 
 const SubmitTask = () => {
@@ -41,11 +42,21 @@ const SubmitTask = () => {
         }
       });
 
-      alert('Task submitted successfully!');
-      navigate('/tasks'); // Navigate back to the tasks list
+      Swal.fire({
+        title: 'Success',
+        text: 'Task submitted successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+      navigate('/ViewAssignedToYou'); // Navigate back to the tasks list
     } catch (error) {
       console.error('Error submitting task:', error);
-      alert('Failed to submit task.');
+      Swal.fire({
+        title: 'Error',
+        text: 'Failed to submit task.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     } finally {
       setLoading(false);
     }

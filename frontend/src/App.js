@@ -43,6 +43,7 @@ import axios from "axios";
 import CreateUserForm from "./components/CreateUserForm";
 import SubmitTask from "./components/SubmitTask";
 
+import TaskViewPage from "./components/taskHandle/TaskViewPage";
 import TaskManager from "./components/taskHandle/TaskManager";
 import ViewTasksAssignedByYou from "./components/taskHandle/ViewAssignedByYou";
 import ViewTasksAssignedToYou from "./components/taskHandle/ViewAssignedToYou";
@@ -100,6 +101,7 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             <Route path="/TaskManager" element={<TaskManager />} />
+            <Route path="/TaskViewPage" element={<TaskViewPage />} />
             <Route
               path="/ViewAssignedByYou"
               element={<ViewTasksAssignedByYou />}

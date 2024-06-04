@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
   const [title, setTitle] = useState(existingTask ? existingTask.title : '');
   const [description, setDescription] = useState(existingTask ? existingTask.description : '');
   const [deadline, setDeadline] = useState(existingTask ? existingTask.deadline : '');
   const [assignedTo, setAssignedTo] = useState(existingTask ? existingTask.assignedTo : '');
+  const [file, setFile] = useState(null);  // New state variable for the file
   const [users, setUsers] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:5000/tasks/organization-users', {
@@ -21,7 +24,15 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const taskData = { title, description, deadline, assignedTo, assignedBy: user.username };
+    const taskData = new FormData();
+    taskData.append('title', title);
+    taskData.append('description', description);
+    taskData.append('deadline', deadline);
+    taskData.append('assignedTo', assignedTo);
+    taskData.append('assignedBy', user.username);
+    if (file) {
+      taskData.append('file', file);
+    }
 
     // Check if deadline is in the future
     const deadlineDate = new Date(deadline);
@@ -47,6 +58,8 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
           text: 'Task updated successfully',
           icon: 'success',
           confirmButtonText: 'OK'
+        }).then(() => {
+          navigate('/ViewAssignedByYou');
         });
       })
       .catch(error => {
@@ -86,6 +99,7 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
     setDescription('');
     setDeadline('');
     setAssignedTo('');
+    setFile(null);  // Clear the file input after submission
   };
 
   return (
@@ -126,6 +140,13 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
           </option>
         ))}
       </select>
+      <br />
+      <label htmlFor="taskFile">Upload File:</label>
+      <input 
+        type="file" 
+        name="file"
+        onChange={(e) => setFile(e.target.files[0])}  // Update the file state
+      />
       <br />
       <button type="submit">{existingTask ? 'Update' : 'Create'} Task</button>
     </form>

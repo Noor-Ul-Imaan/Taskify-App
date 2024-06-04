@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import TaskForm from './TaskForm';
 import './TaskManager.css'; // Import the CSS file here
 
@@ -8,6 +8,8 @@ const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
+  const location = useLocation();
+  const existingTask = location.state?.task || null;
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -26,11 +28,15 @@ const TaskManager = () => {
     setTasks([...tasks, task]);
   };
 
+  const handleUpdateTask = (updatedTask) => {
+    setTasks(tasks.map(task => task._id === updatedTask._id ? updatedTask : task));
+  };
+
   return (
     <div className="gradient-background">
       <div className="container" id="create-task-container">
-        <h1>Create Task</h1>
-        <TaskForm onCreateTask={handleCreateTask} />
+        <h1>{existingTask ? 'Edit Task' : 'Create Task'}</h1>
+        <TaskForm onCreateTask={handleCreateTask} onUpdateTask={handleUpdateTask} existingTask={existingTask} />
       </div>
     </div>
   );
