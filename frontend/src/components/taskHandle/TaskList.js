@@ -8,13 +8,6 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
   const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const handleDelete = (taskId) => {
-    axios.delete(`http://localhost:5000/tasks/${taskId}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(() => onDeleteTask(taskId))
-    .catch(error => console.error('Error deleting task:', error));
-  };
 
   return (
     <div>
@@ -23,7 +16,6 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
           key={task._id} 
           task={task} 
           onUpdateTask={onUpdateTask} 
-          onDeleteTask={onDeleteTask} 
         />
       ))}
       {/* {tasks.map(task => (
@@ -37,7 +29,7 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
               <button>Submit</button>
             </Link>
           )}
-          <button onClick={() => handleDelete(task._id)}>Delete</button>
+          
         </div>
       ))} */}
     </div>
