@@ -21,7 +21,7 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
         <div key={task._id} className="task-section">
           <h2 className="task-title">{task.title}</h2>
           <p className="task-details">{task.description}</p>
-          <p className="task-details">Assigned to: {task.assignedTo}</p>
+          <p className="task-details">Assigned by: {task.assignedBy}</p>
           <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
           {task.assignedTo === user.username && !task.isSubmitted && (
             <Link to={`/SubmitTask/${task._id}`} state={{ task }}>
