@@ -161,6 +161,18 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// Route for getting all tasks
+router.get('/', async (req, res) => {
+    try {
+        const tasks = await Task.find();
+        res.status(200).json({ count: tasks.length, data: tasks });
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+        res.status(500).json({ message: 'Error fetching tasks' });
+    }
+});
+
+
 // Route for updating a task
 router.put('/:id', upload.single('file'), async (req, res) => {
     try {
