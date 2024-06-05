@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './ViewAssigned.css'; // Import the CSS file here
+import { FaHome} from 'react-icons/fa';
 
 const ViewTasksAssignedByYou = () => {
     const [tasks, setTasks] = useState([]);
@@ -85,6 +86,9 @@ const ViewTasksAssignedByYou = () => {
     return (
         <div id="task-manager-container">
             <div className="container" id="view-tasks-container">
+            <Link to='/IndividualPannel'>
+              <><FaHome /> Home</>
+            </Link>
                 <h1>Tasks Created by You</h1>
                 {tasks.length > 0 ? (
                     <div>
@@ -130,7 +134,7 @@ const ViewTasksAssignedByYou = () => {
                         ))}
                     </div>
                 ) : (
-                    <p>No tasks assigned by you.</p>
+                    <p>No tasks created by you.</p>
                 )}
             </div>
         </div>
