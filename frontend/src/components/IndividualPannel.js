@@ -113,12 +113,12 @@ const IndividualPannel = () => {
         </div>
       )}
       {!isSidebarVisible && (
-        <button onClick={toggleSidebar}>
+        <button  className="toggle-menu" onClick={toggleSidebar}>
           Toggle
         </button>
       )}
       <div className="admin-container">
-        <aside className={`sidebar ${isOpen || isSidebarVisible ? 'active' : ''}`}>
+        <aside className={`indiv-sidebar ${isOpen || isSidebarVisible ? 'active' : ''}`}>
           <div className="logo">
             <h3>Dashboard</h3>
           </div>
