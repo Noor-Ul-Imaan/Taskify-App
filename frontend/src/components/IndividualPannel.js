@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./IndividualPannel.css";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaHome, FaBell, FaTasks, FaPlusSquare, FaList, FaClipboardList, FaSignOutAlt, FaCog } from 'react-icons/fa';
+import { Bar, Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import "./IndividualPannel.css";
 import { FaBars, FaTimes } from "react-icons/fa";
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 const IndividualPannel = () => {
   const [tasks, setTasks] = useState([]);
@@ -67,6 +70,37 @@ const IndividualPannel = () => {
 
   const isSidebarVisible = windowWidth >= 980;
 
+  const barData = {
+    labels: ['Total Tasks', 'Completed Tasks', 'Pending Tasks', 'Missed Tasks'],
+    datasets: [
+      {
+        label: 'Tasks',
+        data: [
+          taskStats.totalTasks,
+          taskStats.completedTasks,
+          taskStats.pendingTasks,
+          taskStats.missedTasks,
+        ],
+        backgroundColor: ['#E76F51', '#2A9D8F', '#E9C46A', '#F4A261'],
+      },
+    ],
+  };
+
+  const pieData = {
+    labels: ['Completed', 'Pending', 'Missed'],
+    datasets: [
+      {
+        label: 'Tasks',
+        data: [
+          taskStats.completedTasks,
+          taskStats.pendingTasks,
+          taskStats.missedTasks,
+        ],
+        backgroundColor: ['#E76F51', '#2A9D8F', '#E9C46A', '#F4A261'],
+      },
+    ],
+  };
+
   return (
     <div className="indiv-pannel">
     <div className="toggle-container">
@@ -80,7 +114,6 @@ const IndividualPannel = () => {
     <div className="content-container">
       {user ? (
         <div>
-          {/* <button onClick={handleLogout}>Logout</button> */}
         </div>
       ) : (
         <div>
@@ -99,12 +132,6 @@ const IndividualPannel = () => {
           <Link to='/IndividualPannel'>
               <li><FaHome /> Home</li>
             </Link>
-            {/* <Link to='/IndivNotifs'>
-              <li><FaBell /> Notifications</li>
-            </Link>
-            <Link to='/IndivHomePage'>
-              <li><FaTasks /> To-do</li>
-            </Link> */}
             <Link to='/TaskManager'>
               <li><FaPlusSquare /> Create Task</li>
             </Link>
@@ -115,7 +142,7 @@ const IndividualPannel = () => {
               <li><FaClipboardList /> Tasks Created by You</li>
             </Link>
             <Link to='/Settings'>
-                <li><FaCog /> Settings</li>
+              <li><FaCog /> Settings</li>
             </Link>
             {user ? (
               <>
@@ -148,38 +175,30 @@ const IndividualPannel = () => {
           </header>
           <section className="statistics">
             <div className="stat-box">
-              <h4>Total Tasks</h4>
+              <h4><Link to='/TotalTasks'>Total Tasks</Link></h4>
               <p>{taskStats.totalTasks}</p>
             </div>
             <div className="stat-box">
-              <h4>Completed Tasks</h4>
+              <h4><Link to='/CompletedTasks'>Completed Tasks</Link></h4>
               <p>{taskStats.completedTasks}</p>
             </div>
             <div className="stat-box">
-              <h4>Pending Tasks</h4>
+              <h4><Link to='/ViewAssignedToYou'>Pending Tasks</Link></h4>
               <p>{taskStats.pendingTasks}</p>
             </div>
             <div className="stat-box">
-              <h4>Missed Tasks</h4>
+              <h4><Link to='/MissedTasks'>Missed Tasks</Link></h4>
               <p>{taskStats.missedTasks}</p>
             </div>
           </section>
-          <section className="overview">
-            <h4>Overview</h4>
-            <p>Task Statistics and User Management</p>
-            <div className="charts">
-              <div className="chart">
-                <h5>This Month's Task Completion</h5>
-                <p>78% Completed</p>
-                <small>April 2024</small>
-                <div className="chart-img"></div>
-              </div>
-              <div className="chart">
-                <h5>View all Users</h5>
-                <p>Top 5 Users</p>
-                <small>April 2024</small>
-                <div className="chart-img"></div>
-              </div>
+          <section className="charts">
+            <div className="chart-container">
+              <h4>Task Distribution</h4>
+              <Bar data={barData} options={{ responsive: true }} />
+            </div>
+            <div className="chart-container">
+              <h4>Task Status</h4>
+              <Pie data={pieData} options={{ responsive: true }} />
             </div>
           </section>
         </main>
@@ -190,3 +209,4 @@ const IndividualPannel = () => {
 };
 
 export default IndividualPannel;
+
