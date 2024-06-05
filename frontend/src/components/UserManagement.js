@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./adminOrg/AuthContext"; // Import useAuth hook
 import "./UserManagement.css"; // Import CSS for styling
+import { FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -68,6 +69,12 @@ const UserManagement = () => {
 
   return (
     <div className="user-management">
+      <div>
+        <Link to="/AdminPannel">
+          <FaHome />
+          Home
+        </Link>
+      </div>
       {user ? (
         <>
           <h1>User Management</h1>

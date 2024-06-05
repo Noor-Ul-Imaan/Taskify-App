@@ -1,6 +1,8 @@
-import React from 'react';
-import { useAuth } from './adminOrg/AuthContext';
-import './AdminHomepage.css'; // Import the CSS file
+import React from "react";
+import { useAuth } from "./adminOrg/AuthContext";
+import "./AdminHomepage.css"; // Import the CSS file
+import { FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const AdminHomepage = () => {
   const { user, logout } = useAuth();
@@ -11,6 +13,12 @@ const AdminHomepage = () => {
 
   return (
     <div className="container">
+      <div>
+        <Link to="/AdminPannel">
+          <FaHome />
+          Home
+        </Link>
+      </div>
       <div className="header">
         <h1>Welcome Admin</h1>
       </div>
