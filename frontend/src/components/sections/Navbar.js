@@ -36,8 +36,8 @@ const Navbar = () => {
         </div>
         <div className="navbar-links-list">
           <ul>
-            {user ? (
-              <>
+            {/* {user ? (
+              <> */}
                 {/* <li>
                   <Link to="/AdminPannel">Dashboard</Link>
                 </li>
@@ -48,9 +48,9 @@ const Navbar = () => {
                 <li>
                   <button onClick={handleClick}>Logout</button>
                 </li> */}
-              </>
+              {/* </>
             ) : (
-              <>
+              <> */}
                 {/* <li>
                   <Link to='/dump'>Dump</Link>
                 </li> */}
@@ -71,8 +71,8 @@ const Navbar = () => {
                     Sign In
                   </Link>
                 </li>
-              </>
-            )}
+              {/* </>
+            )} */}
           </ul>
         </div>
         <div className="hamburger-menu" onClick={toggleMenu}>
