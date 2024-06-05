@@ -71,16 +71,17 @@ const ViewTasksAssignedByYou = () => {
 
     const handleDownload = (task) => { // Receive the task object as a parameter
         if (task.submissionAttachment) {
-          const link = document.createElement('a');
-          link.href = `http://localhost:5000/${task.submissionAttachment}`; // Update the URL path
-          link.download = task.submissionAttachment;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+            const link = document.createElement('a');
+            link.href = `http://localhost:5000/${task.submissionAttachment}`; // Update the URL path
+            link.download = task.submissionAttachment;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         } else {
-          console.error('submissionAttachment not found for task:', task._id);
+            console.error('submissionAttachment not found for task:', task._id);
         }
-      };
+    };
+
     return (
         <div id="task-manager-container">
             <div className="container" id="view-tasks-container">
@@ -99,7 +100,7 @@ const ViewTasksAssignedByYou = () => {
                                         <p className="task-details">Comment: {task.comment || 'No comment'}</p>
                                         {task.submissionAttachment ? (
                                             <div>
-                                            <button onClick={() => handleDownload(task)}>View submitAttachment</button> {/* Pass task object */}
+                                                <button className="download-button" onClick={() => handleDownload(task)}>View submitAttachment</button> {/* Pass task object */}
                                             </div>
                                         ) : (
                                             <p>No submitAttachment</p>
@@ -123,7 +124,7 @@ const ViewTasksAssignedByYou = () => {
                                 )}
                                 <div>
                                     <button onClick={() => handleEditTask(task)}>Edit</button>
-                                    <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
+                                    <button className="delete-button" onClick={() => handleDeleteTask(task._id)}>Delete</button>
                                 </div>
                             </div>
                         ))}
