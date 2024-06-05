@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./adminOrg/AuthContext";
+import logo from "../images/logo.png";
+
 import axios from "axios";
 import {
   FaHome,
@@ -10,16 +12,18 @@ import {
   FaSignOutAlt,
   FaCogs,
 } from "react-icons/fa";
-import { Bar, Pie } from "react-chartjs-2";
+import { Line, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
   ArcElement,
+  PointElement,
 } from "chart.js";
 import "./AdminPannel.css";
 
@@ -28,6 +32,8 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
+  LineElement,
+  PointElement,
   Title,
   Tooltip,
   Legend,
@@ -40,6 +46,10 @@ const AdminPannel = () => {
   const [stats, setStats] = useState({
     totalUsers: 0,
     roleCounts: {},
+  });
+  const [signUpData, setSignUpData] = useState({
+    labels: [],
+    data: [],
   });
 
   useEffect(() => {
@@ -69,40 +79,34 @@ const AdminPannel = () => {
       }
     };
 
+    const fetchSignUpData = async () => {
+      try {
+        const signUpResponse = await axios.get(
+          "http://localhost:5000/api/signups/monthly",
+          {
+            withCredentials: true,
+          }
+        );
+
+        const labels = signUpResponse.data.map((item) => item.month);
+        const data = signUpResponse.data.map((item) => item.count);
+
+        setSignUpData({
+          labels: labels,
+          data: data,
+        });
+      } catch (error) {
+        console.error("Error fetching sign-up data:", error);
+      }
+    };
+
     fetchStats();
+    fetchSignUpData();
   }, [user]);
 
   if (!user) {
     return <div>Loading...</div>;
   }
-
-  // Data for the bar chart
-  const data = {
-    labels: ["Total Users"],
-    datasets: [
-      {
-        label: "Total Users",
-        data: [stats.totalUsers],
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  // Options for the bar chart
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: "Total Users",
-      },
-    },
-  };
 
   // Data for the pie chart
   const roleData = {
@@ -111,22 +115,8 @@ const AdminPannel = () => {
       {
         label: "# of Users",
         data: Object.values(stats.roleCounts),
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
+        backgroundColor: ["#E76F51", "#2A9D8F", "#E9C46A", "#F4A261"],
+        borderColor: ["#E76F51", "#2A9D8F", "#E9C46A", "#F4A261"],
         borderWidth: 1,
       },
     ],
@@ -142,6 +132,7 @@ const AdminPannel = () => {
     <div className="admin-container">
       <aside className="sidebar">
         <div className="logo">
+          <img src={logo} alt="Logo" />
           <p>Admin's Dashboard</p>
         </div>
         <ul className="menu">
@@ -200,10 +191,6 @@ const AdminPannel = () => {
         </header>
 
         <section className="statistics">
-          <div className="stat-box">
-            <h4>Total Users</h4>
-            <Bar data={data} options={options} />
-          </div>
           <div className="stat-box">
             <h4>Users by Role</h4>
             <Pie data={roleData} />

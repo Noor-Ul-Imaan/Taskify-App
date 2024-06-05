@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import CreateUserApiService from './services/CreateUserApiService';
-import Swal from 'sweetalert2'; // Import SweetAlert
-import './CreateUserForm.css'; // Import the CSS file
+import React, { useState, useEffect } from "react";
+import CreateUserApiService from "./services/CreateUserApiService";
+import Swal from "sweetalert2"; // Import SweetAlert
+import "./CreateUserForm.css"; // Import the CSS file
+import { FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CreateUserForm = () => {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
   const [roles, setRoles] = useState([]);
-  const [selectedRole, setSelectedRole] = useState('');
-  const [generatedUsername, setGeneratedUsername] = useState('');
-  const [generatedPassword, setGeneratedPassword] = useState('');
-  const [error, setError] = useState('');
+  const [selectedRole, setSelectedRole] = useState("");
+  const [generatedUsername, setGeneratedUsername] = useState("");
+  const [generatedPassword, setGeneratedPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); // Add loading state
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const CreateUserForm = () => {
         const response = await CreateUserApiService.getRoles();
         setRoles(response.data.roles);
       } catch (error) {
-        console.error('Error fetching roles', error);
+        console.error("Error fetching roles", error);
       }
     };
 
@@ -47,18 +49,23 @@ const CreateUserForm = () => {
       setGeneratedUsername(response.data.username);
       setGeneratedPassword(randomPassword); // Set the generated password to state
       Swal.fire({
-        title: 'User Created Successfully',
-        icon: 'success',
+        title: "User Created Successfully",
+        icon: "success",
         html: `
           <p><b>Username:</b> ${response.data.username}</p>
           <p><b>Password:</b> ${randomPassword}</p>
         `,
-        confirmButtonText: 'OK'
+        confirmButtonText: "OK",
       });
       setLoading(false); // Set loading to false after the request is done
     } catch (error) {
-      console.error('Error creating user', error.response ? error.response.data : error.message);
-      setError(error.response ? error.response.data.message : 'Error creating user');
+      console.error(
+        "Error creating user",
+        error.response ? error.response.data : error.message
+      );
+      setError(
+        error.response ? error.response.data.message : "Error creating user"
+      );
       setLoading(false); // Set loading to false after the request is done
     }
   };
@@ -74,10 +81,10 @@ const CreateUserForm = () => {
       setFirstname(value);
     } else {
       Swal.fire({
-        title: 'Invalid Input',
-        text: 'First name should only contain alphabetic characters and no spaces.',
-        icon: 'warning',
-        confirmButtonText: 'OK'
+        title: "Invalid Input",
+        text: "First name should only contain alphabetic characters and no spaces.",
+        icon: "warning",
+        confirmButtonText: "OK",
       });
     }
   };
@@ -88,10 +95,10 @@ const CreateUserForm = () => {
       setLastname(value);
     } else {
       Swal.fire({
-        title: 'Invalid Input',
-        text: 'Last name should only contain alphabetic characters and no spaces.',
-        icon: 'warning',
-        confirmButtonText: 'OK'
+        title: "Invalid Input",
+        text: "Last name should only contain alphabetic characters and no spaces.",
+        icon: "warning",
+        confirmButtonText: "OK",
       });
     }
   };
@@ -99,6 +106,10 @@ const CreateUserForm = () => {
   return (
     <div className="gradient-background">
       <div className="container">
+        <Link to="/AdminPannel">
+          <FaHome />
+          Home
+        </Link>
         <div className="content">
           <h1>Create User</h1>
           <form onSubmit={handleSubmit}>
@@ -137,7 +148,12 @@ const CreateUserForm = () => {
             </div>
             <div className="input-field">
               <label htmlFor="role">Role</label>
-              <select id="role" value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required>
+              <select
+                id="role"
+                value={selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value)}
+                required
+              >
                 <option value="">Select Role</option>
                 {roles.map((role) => (
                   <option key={role._id} value={role._id}>
@@ -147,7 +163,7 @@ const CreateUserForm = () => {
               </select>
             </div>
             <button type="submit" disabled={loading}>
-              {loading ? 'Loading...' : 'Create User'}
+              {loading ? "Loading..." : "Create User"}
             </button>
           </form>
           {generatedUsername && (
@@ -159,7 +175,7 @@ const CreateUserForm = () => {
           )}
           {error && (
             <div>
-              <p style={{ color: 'red' }}>{error}</p>
+              <p style={{ color: "red" }}>{error}</p>
             </div>
           )}
         </div>
