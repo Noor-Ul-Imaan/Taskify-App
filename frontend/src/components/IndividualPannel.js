@@ -3,7 +3,7 @@ import "./IndividualPannel.css";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaHome, FaBell, FaTasks, FaPlusSquare, FaList, FaClipboardList, FaSignOutAlt, FaCog } from 'react-icons/fa';
-
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const IndividualPannel = () => {
   const [tasks, setTasks] = useState([]);
@@ -68,7 +68,16 @@ const IndividualPannel = () => {
   const isSidebarVisible = windowWidth >= 980;
 
   return (
-    <div>
+    <div className="indiv-pannel">
+    <div className="toggle-container">
+      {!isSidebarVisible && (
+        <button className="toggle-menu" onClick={toggleSidebar}>
+          <FaBars/>
+        </button>
+      )}
+    </div>
+    
+    <div className="content-container">
       {user ? (
         <div>
           {/* <button onClick={handleLogout}>Logout</button> */}
@@ -79,11 +88,7 @@ const IndividualPannel = () => {
           <button onClick={() => navigate('/login')}>Login</button>
         </div>
       )}
-      {!isSidebarVisible && (
-        <button  className="toggle-menu" onClick={toggleSidebar}>
-          Toggle
-        </button>
-      )}
+
       <div className="admin-container">
         <aside className={`indiv-sidebar ${isOpen || isSidebarVisible ? 'active' : ''}`}>
           <div className="logo">
@@ -179,6 +184,7 @@ const IndividualPannel = () => {
           </section>
         </main>
       </div>
+    </div>
     </div>
   );
 };

@@ -239,10 +239,38 @@ a{
 }
 
 
-.toggle-menu {
+.toggel-container .toggle-menu {
   width: 50px;
   float: right;
-  display: block;
+  /* display: block; */
+  background-color: #264653;
+}
+
+.indiv-pannel {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Set position relative to the parent container */
+}
+
+.toggle-container {
+  width: 100%; /* Occupy entire horizontal space */
+  
+}
+
+.content-container {
+  flex: 1; /* Occupy remaining vertical space */
+}
+
+.toggle-menu {
+  width: 10%; /* Occupy entire horizontal space */
+  float: right;
+  background-color: #264653;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 0;
+  text-align: center;
+  margin-right: 20px;
 }
 
 @media (max-width: 980px) {
