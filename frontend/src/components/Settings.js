@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Swal from 'sweetalert2'; // Import SweetAlert2
 import "./Settings.css";
+import { Link } from 'react-router-dom';
+import { FaHome} from 'react-icons/fa';
+
 
 const Settings = () => {
   const [user, setUser] = useState(null);
@@ -202,6 +205,9 @@ const Settings = () => {
 
   return (
     <div className="settings-page">
+      <Link to='/IndividualPannel'>
+              <><FaHome /> Home</>
+            </Link>
       <h2>Settings</h2>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}

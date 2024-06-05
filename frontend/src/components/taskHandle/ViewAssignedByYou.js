@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './ViewAssigned.css'; // Import the CSS file here
+import { FaHome} from 'react-icons/fa';
 
 const ViewTasksAssignedByYou = () => {
     const [tasks, setTasks] = useState([]);
@@ -71,19 +72,23 @@ const ViewTasksAssignedByYou = () => {
 
     const handleDownload = (task) => { // Receive the task object as a parameter
         if (task.submissionAttachment) {
-          const link = document.createElement('a');
-          link.href = `http://localhost:5000/${task.submissionAttachment}`; // Update the URL path
-          link.download = task.submissionAttachment;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+            const link = document.createElement('a');
+            link.href = `http://localhost:5000/${task.submissionAttachment}`; // Update the URL path
+            link.download = task.submissionAttachment;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         } else {
-          console.error('submissionAttachment not found for task:', task._id);
+            console.error('submissionAttachment not found for task:', task._id);
         }
-      };
+    };
+
     return (
         <div id="task-manager-container">
             <div className="container" id="view-tasks-container">
+            <Link to='/IndividualPannel'>
+              <><FaHome /> Home</>
+            </Link>
                 <h1>Tasks Created by You</h1>
                 {tasks.length > 0 ? (
                     <div>
@@ -99,7 +104,7 @@ const ViewTasksAssignedByYou = () => {
                                         <p className="task-details">Comment: {task.comment || 'No comment'}</p>
                                         {task.submissionAttachment ? (
                                             <div>
-                                            <button onClick={() => handleDownload(task)}>View submitAttachment</button> {/* Pass task object */}
+                                                <button className="download-button" onClick={() => handleDownload(task)}>View submitAttachment</button> {/* Pass task object */}
                                             </div>
                                         ) : (
                                             <p>No submitAttachment</p>
@@ -123,13 +128,13 @@ const ViewTasksAssignedByYou = () => {
                                 )}
                                 <div>
                                     <button onClick={() => handleEditTask(task)}>Edit</button>
-                                    <button onClick={() => handleDeleteTask(task._id)}>Delete</button>
+                                    <button className="delete-button" onClick={() => handleDeleteTask(task._id)}>Delete</button>
                                 </div>
                             </div>
                         ))}
                     </div>
                 ) : (
-                    <p>No tasks assigned by you.</p>
+                    <p>No tasks created by you.</p>
                 )}
             </div>
         </div>

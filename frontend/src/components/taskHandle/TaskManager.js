@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import TaskForm from './TaskForm';
 import './TaskManager.css'; // Import the CSS file here
+import { Link } from 'react-router-dom';
+import { FaHome} from 'react-icons/fa';
 
 const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
@@ -34,7 +36,11 @@ const TaskManager = () => {
 
   return (
     <div className="gradient-background">
-      <div className="container" id="create-task-container">
+
+      <div className="container" id="create-task-container">      
+      <Link to='/IndividualPannel'>
+              <><FaHome /> Home</>
+            </Link>
         <h1>{existingTask ? 'Edit Task' : 'Create Task'}</h1>
         <TaskForm onCreateTask={handleCreateTask} onUpdateTask={handleUpdateTask} existingTask={existingTask} />
       </div>
