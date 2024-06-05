@@ -148,7 +148,7 @@ const IndividualPannel = () => {
             ) : (
               <p>logged out</p>
             )}
-            <Link to='/Settings'><button>Settings</button></Link>
+
           </ul>
         </aside>
 
@@ -187,11 +187,11 @@ const IndividualPannel = () => {
             </div>
           </section>
           <section className="charts">
-            <div className="chart-container">
+            <div className="barchart">
               <h4>Task Distribution</h4>
               <Bar data={barData} options={{ responsive: true }} />
             </div>
-            <div className="chart-container">
+            <div className="piechart">
               <h4>Task Status</h4>
               <Pie data={pieData} options={{ responsive: true }} />
             </div>
