@@ -3,8 +3,13 @@ import "./AdminPannel.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "./adminOrg/AuthContext";
 import axios from "axios";
-import { FaHome, FaUsers, FaUserPlus, FaBuilding, FaCogs } from 'react-icons/fa';
-
+import {
+  FaHome,
+  FaUsers,
+  FaUserPlus,
+  FaBuilding,
+  FaCogs,
+} from "react-icons/fa";
 
 const AdminPannel = () => {
   const { user } = useAuth();
