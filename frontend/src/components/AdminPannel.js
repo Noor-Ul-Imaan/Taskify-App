@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./adminOrg/AuthContext";
+import logo from "../images/logo.png";
+
 import axios from "axios";
 import {
   FaHome,
@@ -130,6 +132,7 @@ const AdminPannel = () => {
     <div className="admin-container">
       <aside className="sidebar">
         <div className="logo">
+          <img src={logo} alt="Logo" />
           <p>Admin's Dashboard</p>
         </div>
         <ul className="menu">

@@ -23,7 +23,9 @@ body {
   margin-bottom: 20px;
   text-align: center;
 }
-
+.logo img {
+  width: 200px;
+}
 .menu {
   list-style-type: none;
   padding: 0;
