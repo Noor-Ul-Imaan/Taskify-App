@@ -69,6 +69,18 @@ const ViewTasksAssignedByYou = () => {
         navigate('/TaskManager', { state: { task } });
     };
 
+    const handleDownload = (task) => { // Receive the task object as a parameter
+        if (task.submissionAttachment) {
+          const link = document.createElement('a');
+          link.href = `http://localhost:5000/${task.submissionAttachment}`; // Update the URL path
+          link.download = task.submissionAttachment;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else {
+          console.error('submissionAttachment not found for task:', task._id);
+        }
+      };
     return (
         <div id="task-manager-container">
             <div className="container" id="view-tasks-container">
@@ -85,10 +97,12 @@ const ViewTasksAssignedByYou = () => {
                                 {task.isSubmitted && (
                                     <div className="submission-details">
                                         <p className="task-details">Comment: {task.comment || 'No comment'}</p>
-                                        {task.submission_attachment && (
-                                            <p className="task-details">
-                                                Attachment: <a href={`http://localhost:5000/${task.submission_attachment}`} download>Download</a>
-                                            </p>
+                                        {task.submissionAttachment ? (
+                                            <div>
+                                            <button onClick={() => handleDownload(task)}>View submitAttachment</button> {/* Pass task object */}
+                                            </div>
+                                        ) : (
+                                            <p>No submitAttachment</p>
                                         )}
                                     </div>
                                 )}

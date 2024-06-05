@@ -57,7 +57,7 @@ function App() {
     <div className="App">
       <AuthProvider>
         <Router>
-          <Navbar />
+
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route

@@ -1,6 +1,6 @@
  .App {
   /* text-align: center; */
-  margin-top: 100px;
+  /* margin-top: 84px; */
 }
 /*
 .App-logo {
@@ -37,3 +37,11 @@
     transform: rotate(360deg);
   }
 } */
+
+@media (max-width: 980px) {
+  .App {
+    /* text-align: center; */
+    margin-top: 40px;
+  }
+}
+

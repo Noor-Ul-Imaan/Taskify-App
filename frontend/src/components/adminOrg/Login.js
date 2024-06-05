@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="gradient-background">
-        <div className="container">
+        <div className="container login-container">
           <div className="header">
             <span className="signup">
               Don't have an account?{' '}

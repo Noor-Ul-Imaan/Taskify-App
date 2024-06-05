@@ -120,7 +120,7 @@
     .hamburger-menu {
         display: block;
         cursor: pointer;
-        margin-right: 75px;
+        margin-right: 35px;
     }
 
     .sliding-menu {
@@ -129,13 +129,14 @@
         top: 0;
         left: 0;
         height: 100%;
-        width: 250px;
+        width: 50%;
         background-color: #ffffff;
         color: #20918F;
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
         z-index: 1100;
         padding: 2rem;
+      
     }
 
     .sliding-menu.open {
@@ -187,108 +188,3 @@
 
 
 
-/* 
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.navbar-logo img {
-    height: 50px;
-}
-
-.navbar-links-list {
-    display: flex;
-    align-items: center;
-    margin-right: 25px;
-    margin-left: 15px;
-}
-
-.navbar-links-list ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar-links-list ul li {
-    display: flex;
-    align-items: center;
-}
-
-.navbar-links-list a {
-    text-decoration: none;
-    color: #264351;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s, background-color 0.3s;
-}
-
-.navbar-links-list a:hover {
-    color: #20918F;
-    background-color: rgba(32, 145, 143, 0.1);
-}
-
-.navbar-links-list .sign-in a {
-    font-weight: bold;
-    background-color: #20918F;
-    color: #ffffff;
-    border-radius: 5px;
-}
-
-.navbar-links-list .sign-in a:hover {
-    background-color: #264351;
-}
-
-.userInfo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.user-name {
-    color: black;
-}
-
-.userInfo button {
-    background-color: #20918F;
-    color: #ffffff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.userInfo button:hover {
-    background-color: #264351;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #E76F51;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-group {
-    display: flex;
-    gap: 20px;
-    margin-top: 100px;
-}
-
-.btn:hover {
-    background-color: #F4A261;
-} */

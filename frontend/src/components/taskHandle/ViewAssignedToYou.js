@@ -30,11 +30,16 @@ const ViewTasksAssignedToYou = () => {
 
   return (
     <div className="container" id="view-tasks-container">
-      <h1>Pending Tasks</h1>
-      <TaskList 
+      <h1>Pending Tasks Assigned to You</h1>
+      {tasks? (      <TaskList 
         tasks={tasks} 
         onUpdateTask={handleUpdateTask}
-      />
+      />) : (
+        <div>
+          No tasks assigned to you</div>
+      )
+      }
+
     </div>
   );
 };

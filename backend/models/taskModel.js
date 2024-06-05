@@ -43,6 +43,10 @@ const taskSchema = mongoose.Schema(
         attachment: {
             type: String, 
             required: false,
+        },
+        submissionAttachment: {
+            type: String, // Field for storing the file path of the submitted task
+            required: false,
         }
     }, 
     {
