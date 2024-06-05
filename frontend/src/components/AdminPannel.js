@@ -133,7 +133,7 @@ const AdminPannel = () => {
       <aside className="sidebar">
         <div className="logo">
           <img src={logo} alt="Logo" />
-          <p>Admin's Dashboard</p>
+          <p>Dashboard</p>
         </div>
         <ul className="menu">
           <li>
