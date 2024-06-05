@@ -28,23 +28,23 @@ const IndividualPannel = () => {
       axios.get('http://localhost:5000/tasks', {
         headers: { Authorization: `Bearer ${token}` }
       })
-        .then(response => {
-          const userTasks = response.data.data.filter(task => task.assignedTo === user.username);
-          setTasks(userTasks);
+      .then(response => {
+        const userTasks = response.data.data.filter(task => task.assignedTo === user.username);
+        setTasks(userTasks);
 
-          const totalTasks = userTasks.length;
-          const completedTasks = userTasks.filter(task => task.isSubmitted).length;
-          const pendingTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) >= new Date()).length;
-          const missedTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) < new Date()).length;
+        const totalTasks = userTasks.length;
+        const completedTasks = userTasks.filter(task => task.isSubmitted).length;
+        const pendingTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) >= new Date()).length;
+        const missedTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) < new Date()).length;
 
-          setTaskStats({
-            totalTasks,
-            completedTasks,
-            pendingTasks,
-            missedTasks,
-          });
-        })
-        .catch(error => console.error('Error fetching tasks:', error));
+        setTaskStats({
+          totalTasks,
+          completedTasks,
+          pendingTasks,
+          missedTasks,
+        });
+      })
+      .catch(error => console.error('Error fetching tasks:', error));
     }
   }, [navigate, token, user.username]);
 
@@ -53,6 +53,22 @@ const IndividualPannel = () => {
     localStorage.removeItem('user');
     navigate('/login');
   };
+
+  const [isOpen, setIsOpen] = useState(false); // State variable for sidebar visibility
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isSidebarVisible = windowWidth >= 980;
 
   const barData = {
     labels: ['Total Tasks', 'Completed Tasks', 'Pending Tasks', 'Missed Tasks'],
@@ -96,13 +112,19 @@ const IndividualPannel = () => {
           <button onClick={() => navigate('/login')}>Login</button>
         </div>
       )}
+      {!isSidebarVisible && (
+        <button onClick={toggleSidebar}>
+          Toggle
+        </button>
+      )}
       <div className="admin-container">
-        <aside className="sidebar">
+        <aside className={`sidebar ${isOpen || isSidebarVisible ? 'active' : ''}`}>
           <div className="logo">
             <h3>Dashboard</h3>
           </div>
+          <br />
           <ul className="menu">
-            <Link to='/IndividualPannel'>
+          <Link to='/IndividualPannel'>
               <li><FaHome /> Home</li>
             </Link>
             <Link to='/TaskManager'>
@@ -118,14 +140,18 @@ const IndividualPannel = () => {
               <li><FaCog /> Settings</li>
             </Link>
             {user ? (
-              <button onClick={handleLogout}>
+              <>
+                <button onClick={handleLogout}>
                 <FaSignOutAlt /> Logout
-              </button>
+                </button>
+              </>
             ) : (
               <p>logged out</p>
             )}
+            <Link to='/Settings'><button>Settings</button></Link>
           </ul>
         </aside>
+
         <main className="main-content">
           <header className="header">
             <div className="user-info">
@@ -138,6 +164,8 @@ const IndividualPannel = () => {
               ) : (
                 <p>logged out</p>
               )}
+            </div>
+            <div className="user-actions">
             </div>
           </header>
           <section className="statistics">
