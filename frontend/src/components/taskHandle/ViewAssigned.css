@@ -113,3 +113,7 @@ button.download-button {
 button.download-button:hover {
   background-color: #21867a;
 }
+
+.task-manager-container {
+  width: 60%;
+}

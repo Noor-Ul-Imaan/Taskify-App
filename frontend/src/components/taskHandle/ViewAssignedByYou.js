@@ -95,7 +95,10 @@ const ViewTasksAssignedByYou = () => {
                         {tasks.map(task => (
                             <div key={task._id} className="task-section">
                                 <h3 className="task-title">{task.title}</h3>
-                                <p className="task-details">{task.description}</p>
+                                {task.description &&
+                                 <p className="task-details">{task.description}</p>
+
+                                }
                                 <p className="task-details">Assigned to: {task.assignedTo}</p>
                                 <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
                                 <p className="task-details">Status: {task.isSubmitted ? 'Submitted' : 'Not Submitted'}</p>
@@ -104,10 +107,10 @@ const ViewTasksAssignedByYou = () => {
                                         <p className="task-details">Comment: {task.comment || 'No comment'}</p>
                                         {task.submissionAttachment ? (
                                             <div>
-                                                <button className="download-button" onClick={() => handleDownload(task)}>View submitAttachment</button> {/* Pass task object */}
+                                                <button className="download-button" onClick={() => handleDownload(task)}>View submission</button> {/* Pass task object */}
                                             </div>
                                         ) : (
-                                            <p>No submitAttachment</p>
+                                            <p>No submission</p>
                                         )}
                                     </div>
                                 )}

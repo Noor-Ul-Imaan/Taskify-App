@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+
+import logo from "../images/logo.png";
+
+
 import axios from 'axios';
 import { FaHome, FaBell, FaTasks, FaPlusSquare, FaList, FaClipboardList, FaSignOutAlt, FaCog } from 'react-icons/fa';
 import { Bar, Pie } from 'react-chartjs-2';
@@ -20,6 +24,7 @@ const IndividualPannel = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     if (!token) {
@@ -53,6 +58,7 @@ const IndividualPannel = () => {
     localStorage.removeItem('user');
     navigate('/login');
   };
+  
 
   const [isOpen, setIsOpen] = useState(false); // State variable for sidebar visibility
 
@@ -68,6 +74,7 @@ const IndividualPannel = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  
   const isSidebarVisible = windowWidth >= 980;
 
   const barData = {
@@ -124,9 +131,12 @@ const IndividualPannel = () => {
 
       <div className="admin-container">
         <aside className={`indiv-sidebar ${isOpen || isSidebarVisible ? 'active' : ''}`}>
-          <div className="logo">
+          {/* <div className="logo">
             <h3>Dashboard</h3>
-          </div>
+          </div> */}
+          <div className="navbar-logo">
+  <img src={logo} alt="Logo" />
+</div>
           <br />
           <ul className="menu">
           <Link to='/IndividualPannel'>
