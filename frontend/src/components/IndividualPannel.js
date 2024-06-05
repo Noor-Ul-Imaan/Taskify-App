@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./IndividualPannel.css";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaHome, FaBell, FaTasks, FaPlusSquare, FaList, FaClipboardList, FaSignOutAlt, FaCog } from 'react-icons/fa';
+import { Bar, Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import "./IndividualPannel.css";
 
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 const IndividualPannel = () => {
   const [tasks, setTasks] = useState([]);
@@ -51,11 +54,41 @@ const IndividualPannel = () => {
     navigate('/login');
   };
 
+  const barData = {
+    labels: ['Total Tasks', 'Completed Tasks', 'Pending Tasks', 'Missed Tasks'],
+    datasets: [
+      {
+        label: 'Tasks',
+        data: [
+          taskStats.totalTasks,
+          taskStats.completedTasks,
+          taskStats.pendingTasks,
+          taskStats.missedTasks,
+        ],
+        backgroundColor: ['#3498db', '#2ecc71', '#f1c40f', '#e74c3c'],
+      },
+    ],
+  };
+
+  const pieData = {
+    labels: ['Completed', 'Pending', 'Missed'],
+    datasets: [
+      {
+        label: 'Tasks',
+        data: [
+          taskStats.completedTasks,
+          taskStats.pendingTasks,
+          taskStats.missedTasks,
+        ],
+        backgroundColor: ['#2ecc71', '#f1c40f', '#e74c3c'],
+      },
+    ],
+  };
+
   return (
     <div>
       {user ? (
         <div>
-          {/* <button onClick={handleLogout}>Logout</button> */}
         </div>
       ) : (
         <div>
@@ -66,21 +99,12 @@ const IndividualPannel = () => {
       <div className="admin-container">
         <aside className="sidebar">
           <div className="logo">
-            {/* <h2>Taskify</h2>
-        <br></br> */}
             <h3>Dashboard</h3>
           </div>
-
           <ul className="menu">
             <Link to='/IndividualPannel'>
               <li><FaHome /> Home</li>
             </Link>
-            {/* <Link to='/IndivNotifs'>
-              <li><FaBell /> Notifications</li>
-            </Link>
-            <Link to='/IndivHomePage'>
-              <li><FaTasks /> To-do</li>
-            </Link> */}
             <Link to='/TaskManager'>
               <li><FaPlusSquare /> Create Task</li>
             </Link>
@@ -91,7 +115,7 @@ const IndividualPannel = () => {
               <li><FaClipboardList /> Tasks Created by You</li>
             </Link>
             <Link to='/Settings'>
-                <li><FaCog /> Settings</li>
+              <li><FaCog /> Settings</li>
             </Link>
             {user ? (
               <button onClick={handleLogout}>
@@ -114,18 +138,6 @@ const IndividualPannel = () => {
               ) : (
                 <p>logged out</p>
               )}
-
-            </div>
-            <div className="user-actions">
-              {/*               <div className="admin-photo-circle">
-                <img
-                  src="\frontend\src\images\person1.jpg"
-                  className="admin-photo"
-                  alt="User"
-                />
-              </div> */}
-
-
             </div>
           </header>
           <section className="statistics">
@@ -146,6 +158,16 @@ const IndividualPannel = () => {
               <p>{taskStats.missedTasks}</p>
             </div>
           </section>
+          <section className="charts">
+            <div className="chart-container">
+              <h4>Task Distribution</h4>
+              <Bar data={barData} options={{ responsive: true }} />
+            </div>
+            <div className="chart-container">
+              <h4>Task Status</h4>
+              <Pie data={pieData} options={{ responsive: true }} />
+            </div>
+          </section>
         </main>
       </div>
     </div>
@@ -153,3 +175,4 @@ const IndividualPannel = () => {
 };
 
 export default IndividualPannel;
+
