@@ -81,7 +81,7 @@ const IndividualPannel = () => {
           taskStats.pendingTasks,
           taskStats.missedTasks,
         ],
-        backgroundColor: ['#3498db', '#2ecc71', '#f1c40f', '#e74c3c'],
+        backgroundColor: ['#E76F51', '#2A9D8F', '#E9C46A', '#F4A261'],
       },
     ],
   };
@@ -96,7 +96,7 @@ const IndividualPannel = () => {
           taskStats.pendingTasks,
           taskStats.missedTasks,
         ],
-        backgroundColor: ['#2ecc71', '#f1c40f', '#e74c3c'],
+        backgroundColor: ['#E76F51', '#2A9D8F', '#E9C46A', '#F4A261'],
       },
     ],
   };
