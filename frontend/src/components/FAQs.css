@@ -8,6 +8,7 @@
   /* White text color */
 }
 .faq-container h1 {
+  color: white;
   font-size: 2.5rem;
 }
 .faq-section {
