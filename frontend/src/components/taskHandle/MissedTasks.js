@@ -3,7 +3,7 @@ import axios from 'axios';
 import TaskList from './TaskList';
 import './ViewAssigned.css'; // Import the CSS file here
 
-const ViewTasksAssignedToYou = () => {
+const MissedTasks = () => {
   const [tasks, setTasks] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
@@ -17,7 +17,7 @@ const ViewTasksAssignedToYou = () => {
       const filteredTasks = response.data.data.filter(task => 
         task.assignedTo === user.username && 
         !task.isSubmitted && 
-        new Date(task.deadline) > currentDate
+        new Date(task.deadline) <= currentDate
       );
       setTasks(filteredTasks);
     })
@@ -30,18 +30,13 @@ const ViewTasksAssignedToYou = () => {
 
   return (
     <div className="container" id="view-tasks-container">
-      <h1>Pending Tasks Assigned to You</h1>
-      {tasks? (      <TaskList 
+      <h1>Missed Tasks</h1>
+      <TaskList 
         tasks={tasks} 
         onUpdateTask={handleUpdateTask}
-      />) : (
-        <div>
-          No tasks assigned to you</div>
-      )
-      }
-
+      />
     </div>
   );
 };
 
-export default ViewTasksAssignedToYou;
+export default MissedTasks;

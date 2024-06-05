@@ -47,6 +47,9 @@ import TaskViewPage from "./components/taskHandle/TaskViewPage";
 import TaskManager from "./components/taskHandle/TaskManager";
 import ViewTasksAssignedByYou from "./components/taskHandle/ViewAssignedByYou";
 import ViewTasksAssignedToYou from "./components/taskHandle/ViewAssignedToYou";
+import MissedTasks from "./components/taskHandle/MissedTasks";
+import TotalTasks from "./components/taskHandle/TotalTasks";
+import CompletedTasks from "./components/taskHandle/CompletedTasks";
 import UserDetails from "./components/UserDetails";
 
 function App() {
@@ -110,6 +113,19 @@ function App() {
               path="/ViewAssignedToYou"
               element={<ViewTasksAssignedToYou />}
             />
+            <Route
+              path="/MissedTasks"
+              element={<MissedTasks />}
+            />
+            <Route
+              path="/TotalTasks"
+              element={<TotalTasks />}
+            />
+            <Route
+              path="/CompletedTasks"
+              element={<CompletedTasks />}
+            />
+
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>

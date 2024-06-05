@@ -15,13 +15,6 @@ const UserManagement = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        if (!user) {
-          // Check for both user and token
-          setError("Please log in to access users.");
-          setLoading(false);
-          return;
-        }
-
         const response = await axios.get("http://localhost:5000/api/users", {
           withCredentials: true, // Include credentials for cookie-based authentication
         });
@@ -34,7 +27,12 @@ const UserManagement = () => {
       }
     };
 
-    fetchUsers();
+    if (user) {
+      fetchUsers();
+    } else {
+      setLoading(false);
+      setError("Please log in to access users.");
+    }
   }, [user]); // Re-run useEffect when user changes (e.g., after login)
 
   const handleSearch = (event) => {
@@ -66,45 +64,54 @@ const UserManagement = () => {
     });
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (error && !user) return <div>{error}</div>;
 
   return (
     <div className="user-management">
-      <h1>User Management</h1>
-      <div className="search-filter">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-        <select value={filterOption} onChange={handleFilterChange}>
-          <option value="alphabetical">Sort by Alphabetical Order</option>
-          <option value="role">Sort by Role</option>
-        </select>
-      </div>
-      <div className="user-list">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredUsers.map((user) => (
-              <tr key={user._id}>
-                <td>
-                  <Link to={`/user-details/${user._id}`} state={{ user: user }}>
-                    {user.firstname} {user.lastname}
-                  </Link>
-                </td>
-                <td>{user.role.name}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {user ? (
+        <>
+          <h1>User Management</h1>
+          <div className="search-filter">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+            <select value={filterOption} onChange={handleFilterChange}>
+              <option value="alphabetical">Sort by Alphabetical Order</option>
+              <option value="role">Sort by Role</option>
+            </select>
+          </div>
+          <div className="user-list">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredUsers.map((user) => (
+                  <tr key={user._id}>
+                    <td>
+                      <Link
+                        to={`/user-details/${user._id}`}
+                        state={{ user: user }}
+                      >
+                        {user.firstname} {user.lastname}
+                      </Link>
+                    </td>
+                    <td>{user.role.name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <div>Please log in to access users.</div>
+      )}
     </div>
   );
 };

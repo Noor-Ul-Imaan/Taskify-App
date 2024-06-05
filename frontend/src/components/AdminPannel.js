@@ -3,13 +3,17 @@ import "./AdminPannel.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "./adminOrg/AuthContext";
 import axios from "axios";
+import {
+  FaHome,
+  FaUsers,
+  FaUserPlus,
+  FaBuilding,
+  FaCogs,
+} from "react-icons/fa";
 
 const AdminPannel = () => {
   const { user } = useAuth();
   const [stats, setStats] = useState({
-    totalTasks: 0,
-    completedTasks: 0,
-    pendingTasks: 0,
     totalUsers: 0,
   });
 
@@ -45,26 +49,44 @@ const AdminPannel = () => {
     <div className="admin-container">
       <aside className="sidebar">
         <div className="logo">
-          <br></br>
           <p>Admin's Dashboard</p>
         </div>
-        <br></br>
         <ul className="menu">
-          <Link to="/AdminPannel">
-            <li>Home</li>
-          </Link>
-          <Link to="/UserManagement">
-            <li>User Management</li>
-          </Link>
-          <Link to="/CreateUserForm">
-            <li>Create User</li>
-          </Link>
-          <Link to="/AdminHomepage">
-            <li>View Organization</li>
-          </Link>
-          <Link to="/OrgSettings">
-            <li>Settings</li>
-          </Link>
+          <li>
+            <Link to="/AdminPannel">
+              <div className="menu-item">
+                <FaHome /> Home
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link to="/UserManagement">
+              <div className="menu-item">
+                <FaUsers /> User Management
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link to="/CreateUserForm">
+              <div className="menu-item">
+                <FaUserPlus /> Create User
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link to="/AdminHomepage">
+              <div className="menu-item">
+                <FaBuilding /> View Organization
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link to="/OrgSettings">
+              <div className="menu-item">
+                <FaCogs /> Settings
+              </div>
+            </Link>
+          </li>
         </ul>
       </aside>
       <main className="main-content">
@@ -73,15 +95,8 @@ const AdminPannel = () => {
             <h3>Hi, Welcome Back Admin!</h3>
             <p>{user.name}</p>
           </div>
-          <div className="user-actions">
-            <div className="admin-photo-circle">
-              <img
-                src="frontend\src\images\dept-bg-1.jpg"
-                className="admin-photo"
-              />
-            </div>
-          </div>
         </header>
+
         <section className="statistics">
           <div className="stat-box">
             <h4>Total Users</h4>
@@ -92,4 +107,5 @@ const AdminPannel = () => {
     </div>
   );
 };
+
 export default AdminPannel;
