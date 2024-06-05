@@ -1,246 +1,260 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 a{
   text-decoration: none;
   color: #264653;
 }
+.admin-container {
+  display: flex;
+}
 
-  .admin-container {
-    display: flex;
-  }
-  
-  .sidebar {
-    width: 300px;
-    background-color: #264653;
-    padding: 20px 0; /* Only vertical padding */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .logo h2, .logo p {
-    margin: 0;
-    color: #ffffff;
-  }
-  
-  .menu {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .menu li {
-    padding: 5px 0;
-    color: #ffffff;
-  }
-  
-  .menu li a {
-    text-decoration: none;
-    color: #ecf0f1;
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
+.sidebar {
+  width: 300px;
+  background-color: #264653;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .menu li:hover {
-    background-color: #6f97c0;
-    cursor: pointer;
-  }
-  
+.logo h2, .logo p {
+  margin: 0;
+  color: #ffffff;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 5px 0;
+  color: #ffffff;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.menu li:hover {
+  background-color: #6f97c0;
+  cursor: pointer;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+  margin-left: 250px; /* Default margin when sidebar is visible */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+}
+
+.user-info h3, .user-info p {
+  text-align: left;
+  margin: 0;
+  color: WHITE;
+}
+
+.user-actions button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.user-actions button:hover {
+  background-color: #0056b3;
+}
+
+.statistics {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.stat-box {
+  background-color: #c6c7c7;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.stat-box:last-child {
+  margin-right: 0;
+}
+
+.stat-box h4 {
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.stat-box p {
+  font-size: 24px;
+  margin: 0 0 5px;
+  color: #007bff;
+}
+
+.stat-box small {
+  color: #6c757d;
+}
+
+.overview {
+  margin-top: 20px;
+}
+
+.overview h4 {
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.charts {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chart {
+  background-color: #f1f3f5;
+  padding: 20px;
+  border-radius: 5px;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.chart:last-child {
+  margin-right: 0;
+}
+
+.chart h5 {
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.chart p {
+  font-size: 24px;
+  margin: 0 0 5px;
+  color: #007bff;
+}
+
+.chart small {
+  color: #6c757d;
+}
+
+.chart-img {
+  height: 150px;
+  background-color: #e9ecef;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: #ecf0f1;
+  height: 100vh;
+  padding: 20px;
+  text-decoration: none;
+}
+
+.logo h3 {
+  margin-bottom: 20px;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.menu li a, .menu li button {
+  text-decoration: none;
+  color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.menu li a:hover, .menu li button:hover {
+  background: #34495e;
+  border-radius: 4px;
+}
+
+.menu li svg {
+  margin-right: 10px;
+}
+
+/* .admin-photo-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* This makes the image appear in a circle */
+  /* overflow: hidden; */
+/* }
+
+.admin-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */ 
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; 
+  height: 100vh; 
+  background-color: #fff; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease-in-out; 
+  transform: translateX(-100%); 
+}
+
+.sidebar.active {
+  transform: translateX(0); 
+}
+
+@media (max-width: 980px) {
   .main-content {
-    flex: 1;
+    margin-left: 0;
   }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #dee2e6;
-    padding-bottom: 10px;
+
+  .indiv-sidebar {
+    transform: translateX(-100%);
   }
-  
-  .user-info h3, .user-info p {
-    text-align: left;
-    margin: 0;
-    color: WHITE;
+
+  .indiv-sidebar.active {
+    transform: translateX(0);
   }
-  
-  .user-actions button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .user-actions button:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
+@media (max-width: 480px) {
   .statistics {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: column;
   }
-  
-  .stat-box {
-    background-color: #c6c7c7;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    flex: 1;
-    margin-right: 10px;
-  }
-  
-  .stat-box:last-child {
-    margin-right: 0;
-  }
-  
-  .stat-box h4 {
-    margin: 0 0 10px;
-    color: #333;
-  }
-  
-  .stat-box p {
-    font-size: 24px;
-    margin: 0 0 5px;
-    color: #007bff;
-  }
-  
-  .stat-box small {
-    color: #6c757d;
-  }
-  
-  .overview {
-    margin-top: 20px;
-  }
-  
-  .overview h4 {
-    margin: 0 0 10px;
-    color: #333;
-  }
-  
-  .charts {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .chart {
-    background-color: #f1f3f5;
-    padding: 20px;
-    border-radius: 5px;
-    flex: 1;
-    margin-right: 10px;
-  }
-  
-  .chart:last-child {
-    margin-right: 0;
-  }
-  
-  .chart h5 {
-    margin: 0 0 10px;
-    color: #333;
-  }
-  
-  .chart p {
-    font-size: 24px;
-    margin: 0 0 5px;
-    color: #007bff;
-  }
-  
-  .chart small {
-    color: #6c757d;
-  }
-  
-  .chart-img {
-    height: 150px;
-    background-color: #e9ecef;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
-
-  .sidebar {
-    width: 250px;
-    background: #2c3e50;
-    color: #ecf0f1;
-    height: 100vh;
-    padding: 20px;
-    text-decoration: none;
-  }
-  
-  .logo h3 {
-    margin-bottom: 20px;
-  }
-  
-  .menu {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .menu li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 18px;
-  }
-  
-  .menu li a, .menu li button {
-    text-decoration: none;
-    color: #ecf0f1;
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .menu li a:hover, .menu li button:hover {
-    background: #34495e;
-    border-radius: 4px;
-  }
-  
-  .menu li svg {
-    margin-right: 10px;
-  }
-  
-  /* .admin-photo-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; /* This makes the image appear in a circle */
-    /* overflow: hidden; */
-  /* }
-  
-  .admin-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  } */ 
-
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px; 
-    height: 100vh; 
-    background-color: #fff; 
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
-    transition: transform 0.3s ease-in-out; 
-    transform: translateX(-100%); 
-  }
-  
-  .sidebar.active {
-    transform: translateX(0); 
-  } 
-
-  @media (max-width: 480px) {
-    .statistics {
-      display: flex;
-      flex-direction: column;
-    }
-
-  }
-
+}

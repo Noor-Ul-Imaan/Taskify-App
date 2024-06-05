@@ -25,23 +25,23 @@ const IndividualPannel = () => {
       axios.get('http://localhost:5000/tasks', {
         headers: { Authorization: `Bearer ${token}` }
       })
-        .then(response => {
-          const userTasks = response.data.data.filter(task => task.assignedTo === user.username);
-          setTasks(userTasks);
+      .then(response => {
+        const userTasks = response.data.data.filter(task => task.assignedTo === user.username);
+        setTasks(userTasks);
 
-          const totalTasks = userTasks.length;
-          const completedTasks = userTasks.filter(task => task.isSubmitted).length;
-          const pendingTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) >= new Date()).length;
-          const missedTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) < new Date()).length;
+        const totalTasks = userTasks.length;
+        const completedTasks = userTasks.filter(task => task.isSubmitted).length;
+        const pendingTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) >= new Date()).length;
+        const missedTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) < new Date()).length;
 
-          setTaskStats({
-            totalTasks,
-            completedTasks,
-            pendingTasks,
-            missedTasks,
-          });
-        })
-        .catch(error => console.error('Error fetching tasks:', error));
+        setTaskStats({
+          totalTasks,
+          completedTasks,
+          pendingTasks,
+          missedTasks,
+        });
+      })
+      .catch(error => console.error('Error fetching tasks:', error));
     }
   }, [navigate, token, user.username]);
 
@@ -53,13 +53,19 @@ const IndividualPannel = () => {
 
   const [isOpen, setIsOpen] = useState(false); // State variable for sidebar visibility
 
-const toggleSidebar = () => {
-  setIsOpen(!isOpen);
-};
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
 
-// ... rest of your application code
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
+  const isSidebarVisible = windowWidth >= 980;
 
   return (
     <div>
@@ -73,25 +79,19 @@ const toggleSidebar = () => {
           <button onClick={() => navigate('/login')}>Login</button>
         </div>
       )}
-            <button onClick={toggleSidebar}>
-        toggle
-    </button>
+      {!isSidebarVisible && (
+        <button onClick={toggleSidebar}>
+          Toggle
+        </button>
+      )}
       <div className="admin-container">
-
-
-
-    <aside className={`sidebar ${isOpen ? 'active' : ''}`}>
-      {/* ... your sidebar content from aside.jsx */}
-    {/* </aside>
-        <aside className="sidebar"> */}
+        <aside className={`sidebar ${isOpen || isSidebarVisible ? 'active' : ''}`}>
           <div className="logo">
-            {/* <h2>Taskify</h2>
-        <br></br> */}
             <h3>Dashboard</h3>
           </div>
-
+          <br />
           <ul className="menu">
-            <Link to='/IndividualPannel'>
+          <Link to='/IndividualPannel'>
               <li><FaHome /> Home</li>
             </Link>
             {/* <Link to='/IndivNotifs'>
@@ -113,15 +113,17 @@ const toggleSidebar = () => {
                 <li><FaCog /> Settings</li>
             </Link>
             {user ? (
-              <button onClick={handleLogout}>
+              <>
+                <button onClick={handleLogout}>
                 <FaSignOutAlt /> Logout
-              </button>
+                </button>
+              </>
             ) : (
               <p>logged out</p>
             )}
+            <Link to='/Settings'><button>Settings</button></Link>
           </ul>
         </aside>
-
 
         <main className="main-content">
           <header className="header">
@@ -135,36 +137,44 @@ const toggleSidebar = () => {
               ) : (
                 <p>logged out</p>
               )}
-
             </div>
             <div className="user-actions">
-              {/*               <div className="admin-photo-circle">
-                <img
-                  src="\frontend\src\images\person1.jpg"
-                  className="admin-photo"
-                  alt="User"
-                />
-              </div> */}
-
-
             </div>
           </header>
           <section className="statistics">
             <div className="stat-box">
-              <h4><Link to='/TotalTasks'>Total Tasks</Link></h4>
+              <h4>Total Tasks</h4>
               <p>{taskStats.totalTasks}</p>
             </div>
             <div className="stat-box">
-              <h4><Link to='/CompletedTasks'>Completed Tasks</Link></h4>
+              <h4>Completed Tasks</h4>
               <p>{taskStats.completedTasks}</p>
             </div>
             <div className="stat-box">
-              <h4><Link to='/ViewAssignedToYou'>Pending Tasks</Link></h4>
+              <h4>Pending Tasks</h4>
               <p>{taskStats.pendingTasks}</p>
             </div>
             <div className="stat-box">
-              <h4><Link to='/MissedTasks'>Missed Tasks</Link></h4>
+              <h4>Missed Tasks</h4>
               <p>{taskStats.missedTasks}</p>
+            </div>
+          </section>
+          <section className="overview">
+            <h4>Overview</h4>
+            <p>Task Statistics and User Management</p>
+            <div className="charts">
+              <div className="chart">
+                <h5>This Month's Task Completion</h5>
+                <p>78% Completed</p>
+                <small>April 2024</small>
+                <div className="chart-img"></div>
+              </div>
+              <div className="chart">
+                <h5>View all Users</h5>
+                <p>Top 5 Users</p>
+                <small>April 2024</small>
+                <div className="chart-img"></div>
+              </div>
             </div>
           </section>
         </main>
