@@ -3,7 +3,7 @@ import axios from 'axios';
 import TaskList from './TaskList';
 import './ViewAssigned.css'; // Import the CSS file here
 
-const ViewTasksAssignedToYou = () => {
+const TotalTasks = () => {
   const [tasks, setTasks] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
@@ -13,12 +13,7 @@ const ViewTasksAssignedToYou = () => {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(response => {
-      const currentDate = new Date();
-      const filteredTasks = response.data.data.filter(task => 
-        task.assignedTo === user.username && 
-        !task.isSubmitted && 
-        new Date(task.deadline) > currentDate
-      );
+      const filteredTasks = response.data.data.filter(task => task.assignedTo === user.username);
       setTasks(filteredTasks);
     })
     .catch(error => console.error('Error fetching tasks:', error));
@@ -30,7 +25,7 @@ const ViewTasksAssignedToYou = () => {
 
   return (
     <div className="container" id="view-tasks-container">
-      <h1>Pending Tasks</h1>
+      <h1>Total Tasks</h1>
       <TaskList 
         tasks={tasks} 
         onUpdateTask={handleUpdateTask}
@@ -39,4 +34,4 @@ const ViewTasksAssignedToYou = () => {
   );
 };
 
-export default ViewTasksAssignedToYou;
+export default TotalTasks;

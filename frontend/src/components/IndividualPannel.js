@@ -75,8 +75,8 @@ const IndividualPannel = () => {
             <Link to='/IndivNotifs'><li>Notifications</li></Link>
             <Link to='/IndivHomePage'><li>To-do</li></Link>
             <Link to='/TaskManager'><li>Create Task</li></Link>
-            <Link to='/ViewAssignedToYou'><li>Tasks Assigned to You</li></Link>
-            <Link to='/ViewAssignedByYou'><li>Tasks Assigned by You</li></Link>
+            <Link to='/ViewAssignedToYou'><li>Pending Tasks</li></Link>
+            <Link to='/ViewAssignedByYou'><li>Tasks Created by You</li></Link>
             {user ? (
               <>
                 <button onClick={handleLogout}>Logout</button>
@@ -115,38 +115,20 @@ const IndividualPannel = () => {
           </header>
           <section className="statistics">
             <div className="stat-box">
-              <h4>Total Tasks</h4>
+              <h4><Link to='/TotalTasks'>Total Tasks</Link></h4>
               <p>{taskStats.totalTasks}</p>
             </div>
             <div className="stat-box">
-              <h4>Completed Tasks</h4>
+              <h4><Link to='/CompletedTasks'>Completed Tasks</Link></h4>
               <p>{taskStats.completedTasks}</p>
             </div>
             <div className="stat-box">
-              <h4>Pending Tasks</h4>
+              <h4><Link to='/ViewAssignedToYou'>Pending Tasks</Link></h4>
               <p>{taskStats.pendingTasks}</p>
             </div>
             <div className="stat-box">
-              <h4>Missed Tasks</h4>
+              <h4><Link to='/MissedTasks'>Missed Tasks</Link></h4>
               <p>{taskStats.missedTasks}</p>
-            </div>
-          </section>
-          <section className="overview">
-            <h4>Overview</h4>
-            <p>Task Statistics and User Management</p>
-            <div className="charts">
-              <div className="chart">
-                <h5>This Month's Task Completion</h5>
-                <p>78% Completed</p>
-                <small>April 2024</small>
-                <div className="chart-img"></div>
-              </div>
-              <div className="chart">
-                <h5>View all Users</h5>
-                <p>Top 5 Users</p>
-                <small>April 2024</small>
-                <div className="chart-img"></div>
-              </div>
             </div>
           </section>
         </main>
