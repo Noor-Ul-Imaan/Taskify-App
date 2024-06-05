@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./IndividualPannel.css";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FaHome, FaBell, FaTasks, FaPlusSquare, FaList, FaClipboardList, FaSignOutAlt, FaCog } from 'react-icons/fa';
+
 
 const IndividualPannel = () => {
   const [tasks, setTasks] = useState([]);
@@ -23,23 +25,23 @@ const IndividualPannel = () => {
       axios.get('http://localhost:5000/tasks', {
         headers: { Authorization: `Bearer ${token}` }
       })
-      .then(response => {
-        const userTasks = response.data.data.filter(task => task.assignedTo === user.username);
-        setTasks(userTasks);
+        .then(response => {
+          const userTasks = response.data.data.filter(task => task.assignedTo === user.username);
+          setTasks(userTasks);
 
-        const totalTasks = userTasks.length;
-        const completedTasks = userTasks.filter(task => task.isSubmitted).length;
-        const pendingTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) >= new Date()).length;
-        const missedTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) < new Date()).length;
+          const totalTasks = userTasks.length;
+          const completedTasks = userTasks.filter(task => task.isSubmitted).length;
+          const pendingTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) >= new Date()).length;
+          const missedTasks = userTasks.filter(task => !task.isSubmitted && new Date(task.deadline) < new Date()).length;
 
-        setTaskStats({
-          totalTasks,
-          completedTasks,
-          pendingTasks,
-          missedTasks,
-        });
-      })
-      .catch(error => console.error('Error fetching tasks:', error));
+          setTaskStats({
+            totalTasks,
+            completedTasks,
+            pendingTasks,
+            missedTasks,
+          });
+        })
+        .catch(error => console.error('Error fetching tasks:', error));
     }
   }, [navigate, token, user.username]);
 
@@ -65,52 +67,65 @@ const IndividualPannel = () => {
         <aside className="sidebar">
           <div className="logo">
             {/* <h2>Taskify</h2>
-            <br></br> */}
-            <h3> Dashboard</h3>
+        <br></br> */}
+            <h3>Dashboard</h3>
           </div>
-          
-          <br></br>
+
           <ul className="menu">
-            <Link to='/IndividualPannel'><li>Home</li></Link>
-            <Link to='/IndivNotifs'><li>Notifications</li></Link>
-            <Link to='/IndivHomePage'><li>To-do</li></Link>
-            <Link to='/TaskManager'><li>Create Task</li></Link>
-            <Link to='/ViewAssignedToYou'><li>Pending Tasks</li></Link>
-            <Link to='/ViewAssignedByYou'><li>Tasks Created by You</li></Link>
+            <Link to='/IndividualPannel'>
+              <li><FaHome /> Home</li>
+            </Link>
+            {/* <Link to='/IndivNotifs'>
+              <li><FaBell /> Notifications</li>
+            </Link>
+            <Link to='/IndivHomePage'>
+              <li><FaTasks /> To-do</li>
+            </Link> */}
+            <Link to='/TaskManager'>
+              <li><FaPlusSquare /> Create Task</li>
+            </Link>
+            <Link to='/ViewAssignedToYou'>
+              <li><FaList /> Pending Tasks</li>
+            </Link>
+            <Link to='/ViewAssignedByYou'>
+              <li><FaClipboardList /> Tasks Created by You</li>
+            </Link>
+            <Link to='/Settings'>
+                <li><FaCog /> Settings</li>
+            </Link>
             {user ? (
-              <>
-                <button onClick={handleLogout}>Logout</button>
-              </>
+              <button onClick={handleLogout}>
+                <FaSignOutAlt /> Logout
+              </button>
             ) : (
               <p>logged out</p>
             )}
-            <Link to='/Settings'><button>Settings</button></Link>
           </ul>
         </aside>
         <main className="main-content">
           <header className="header">
             <div className="user-info">
               {user ? (
-              <>
-                <h3>Welcome, {user.firstname} {user.lastname}!</h3>
-                <p>{user.email}</p>
-                <p>{user.role.name}</p>
-              </>
-            ) : (
-              <p>logged out</p>
-            )}
-              
+                <>
+                  <h3>Welcome, {user.firstname} {user.lastname}!</h3>
+                  <p>{user.email}</p>
+                  <p>{user.role.name}</p>
+                </>
+              ) : (
+                <p>logged out</p>
+              )}
+
             </div>
             <div className="user-actions">
-{/*               <div className="admin-photo-circle">
+              {/*               <div className="admin-photo-circle">
                 <img
                   src="\frontend\src\images\person1.jpg"
                   className="admin-photo"
                   alt="User"
                 />
               </div> */}
-  
-      
+
+
             </div>
           </header>
           <section className="statistics">

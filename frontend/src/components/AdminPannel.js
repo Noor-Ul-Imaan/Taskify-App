@@ -3,6 +3,8 @@ import "./AdminPannel.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "./adminOrg/AuthContext";
 import axios from "axios";
+import { FaHome, FaUsers, FaUserPlus, FaBuilding, FaCogs } from 'react-icons/fa';
+
 
 const AdminPannel = () => {
   const { user } = useAuth();
@@ -48,35 +50,35 @@ const AdminPannel = () => {
           <li>
             <Link to="/AdminPannel">
               <div className="menu-item">
-                <i className="fas fa-home"></i> Home
+                <FaHome /> Home
               </div>
             </Link>
           </li>
           <li>
             <Link to="/UserManagement">
               <div className="menu-item">
-                <i className="fas fa-users"></i> User Management
+                <FaUsers /> User Management
               </div>
             </Link>
           </li>
           <li>
             <Link to="/CreateUserForm">
               <div className="menu-item">
-                <i className="fas fa-user-plus"></i> Create User
+                <FaUserPlus /> Create User
               </div>
             </Link>
           </li>
           <li>
             <Link to="/AdminHomepage">
               <div className="menu-item">
-                <i className="fas fa-building"></i> View Organization
+                <FaBuilding /> View Organization
               </div>
             </Link>
           </li>
           <li>
             <Link to="/OrgSettings">
               <div className="menu-item">
-                <i className="fas fa-cogs"></i> Settings
+                <FaCogs /> Settings
               </div>
             </Link>
           </li>
