@@ -1,52 +1,115 @@
-body {
-    font-family: 'Montserrat', sans-serif;
-  }
 
-  .container {
-    width: 650px;
-    margin: 10px auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-  }
-  
-  .container h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .task-section {
-    border: 2px solid #ce9999;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .task-section h3 {
-    margin: 0 0 10px 0;
-    color: #E76F51;
-  }
-  
-  .task-section p {
-    margin: 5px 0;
-  }
-  
-  .task-section button {
-    margin-right: 10px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #E76F51;
-    color: #ffffff;
-  }
-  
-  .no-tasks {
-    text-align: center;
-    color: #E76F51;
-    font-size: 18px;
-  }
 
-  
+#task-manager-container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+#view-tasks-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #264653;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.task-section {
+  border: 1px solid #E9C46A;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fefae0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.task-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #264653;
+  text-transform: uppercase;
+}
+
+.task-details {
+  font-size: 16px;
+  color: #2A9D8F;
+  margin-bottom: 8px;
+}
+
+.submission-details {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f0e5d8;
+}
+
+.submission-details p {
+  font-size: 14px;
+  color: #E76F51;
+}
+
+button {
+  background-color: #F4A261;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #E76F51;
+}
+
+button.delete-button {
+  background-color: #e63946;
+}
+
+button.delete-button:hover {
+  background-color: #d62839;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.rating label {
+  font-size: 14px;
+  margin-right: 10px;
+  color: #E76F51;
+}
+
+.rating input[type="range"] {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.rating span {
+  font-size: 14px;
+  color: #264653;
+}
+
+button.download-button {
+  background-color: #2A9D8F;
+}
+
+button.download-button:hover {
+  background-color: #21867a;
+}
