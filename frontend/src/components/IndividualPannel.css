@@ -100,6 +100,13 @@ a{
   background-color: #0056b3;
 }
 
+.user-performance-stats{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 99%;
+}
+
 .indiv-statistics {
   display: flex;
   justify-content: space-between;
@@ -108,15 +115,9 @@ a{
   width: 99%;
   min-width: 500px;
 }
-.indiv-statistics {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  gap: 10px;
-}
 
 .indiv-stat-box {
-  background-color: #c6c7c7;
+  background-color: #d7dfdf;
   padding: 20px;
   border-radius: 5px;
   text-align: center;

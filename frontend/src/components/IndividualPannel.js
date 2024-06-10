@@ -238,7 +238,7 @@ const IndividualPannel = () => {
                 <p>{taskStats.missedTasks}</p>
               </div>
             </section>
-            <section>
+            <section className="user-performance-stats">
               <div className="indiv-stat-box eff-and-rating">
                 <h4>Efficiency</h4>
                 <p>{taskStats.efficiency.toFixed(2)}%</p>
