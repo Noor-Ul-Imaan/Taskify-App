@@ -47,33 +47,36 @@ const SubmitTask = () => {
     }
 
     try {
-      // Replace with your backend endpoint
-      await axios.post(`http://localhost:5000/tasks/${task._id}/submit`, formData, { // Change PUT to POST
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`
-        }
-      });
-  
-      Swal.fire({
-        title: 'Success',
-        text: 'Task submitted successfully!',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      });
-      navigate('/ViewAssignedToYou'); // Navigate back to the tasks list
-    } catch (error) {
-      console.error('Error submitting task:', error);
-      Swal.fire({
-        title: 'Error',
-        text: 'Failed to submit task.',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
-    } finally {
-      setLoading(false);
+  // Replace with your backend endpoint
+  await axios.post(`http://localhost:5000/tasks/${task._id}/submit`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`
     }
-    setFile(null); 
+  });
+
+  const successMessage = file ? 'Task submitted successfully!' : 'Task marked as done!';
+  Swal.fire({
+    title: 'Success',
+    text: successMessage,
+    icon: 'success',
+    confirmButtonText: 'OK'
+  });
+  navigate('/ViewAssignedToYou'); // Navigate back to the tasks list
+} catch (error) {
+  console.error('Error submitting task:', error);
+  const errorMessage = file ? 'Failed to submit task.' : 'Failed to mark task as done.';
+  Swal.fire({
+    title: 'Error',
+    text: errorMessage,
+    icon: 'error',
+    confirmButtonText: 'OK'
+  });
+} finally {
+  setLoading(false);
+}
+setFile(null); 
+
   };
   
 
@@ -114,8 +117,8 @@ const SubmitTask = () => {
           </div>
 
           <button type="submit" disabled={loading}>
-            {loading ? 'Submitting...' : 'Submit Task'}
-          </button>
+  {loading ? 'Submitting...' : file ? 'Submit Task' : 'Mark as Done'}
+</button>
         </form>
       </div>
     </div>

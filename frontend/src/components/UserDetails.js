@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { Pie, Bar } from "react-chartjs-2";
+import "chart.js/auto";
 import "./UserDetails.css";
 
 const UserDetails = () => {
@@ -18,6 +20,8 @@ const UserDetails = () => {
     missedTasks: 0,
     averageRating: 0,
   });
+
+  const [averageRatingOverTime, setAverageRatingOverTime] = useState([]);
 
   const handleDeleteConfirmation = () => {
     Swal.fire({
@@ -79,6 +83,11 @@ const UserDetails = () => {
                 ).toFixed(2)
               : 0;
 
+          const averageRatingData = userTasks.map((task) => ({
+            date: new Date(task.deadline).toLocaleDateString(),
+            rating: task.rating || 0,
+          }));
+
           setTaskStats({
             totalTasks,
             completedTasks,
@@ -86,6 +95,7 @@ const UserDetails = () => {
             missedTasks,
             averageRating,
           });
+          setAverageRatingOverTime(averageRatingData);
         } catch (error) {
           console.error("Error fetching user tasks:", error);
           Swal.fire(
@@ -122,15 +132,6 @@ const UserDetails = () => {
     );
   };
 
-  // const handleDownloadPDF = () => {
-  //   const input = document.getElementById("pdf-content");
-  //   html2canvas(input).then((canvas) => {
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const pdf = new jsPDF();
-  //     pdf.addImage(imgData, "PNG", 10, 10);
-  //     pdf.save("user-details.pdf");
-  //   });
-  // };
   const handleDownloadPDF = () => {
     const input = document.getElementById("pdf-content");
     const inputWidth = input.offsetWidth; // Get the width of the content container
@@ -171,6 +172,20 @@ const UserDetails = () => {
     });
   };
 
+  const pieData = {
+    labels: ["Completed Tasks", "Pending Tasks", "Missed Tasks"],
+    datasets: [
+      {
+        data: [
+          taskStats.completedTasks,
+          taskStats.pendingTasks,
+          taskStats.missedTasks,
+        ],
+        backgroundColor: ["#E76F51", "#E9C46A", "#2A9D8F"],
+      },
+    ],
+  };
+
   return (
     <div className="user-details">
       {user ? (
@@ -203,31 +218,45 @@ const UserDetails = () => {
               <p>
                 <strong>Role:</strong> {user.role.name}
               </p>
+              <p>
+                <strong>Level:</strong> {user.role.level}
+              </p>
             </div>
             <div className="info-section">
-              <h2>Task Statistics</h2>
-              <p>
-                <strong>Total Tasks:</strong> {taskStats.totalTasks}
-              </p>
-              <p>
-                <strong>Completed Tasks:</strong> {taskStats.completedTasks}
-              </p>
-              <p>
-                <strong>Pending Tasks:</strong> {taskStats.pendingTasks}
-              </p>
-              <p>
-                <strong>Missed Tasks:</strong> {taskStats.missedTasks}
-              </p>
-              <p>
-                <strong>Average Rating:</strong> {taskStats.averageRating}
-              </p>
-              {renderStars(taskStats.averageRating)}
+              <div>
+                <h2>Task Statistics</h2>
+                <p>
+                  <strong>Total Tasks:</strong> {taskStats.totalTasks}
+                </p>
+                <p>
+                  <strong>Completed Tasks:</strong> {taskStats.completedTasks}
+                </p>
+                <p>
+                  <strong>Pending Tasks:</strong> {taskStats.pendingTasks}
+                </p>
+                <p>
+                  <strong>Missed Tasks:</strong> {taskStats.missedTasks}
+                </p>
+                <p>
+                  <strong>Average Rating:</strong> {taskStats.averageRating}
+                </p>
+                {renderStars(taskStats.averageRating)}
+              </div>
             </div>
+            {/* <div className="info-section">
+              <h2>Task Distribution</h2>
+              <Pie data={pieData} />
+            </div> */}
           </div>
-          <button onClick={handleDeleteConfirmation}>
-            Remove from Organization
+          <button className="button-container" onClick={handleDownloadPDF}>
+            Download as PDF
           </button>
-          <button onClick={handleDownloadPDF}>Download as PDF</button>
+          <button
+            className="button-container"
+            onClick={handleDeleteConfirmation}
+          >
+            Delete user
+          </button>
         </div>
       ) : (
         <p>No user data available.</p>

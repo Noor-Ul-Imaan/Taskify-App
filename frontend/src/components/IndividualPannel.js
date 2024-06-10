@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 import logo from "../images/logo.png";
 
@@ -53,11 +54,19 @@ const IndividualPannel = () => {
     }
   }, [navigate, token, user.username]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+const handleLogout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  Swal.fire({
+    title: 'Logged Out',
+    text: 'You have logged out successfully!',
+    icon: 'success',
+    confirmButtonText: 'OK'
+  }).then(() => {
     navigate('/login');
-  };
+  });
+};
+
   
 
   const [isOpen, setIsOpen] = useState(false); // State variable for sidebar visibility
