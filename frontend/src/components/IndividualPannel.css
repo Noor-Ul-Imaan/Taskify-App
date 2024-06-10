@@ -133,7 +133,7 @@ a{
   color: #6c757d;
 }
 
-.completed-task-box{
+/* .completed-task-box{
   background-color: rgb(218, 255, 218);
   border: 1px rgb(67, 255, 79) solid;
 }
@@ -148,7 +148,7 @@ a{
 .missed-task-box{
   background-color: rgb(255, 218, 218);
   border: 1px rgb(255, 58, 58) solid;
-}
+} */
 
 .overview {
   margin-top: 20px;
@@ -242,6 +242,11 @@ a{
 .menu li a:hover, .menu li button:hover {
   background: #34495e;
   border-radius: 4px;
+}
+
+.indiv-stat-box h4:hover {
+  /* text-decoration: underline; */
+  text-shadow: 1px 1px 10px white;
 }
 
 .menu li svg {
