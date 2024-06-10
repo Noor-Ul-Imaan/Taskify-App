@@ -239,11 +239,11 @@ const IndividualPannel = () => {
               </div>
             </section>
             <section>
-              <div className="stat-box">
+              <div className="indiv-stat-box eff-and-rating">
                 <h4>Efficiency</h4>
                 <p>{taskStats.efficiency.toFixed(2)}%</p>
               </div>
-              <div className="stat-box">
+              <div className="indiv-stat-box eff-and-rating">
                 <h4>Average Rating</h4>
                 <p>{taskStats.averageRating.toFixed(2)}</p>
               </div>
@@ -253,10 +253,10 @@ const IndividualPannel = () => {
                 <h4>Task Distribution</h4>
                 <Bar data={barData} options={{ responsive: true }} />
               </div>
-              <div className="piechart">
+              {/* <div className="piechart">
                 <h4>Task Status</h4>
                 <Pie data={pieData} options={{ responsive: true }} />
-              </div>
+              </div> */}
               <div className="barchart">
                 <h4>Ratings Distribution</h4>
                 <Bar data={ratingsBarData} options={{ responsive: true }} />
