@@ -62,7 +62,7 @@
   color: #ddd;
 }
 
-button {
+/* button {
   display: inline;
   justify-content: center;
   width: 40%;
@@ -84,18 +84,4 @@ button:hover {
 button:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(255, 126, 95, 0.5);
-}
-
-.chart-container {
-  display: inline;
-  justify-content: space-between;
-}
-
-.chart-section {
-  width: 10px;  /* Adjusted for two charts per row */
-  margin-bottom: 20px;
-}
-
-canvas {
-  max-width: 50%;
-}
+} */

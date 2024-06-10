@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { Pie, Bar } from "react-chartjs-2";
+
 import "chart.js/auto";
 import "./UserDetails.css";
 
@@ -172,20 +172,6 @@ const UserDetails = () => {
     });
   };
 
-  const pieData = {
-    labels: ["Completed Tasks", "Pending Tasks", "Missed Tasks"],
-    datasets: [
-      {
-        data: [
-          taskStats.completedTasks,
-          taskStats.pendingTasks,
-          taskStats.missedTasks,
-        ],
-        backgroundColor: ["#E76F51", "#E9C46A", "#2A9D8F"],
-      },
-    ],
-  };
-
   return (
     <div className="user-details">
       {user ? (
@@ -243,10 +229,6 @@ const UserDetails = () => {
                 {renderStars(taskStats.averageRating)}
               </div>
             </div>
-            {/* <div className="info-section">
-              <h2>Task Distribution</h2>
-              <Pie data={pieData} />
-            </div> */}
           </div>
           <button className="button-container" onClick={handleDownloadPDF}>
             Download as PDF
