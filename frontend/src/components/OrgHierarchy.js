@@ -27,7 +27,7 @@ function OrgHierarchy() {
   };
 
   return (
-    <div className="container">
+    <div className="container-org">
       <h1>Organization Hierarchy</h1>
       <div id="rolesContainer">
         {roles.map((role, index) => (

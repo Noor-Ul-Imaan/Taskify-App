@@ -36,19 +36,24 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
           <p className="task-details">{task.description}</p>
           <p className="task-details">Assigned by: {task.assignedBy}</p>
           <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
-          {task.assignedTo === user.username && !task.isSubmitted && (
-            <Link to={`/SubmitTask/${task._id}`} state={{ task }}>
-              <button>Submit</button>
-            </Link>
-          )}
+          <div className='task-list-button'>
+            {/* <div> */}
+              {task.assignedTo === user.username && !task.isSubmitted && (
+                
+                <Link to={`/SubmitTask/${task._id}`} state={{ task }}>
+                  <button>Submit</button>
+                </Link>
+              )}
+            {/* </div> */}
+            {/* <div> */}
+              {task.attachment && (
+                <div>
+                  <button onClick={() => handleDownload(task)}>View Attachment</button> {/* Pass task object */}
+                </div>
+              )}
+            {/* </div> */}
 
-          {task.attachment ? (
-            <div>
-              <button onClick={() => handleDownload(task)}>View Attachment</button> {/* Pass task object */}
-            </div>
-          ) : (
-            <p>No attachment</p>
-          )}
+         </div>
         </div>
       ))}
     </div>

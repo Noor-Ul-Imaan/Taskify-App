@@ -38,51 +38,46 @@ const SubmitTask = () => {
         console.log('fileflound' , file)
 
     }
-    else {
-      console.log('file not ofuns')
-    }
+
     if(comment) {
       formData.append('comment', comment);
 
     }
 
     try {
-  // Replace with your backend endpoint
-  await axios.post(`http://localhost:5000/tasks/${task._id}/submit`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${token}`
+      // Replace with your backend endpoint
+      await axios.post(`http://localhost:5000/tasks/${task._id}/submit`, formData, { 
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const successMessage = file ? 'Task submitted successfully!' : 'Task marked as done!';  
+      Swal.fire({
+        title: 'Success',
+        text: 'Task submitted successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+      navigate('/ViewAssignedToYou'); // Navigate back to the tasks list
+    } catch (error) {
+      console.error('Error submitting task:', error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Failed to submit task.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    } finally {
+      setLoading(false);
     }
-  });
-
-  const successMessage = file ? 'Task submitted successfully!' : 'Task marked as done!';
-  Swal.fire({
-    title: 'Success',
-    text: successMessage,
-    icon: 'success',
-    confirmButtonText: 'OK'
-  });
-  navigate('/ViewAssignedToYou'); // Navigate back to the tasks list
-} catch (error) {
-  console.error('Error submitting task:', error);
-  const errorMessage = file ? 'Failed to submit task.' : 'Failed to mark task as done.';
-  Swal.fire({
-    title: 'Error',
-    text: errorMessage,
-    icon: 'error',
-    confirmButtonText: 'OK'
-  });
-} finally {
-  setLoading(false);
-}
-setFile(null); 
-
+    setFile(null); 
   };
   
 
   return (
     <div className="submit-task">
-      <div className="task-details">
+      <div className="submit-task-details">
         <h1>{task.title}</h1>
         <p>{task.description}</p>
         <p>Assigned by: {task.assignedBy}</p>
@@ -117,8 +112,8 @@ setFile(null);
           </div>
 
           <button type="submit" disabled={loading}>
-  {loading ? 'Submitting...' : file ? 'Submit Task' : 'Mark as Done'}
-</button>
+            {loading ? 'Submitting...' : 'Submit Task'}
+          </button>
         </form>
       </div>
     </div>

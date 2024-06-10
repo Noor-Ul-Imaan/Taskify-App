@@ -1,11 +1,11 @@
-.container {
+.container-org {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #2b5d7c;
   }
   
-  .container {
+  .container-org {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -14,14 +14,14 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .container h1 {
+  .container-org h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
     text-align: center;
   }
   
-  .container div {
+  .container-org div {
     margin-bottom: 20px;
   }
   

@@ -43,3 +43,77 @@ body {
     cursor: pointer;
     font-size: 16px;
   }
+
+  .task-list-button {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+  .task-list-button div {
+    flex: 1;
+  }
+  .task-list-button a {
+    flex: 1;
+  }
+  
+  /* Responsive sidebar styles from IndividualPannel.css */
+  .indiv-sidebar {
+    width: 250px;
+    background: #2c3e50;
+    color: #ecf0f1;
+    height: 100vh;
+    padding: 20px;
+    text-decoration: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+  }
+  
+  .indiv-sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .toggle-container {
+    width: 100%;
+  }
+  
+  .toggle-menu {
+    width: 10%;
+    float: right;
+    background-color: #264653;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 0;
+    text-align: center;
+    margin-right: 20px;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 250px; /* Default margin when sidebar is visible */
+  }
+  
+  @media (max-width: 980px) {
+    .main-content {
+      margin-left: 0;
+    }
+  
+    .indiv-sidebar {
+      transform: translateX(-100%);
+    }
+  
+    .indiv-sidebar.active {
+      transform: translateX(0);
+    }
+
+    .task-list-button {
+      flex-direction: column;
+    }
+  }
+  

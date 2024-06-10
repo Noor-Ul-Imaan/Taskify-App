@@ -128,6 +128,7 @@ const handleLogout = () => {
     </div>
     
     <div className="content-container">
+
       {user ? (
         <div>
         </div>
@@ -144,8 +145,8 @@ const handleLogout = () => {
             <h3>Dashboard</h3>
           </div> */}
           <div className="navbar-logo">
-  <img src={logo} alt="Logo" />
-</div>
+            <img src={logo} alt="Logo" />
+          </div>
           <br />
           <ul className="menu">
           <Link to='/IndividualPannel'>
@@ -176,7 +177,7 @@ const handleLogout = () => {
           </ul>
         </aside>
 
-        <main className="main-content">
+        <main className="indiv-main-content">
           <header className="header">
             <div className="user-info">
               {user ? (
@@ -192,20 +193,20 @@ const handleLogout = () => {
             <div className="user-actions">
             </div>
           </header>
-          <section className="statistics">
-            <div className="stat-box">
+          <section className="indiv-statistics">
+            <div className="indiv-stat-box">
               <h4><Link to='/TotalTasks'>Total Tasks</Link></h4>
               <p>{taskStats.totalTasks}</p>
             </div>
-            <div className="stat-box">
+            <div className="indiv-stat-box">
               <h4><Link to='/CompletedTasks'>Completed Tasks</Link></h4>
               <p>{taskStats.completedTasks}</p>
             </div>
-            <div className="stat-box">
+            <div className="indiv-stat-box">
               <h4><Link to='/ViewAssignedToYou'>Pending Tasks</Link></h4>
               <p>{taskStats.pendingTasks}</p>
             </div>
-            <div className="stat-box">
+            <div className="indiv-stat-box">
               <h4><Link to='/MissedTasks'>Missed Tasks</Link></h4>
               <p>{taskStats.missedTasks}</p>
             </div>
