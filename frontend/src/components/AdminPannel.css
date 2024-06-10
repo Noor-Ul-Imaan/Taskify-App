@@ -71,7 +71,7 @@ body {
   width: 100%;
 }
 
-.main-content {
+.admin-container .main-content {
   flex: 1;
   overflow-y: auto;
   padding: 0px;
