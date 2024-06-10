@@ -38,9 +38,7 @@ const SubmitTask = () => {
         console.log('fileflound' , file)
 
     }
-    else {
-      console.log('file not ofuns')
-    }
+
     if(comment) {
       formData.append('comment', comment);
 
@@ -48,13 +46,13 @@ const SubmitTask = () => {
 
     try {
       // Replace with your backend endpoint
-      await axios.post(`http://localhost:5000/tasks/${task._id}/submit`, formData, { // Change PUT to POST
+      await axios.post(`http://localhost:5000/tasks/${task._id}/submit`, formData, { 
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`
         }
       });
-  
+      const successMessage = file ? 'Task submitted successfully!' : 'Task marked as done!';  
       Swal.fire({
         title: 'Success',
         text: 'Task submitted successfully!',
@@ -79,7 +77,7 @@ const SubmitTask = () => {
 
   return (
     <div className="submit-task">
-      <div className="task-details">
+      <div className="submit-task-details">
         <h1>{task.title}</h1>
         <p>{task.description}</p>
         <p>Assigned by: {task.assignedBy}</p>

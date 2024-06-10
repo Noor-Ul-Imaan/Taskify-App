@@ -1,16 +1,21 @@
 
 
 #task-manager-container {
-  width: 80%;
-  max-width: 1200px;
-  margin: 20px auto;
+  /* width: 80%; */
+  /* max-width: 1200px; */
+  margin: auto;
 }
 
 #view-tasks-container {
+  width: 60%;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   padding: 30px;
+}
+
+#view-tasks-container h1 {
+  padding-top: 10px;
 }
 
 h1 {
@@ -116,4 +121,34 @@ button.download-button:hover {
 
 .task-manager-container {
   width: 60%;
+}
+
+.assigned-by-me-button {
+  display: flex;
+  gap: 10px;
+}
+
+.assigned-by-me-button button {
+  /* margin: 10px; */
+  height: 60px;
+}
+
+.task-details-list {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+@media (max-width: 980px) {
+
+  .assigned-by-me-button {
+    flex-direction: column;
+  }
+
+  #view-tasks-container {
+    width: 80%;
+
+  }
+
 }

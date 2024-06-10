@@ -84,7 +84,7 @@ const ViewTasksAssignedByYou = () => {
     };
 
     return (
-        <div id="task-manager-container">
+        <div id="task-manager-container" className='task-manager-contain'>
             <div className="container" id="view-tasks-container">
             <Link to='/IndividualPannel'>
               <><FaHome /> Home</>
@@ -95,23 +95,27 @@ const ViewTasksAssignedByYou = () => {
                         {tasks.map(task => (
                             <div key={task._id} className="task-section">
                                 <h3 className="task-title">{task.title}</h3>
-                                {task.description &&
-                                 <p className="task-details">{task.description}</p>
+                                <div className='task-details-list'>
+                                    {task.description &&
+                                    <p className="task-details">Description: {task.description}</p>
 
-                                }
-                                <p className="task-details">Assigned to: {task.assignedTo}</p>
-                                <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
-                                <p className="task-details">Status: {task.isSubmitted ? 'Submitted' : 'Not Submitted'}</p>
+                                    }
+                                    <p className="task-details">Assigned to: {task.assignedTo}</p>
+                                    <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
+                                    <p className="task-details">Status: {task.isSubmitted ? 'Submitted' : 'Not Submitted'}</p>                                    
+                                </div>
+
+
                                 {task.isSubmitted && (
                                     <div className="submission-details">
                                         <p className="task-details">Comment: {task.comment || 'No comment'}</p>
-                                        {task.submissionAttachment ? (
+                                        {/* {task.submissionAttachment ? (
                                             <div>
-                                                <button className="download-button" onClick={() => handleDownload(task)}>View submission</button> {/* Pass task object */}
+                                                <button className="download-button" onClick={() => handleDownload(task)}>View submission</button> 
                                             </div>
                                         ) : (
                                             <p>No submission</p>
-                                        )}
+                                        )} */}
                                     </div>
                                 )}
                                 {task.isSubmitted && (
@@ -129,8 +133,14 @@ const ViewTasksAssignedByYou = () => {
                                         <span>{task.rating || 1}</span>
                                     </div>
                                 )}
-                                <div>
+                                <div className='assigned-by-me-button'>
+
                                     <button onClick={() => handleEditTask(task)}>Edit</button>
+                                    {task.submissionAttachment && (
+                                        
+                                                <button className="download-button" onClick={() => handleDownload(task)}>View submission</button> 
+                                     
+                                        )}
                                     <button className="delete-button" onClick={() => handleDeleteTask(task._id)}>Delete</button>
                                 </div>
                             </div>
