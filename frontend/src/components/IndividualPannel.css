@@ -21,6 +21,13 @@ a{
   align-items: center;
 }
 
+.indiv-sidebar .navbar-logo {
+  margin-top: 18px;
+}
+.indiv-sidebar ul {
+  margin-top: 18px;
+}
+
 .logo h2, .logo p {
   margin: 0;
   color: #ffffff;
@@ -124,6 +131,23 @@ a{
 
 .indiv-stat-box small {
   color: #6c757d;
+}
+
+.completed-task-box{
+  background-color: rgb(218, 255, 218);
+  border: 1px rgb(67, 255, 79) solid;
+}
+.total-task-box{
+  background-color: rgb(255, 247, 228);
+  border: 1px rgb(255, 205, 96) solid;
+}
+.pending-task-box{
+  background-color: rgb(231, 247, 255);
+  border: 1px rgb(132, 214, 255) solid;
+}
+.missed-task-box{
+  background-color: rgb(255, 218, 218);
+  border: 1px rgb(255, 58, 58) solid;
 }
 
 .overview {

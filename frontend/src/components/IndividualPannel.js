@@ -194,19 +194,19 @@ const handleLogout = () => {
             </div>
           </header>
           <section className="indiv-statistics">
-            <div className="indiv-stat-box">
+            <div className="indiv-stat-box total-task-box">
               <h4><Link to='/TotalTasks'>Total Tasks</Link></h4>
               <p>{taskStats.totalTasks}</p>
             </div>
-            <div className="indiv-stat-box">
+            <div className="indiv-stat-box completed-task-box">
               <h4><Link to='/CompletedTasks'>Completed Tasks</Link></h4>
               <p>{taskStats.completedTasks}</p>
             </div>
-            <div className="indiv-stat-box">
+            <div className="indiv-stat-box pending-task-box">
               <h4><Link to='/ViewAssignedToYou'>Pending Tasks</Link></h4>
               <p>{taskStats.pendingTasks}</p>
             </div>
-            <div className="indiv-stat-box">
+            <div className="indiv-stat-box missed-task-box">
               <h4><Link to='/MissedTasks'>Missed Tasks</Link></h4>
               <p>{taskStats.missedTasks}</p>
             </div>
