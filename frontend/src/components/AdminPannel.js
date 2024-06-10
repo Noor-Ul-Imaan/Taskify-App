@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./adminOrg/AuthContext";
 import logo from "../images/logo.png";
-
 import axios from "axios";
 import {
   FaHome,
@@ -12,18 +11,16 @@ import {
   FaSignOutAlt,
   FaCogs,
 } from "react-icons/fa";
-import { Line, Pie } from "react-chartjs-2";
+import { Pie, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
-  LineElement,
   Title,
   Tooltip,
   Legend,
   ArcElement,
-  PointElement,
 } from "chart.js";
 import "./AdminPannel.css";
 
@@ -32,13 +29,28 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
-  LineElement,
-  PointElement,
   Title,
   Tooltip,
   Legend,
   ArcElement
 );
+
+const TopUsers = ({ users }) => {
+  return (
+    <div className="top-users">
+      <h4>Top 5 Users</h4>
+      {users.map((user, index) => (
+        <div key={index} className="user-card">
+          <h5>
+            {user.firstname} {user.lastname}
+          </h5>
+          <p>Role: {user.role.name}</p>
+          <p>Rating: {user.averageRating}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const AdminPannel = () => {
   const { user } = useAuth();
@@ -46,10 +58,7 @@ const AdminPannel = () => {
   const [stats, setStats] = useState({
     totalUsers: 0,
     roleCounts: {},
-  });
-  const [signUpData, setSignUpData] = useState({
-    labels: [],
-    data: [],
+    topUsers: [],
   });
 
   useEffect(() => {
@@ -63,15 +72,47 @@ const AdminPannel = () => {
             }
           );
 
-          const roleCounts = usersResponse.data.reduce((acc, user) => {
-            const role = user.role.name;
-            acc[role] = acc[role] ? acc[role] + 1 : 1;
-            return acc;
-          }, {});
+          const users = usersResponse.data;
+          const usersWithRatings = await Promise.all(
+            users.map(async (user) => {
+              const tasksResponse = await axios.get(
+                `http://localhost:5000/api/tasks/user/${user.username}`,
+                {
+                  withCredentials: true,
+                }
+              );
+
+              const tasks = tasksResponse.data.data;
+              const ratings = tasks
+                .filter((task) => task.rating !== undefined)
+                .map((task) => task.rating);
+
+              const averageRating =
+                ratings.length > 0
+                  ? (
+                      ratings.reduce((sum, rating) => sum + rating, 0) /
+                      ratings.length
+                    ).toFixed(2)
+                  : 0;
+
+              return {
+                ...user,
+                averageRating: parseFloat(averageRating),
+                taskCount: tasks.length,
+              };
+            })
+          );
+
+          usersWithRatings.sort((a, b) => b.averageRating - a.averageRating);
 
           setStats({
-            totalUsers: usersResponse.data.length,
-            roleCounts: roleCounts,
+            totalUsers: usersWithRatings.length,
+            roleCounts: usersWithRatings.reduce((acc, user) => {
+              const role = user.role.name;
+              acc[role] = acc[role] ? acc[role] + 1 : 1;
+              return acc;
+            }, {}),
+            topUsers: usersWithRatings.slice(0, 5),
           });
         }
       } catch (error) {
@@ -79,36 +120,13 @@ const AdminPannel = () => {
       }
     };
 
-    const fetchSignUpData = async () => {
-      try {
-        const signUpResponse = await axios.get(
-          "http://localhost:5000/api/signups/monthly",
-          {
-            withCredentials: true,
-          }
-        );
-
-        const labels = signUpResponse.data.map((item) => item.month);
-        const data = signUpResponse.data.map((item) => item.count);
-
-        setSignUpData({
-          labels: labels,
-          data: data,
-        });
-      } catch (error) {
-        console.error("Error fetching sign-up data:", error);
-      }
-    };
-
     fetchStats();
-    fetchSignUpData();
   }, [user]);
 
   if (!user) {
     return <div>Loading...</div>;
   }
 
-  // Data for the pie chart
   const roleData = {
     labels: Object.keys(stats.roleCounts),
     datasets: [
@@ -117,6 +135,19 @@ const AdminPannel = () => {
         data: Object.values(stats.roleCounts),
         backgroundColor: ["#E76F51", "#2A9D8F", "#E9C46A", "#F4A261"],
         borderColor: ["#E76F51", "#2A9D8F", "#E9C46A", "#F4A261"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const barData = {
+    labels: stats.topUsers.map((user) => `${user.firstname} ${user.lastname}`),
+    datasets: [
+      {
+        label: "Number of Tasks Completed",
+        data: stats.topUsers.map((user) => user.taskCount),
+        backgroundColor: ["#008080;"],
+        borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
     ],
@@ -191,9 +222,25 @@ const AdminPannel = () => {
         </header>
 
         <section className="statistics">
-          <div className="stat-box">
+          <div className="stat-box2">
+            <TopUsers users={stats.topUsers} />
+          </div>
+          <div className="stat-box1">
             <h4>Users by Role</h4>
             <Pie data={roleData} />
+          </div>
+          <div className="stat-box3">
+            <h4>Total Number of Users</h4>
+            <p>{stats.totalUsers}</p>
+            <div className="icon">
+              <FaUsers className="user-icon" />
+            </div>
+          </div>
+
+          <div className="stat-box4">
+            <h4>Top 5 Users Task Completion</h4>
+
+            <Bar data={barData} />
           </div>
         </section>
       </main>
