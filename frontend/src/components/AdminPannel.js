@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./adminOrg/AuthContext";
 import logo from "../images/logo.png";
 import axios from "axios";
+import Swal from "sweetalert2";
 import {
   FaHome,
   FaUsers,
@@ -156,7 +157,14 @@ const AdminPannel = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/login");
+    Swal.fire({
+      title: "Logged Out",
+      text: "You have logged out successfully!",
+      icon: "success",
+      confirmButtonText: "OK",
+    }).then(() => {
+      navigate("/login");
+    });
   };
 
   return (
