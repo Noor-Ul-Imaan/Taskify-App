@@ -1,5 +1,8 @@
 
 .user-details {
+    background-image: url('../taskify-bg.jpeg');
+  
+  
     padding: 20px;
     font-family: Arial, sans-serif;
     font-size: 18px; /* Increased font size */

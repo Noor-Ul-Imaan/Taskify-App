@@ -1,8 +1,10 @@
-
+.task-manager-contain {
+  background-image: url('../../taskify-bg.jpeg');
+}
 
 #task-manager-container {
-  width: 80%;
-  max-width: 1200px;
+  /* width: 80%; */
+  /* max-width: 1200px; */
   margin: 20px auto;
 }
 
@@ -116,4 +118,12 @@ button.download-button:hover {
 
 .task-manager-container {
   width: 60%;
+}
+
+.assigned-by-me-button {
+  display: flex;
+}
+
+.assigned-by-me-button button {
+  margin: 10px;
 }

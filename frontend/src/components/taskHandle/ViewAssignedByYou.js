@@ -84,7 +84,7 @@ const ViewTasksAssignedByYou = () => {
     };
 
     return (
-        <div id="task-manager-container">
+        <div id="task-manager-container" className='task-manager-contain'>
             <div className="container" id="view-tasks-container">
             <Link to='/IndividualPannel'>
               <><FaHome /> Home</>
@@ -129,7 +129,7 @@ const ViewTasksAssignedByYou = () => {
                                         <span>{task.rating || 1}</span>
                                     </div>
                                 )}
-                                <div>
+                                <div className='assigned-by-me-button'>
                                     <button onClick={() => handleEditTask(task)}>Edit</button>
                                     <button className="delete-button" onClick={() => handleDeleteTask(task._id)}>Delete</button>
                                 </div>
