@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ViewAssigned.css'; // Import the CSS file here
 import { FaHome} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const CompletedTasks = () => {
   const [tasks, setTasks] = useState([]);

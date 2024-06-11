@@ -12,6 +12,11 @@ a{
   display: flex;
 }
 
+
+.barchart {
+  width: 20%;
+}
+
 .indiv-sidebar {
   width: 300px;
   background-color: #264653;
@@ -201,6 +206,13 @@ a{
   color: #6c757d;
 }
 
+.indiv-pannel .indiv-main-content {
+  padding: 0;
+}
+
+.indiv-statistics, .charts, .user-performance-stats{
+  padding: 20px;
+}
 
 .chart-handler {
   display: flex;

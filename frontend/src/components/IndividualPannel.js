@@ -211,7 +211,7 @@ const IndividualPannel = () => {
                   <>
                     <h3>Welcome, {user.firstname} {user.lastname}!</h3>
                     <p>{user.email}</p>
-                    <p>{user.role.name}</p>
+                    <p>{user.role} at {user.org} </p>
                   </>
                 ) : (
                   <p>logged out</p>

@@ -27,11 +27,12 @@ h1 {
 }
 
 .task-section {
-  border: 1px solid #E9C46A;
+  border: 1px solid #bbdeff;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  background-color: #fefae0;
+  /* background-color: #fefae0; */
+  background-color: #f1f1f1;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -130,7 +131,8 @@ button.download-button:hover {
 
 .assigned-by-me-button button {
   /* margin: 10px; */
-  height: 60px;
+  /* height: 60px;
+  padding: 2px; */
 }
 
 .task-details-list {
