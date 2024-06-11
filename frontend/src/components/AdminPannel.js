@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./adminOrg/AuthContext";
 import logo from "../images/logo.png";
 import axios from "axios";
+import Swal from "sweetalert2";
 import {
   FaHome,
   FaUsers,
@@ -156,7 +157,14 @@ const AdminPannel = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/login");
+    Swal.fire({
+      title: "Logged Out",
+      text: "You have logged out successfully!",
+      icon: "success",
+      confirmButtonText: "OK",
+    }).then(() => {
+      navigate("/login");
+    });
   };
 
   return (
@@ -229,6 +237,11 @@ const AdminPannel = () => {
             <h4>Users by Role</h4>
             <Pie data={roleData} />
           </div>
+          <div className="stat-box4">
+            <h4>Top 5 Users Task Completion</h4>
+
+            <Bar data={barData} />
+          </div>
           <div className="stat-box3">
             <h4>Total Number of Users</h4>
             <p>{stats.totalUsers}</p>
@@ -237,11 +250,7 @@ const AdminPannel = () => {
             </div>
           </div>
 
-          <div className="stat-box4">
-            <h4>Top 5 Users Task Completion</h4>
 
-            <Bar data={barData} />
-          </div>
         </section>
       </main>
     </div>

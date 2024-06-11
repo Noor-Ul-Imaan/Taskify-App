@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './ViewAssigned.css'; // Import the CSS file here
 import { FaHome} from 'react-icons/fa';
@@ -18,7 +17,11 @@ const CompletedTasks = () => {
         task.assignedTo === user.username && 
         task.isSubmitted
       );
-      setTasks(filteredTasks);
+
+      // Sort the tasks by creation date in descending order
+      const sortedTasks = filteredTasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      setTasks(sortedTasks);
     })
     .catch(error => console.error('Error fetching tasks:', error));
   }, [token, user.username]);
@@ -58,7 +61,6 @@ const CompletedTasks = () => {
             <p className="task-details">Assigned by: {task.assignedBy}</p>
             <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
             {task.rating && <p className="task-details">Rating:  {task.rating}/5</p>}
-            
           </div>
         ))}
       </div>

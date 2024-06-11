@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './ViewAssigned.css'; // Import the CSS file here
-import { FaHome} from 'react-icons/fa';
+import { FaHome } from 'react-icons/fa';
 
 const ViewTasksAssignedByYou = () => {
     const [tasks, setTasks] = useState([]);
@@ -17,7 +17,11 @@ const ViewTasksAssignedByYou = () => {
         })
         .then(response => {
             const filteredTasks = response.data.data.filter(task => task.assignedBy === user.username);
-            setTasks(filteredTasks);
+
+            // Sort the tasks by creation date in descending order
+            const sortedTasks = filteredTasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            setTasks(sortedTasks);
         })
         .catch(error => console.error('Error fetching tasks:', error));
     }, [token, user.username]);
