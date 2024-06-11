@@ -237,6 +237,11 @@ const AdminPannel = () => {
             <h4>Users by Role</h4>
             <Pie data={roleData} />
           </div>
+          <div className="stat-box4">
+            <h4>Top 5 Users Task Completion</h4>
+
+            <Bar data={barData} />
+          </div>
           <div className="stat-box3">
             <h4>Total Number of Users</h4>
             <p>{stats.totalUsers}</p>
@@ -245,11 +250,7 @@ const AdminPannel = () => {
             </div>
           </div>
 
-          <div className="stat-box4">
-            <h4>Top 5 Users Task Completion</h4>
 
-            <Bar data={barData} />
-          </div>
         </section>
       </main>
     </div>
