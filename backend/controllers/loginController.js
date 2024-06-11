@@ -15,8 +15,7 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
 
-    console.log('Entered Password:', password);
-    console.log('Stored Hashed Password:', user.password);
+  
 
     const isMatch = await bcrypt.compare(password, user.password);
     console.log('Password Match:', isMatch);
@@ -37,7 +36,8 @@ export const login = async (req, res) => {
         email: user.email, 
         level: user.role.level, 
         role: user.role.name,
-        id: user._id
+        id: user._id,
+        org: user.organizationName
       } 
     });
     console.log(user.username);

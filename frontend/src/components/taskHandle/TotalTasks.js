@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskList from './TaskList';
 import './ViewAssigned.css'; // Import the CSS file here
+import { Link } from 'react-router-dom';
+import { FaHome} from 'react-icons/fa';
 
 const TotalTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -25,6 +27,9 @@ const TotalTasks = () => {
 
   return (
     <div className="container" id="view-tasks-container">
+      <Link to='/IndividualPannel'>
+        <><FaHome /> Home</>
+      </Link>
       <h1>Total Tasks</h1>
       <TaskList 
         tasks={tasks} 

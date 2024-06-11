@@ -35,7 +35,12 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask }) => {
           <h2 className="task-title">{task.title}</h2>
           <p className="task-details">{task.description}</p>
           <p className="task-details">Assigned by: {task.assignedBy}</p>
-          <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
+          {task.deadline ?
+          (          <p className="task-details">Deadline: {new Date(task.deadline).toLocaleDateString()}</p>
+        ) :(
+          <p className="task-details">No deadline</p>
+        )
+          }
           <div className='task-list-button'>
             {/* <div> */}
               {task.assignedTo === user.username && !task.isSubmitted && (

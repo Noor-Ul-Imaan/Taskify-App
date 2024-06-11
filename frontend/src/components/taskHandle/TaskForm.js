@@ -27,7 +27,10 @@ const TaskForm = ({ onCreateTask, existingTask, onUpdateTask }) => {
     const taskData = new FormData();
     taskData.append('title', title);
     taskData.append('description', description);
-    taskData.append('deadline', deadline);
+    if (deadline) {
+      taskData.append('deadline', deadline);
+    }
+    // taskData.append('deadline', deadline);
     taskData.append('assignedTo', assignedTo);
     taskData.append('assignedBy', user.username);
     if (file) {

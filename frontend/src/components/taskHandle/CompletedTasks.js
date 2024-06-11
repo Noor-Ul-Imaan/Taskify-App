@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './ViewAssigned.css'; // Import the CSS file here
+import { FaHome} from 'react-icons/fa';
 
 const CompletedTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -45,6 +46,9 @@ const CompletedTasks = () => {
 
   return (
     <div className="container" id="view-tasks-container">
+      <Link to='/IndividualPannel'>
+      <><FaHome /> Home</>
+      </Link>
       <h1>Completed Tasks</h1>
       <div>
         {tasks.map(task => (
